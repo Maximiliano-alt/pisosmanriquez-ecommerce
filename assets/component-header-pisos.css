@@ -157,5 +157,12 @@
 
 /* Override Dawn default header grid when PM layout is active */
 .header.header-pm-active {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.header.header-pm-active .header-pm__nav {
+  position: relative;
 }
