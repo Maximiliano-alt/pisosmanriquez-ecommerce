@@ -1,0 +1,161 @@
+/* Pisos Manríquez - Header 2-row layout */
+
+.header-pm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.2rem 3rem;
+  width: 100%;
+}
+
+.header-pm__logo {
+  flex-shrink: 0;
+}
+
+.header-pm__logo .header__heading-logo-wrapper {
+  max-width: 160px;
+}
+
+.header-pm__logo .header__heading-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.header-pm__search {
+  flex: 1;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.header-pm__search-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgb(var(--color-background));
+  transition: border-color 0.2s ease;
+}
+
+.header-pm__search-form:focus-within {
+  border-color: rgba(var(--color-foreground), 0.5);
+}
+
+.header-pm__search-input {
+  flex: 1;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.4rem;
+  font-family: var(--font-body-family);
+  background: transparent;
+  color: rgb(var(--color-foreground));
+  outline: none;
+}
+
+.header-pm__search-input::placeholder {
+  color: rgba(var(--color-foreground), 0.5);
+}
+
+.header-pm__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: rgba(var(--color-foreground), 0.6);
+  transition: color 0.2s ease;
+}
+
+.header-pm__search-btn:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.header-pm__search-btn svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.header-pm__icons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Navigation bar - row 2 */
+.header-pm__nav {
+  border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  padding: 0 3rem;
+}
+
+.header-pm__nav .header__inline-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.header-pm__nav .list-menu--inline {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+.header-pm__nav .list-menu--inline > li {
+  flex: 0 1 auto;
+}
+
+.header-pm__nav .header__menu-item {
+  padding: 1rem 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: rgba(var(--color-foreground), 0.85);
+  position: relative;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-pm__nav .header__menu-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.6rem;
+  right: 1.6rem;
+  height: 2px;
+  background: #f05a28;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.header-pm__nav .header__menu-item:hover::after,
+.header-pm__nav .header__menu-item[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.header-pm__nav .header__menu-item:hover {
+  color: rgb(var(--color-foreground));
+}
+
+/* Mobile: hide search bar row, show drawer */
+@media screen and (max-width: 989px) {
+  .header-pm__search {
+    display: none;
+  }
+
+  .header-pm__nav {
+    display: none;
+  }
+
+  .header-pm {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Override Dawn default header grid when PM layout is active */
+.header.header-pm-active {
+  display: contents;
+}

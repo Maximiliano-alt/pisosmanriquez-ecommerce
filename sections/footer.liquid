@@ -153,6 +153,27 @@
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
+                  {%- when 'location' -%}
+                    <div class="footer-block__details-content footer-block__location">
+                      {%- if block.settings.location_address != blank -%}
+                        <p style="margin:0 0 0.6rem">{{ block.settings.location_address }}</p>
+                      {%- endif -%}
+                      {%- if block.settings.location_phone != blank -%}
+                        <p style="margin:0 0 0.4rem">
+                          <strong>TELÉFONOS:</strong> <a href="tel:{{ block.settings.location_phone | remove: ' ' }}" class="link link--text">{{ block.settings.location_phone }}</a>
+                        </p>
+                      {%- endif -%}
+                      {%- if block.settings.location_whatsapp != blank -%}
+                        <p style="margin:0 0 0.4rem">
+                          <strong>WHATSAPP:</strong> <a href="https://wa.me/{{ block.settings.location_whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" class="link link--text">{{ block.settings.location_whatsapp }}</a>
+                        </p>
+                      {%- endif -%}
+                      {%- if block.settings.location_email != blank -%}
+                        <p style="margin:0">
+                          <strong>CORREO:</strong> <a href="mailto:{{ block.settings.location_email }}" class="link link--text">{{ block.settings.location_email }}</a>
+                        </p>
+                      {%- endif -%}
+                    </div>
                 {%- endcase -%}
               </div>
             {%- endfor -%}
@@ -419,6 +440,39 @@
             }
           ],
           "default": "center"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "name": "Sucursal",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Nombre de sucursal",
+          "default": "ATENCIÓN: Sucursal"
+        },
+        {
+          "type": "text",
+          "id": "location_address",
+          "label": "Dirección"
+        },
+        {
+          "type": "text",
+          "id": "location_phone",
+          "label": "Teléfono"
+        },
+        {
+          "type": "text",
+          "id": "location_whatsapp",
+          "label": "WhatsApp",
+          "default": "+56 9 73763087"
+        },
+        {
+          "type": "text",
+          "id": "location_email",
+          "label": "Email"
         }
       ]
     }

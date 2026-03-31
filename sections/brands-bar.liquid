@@ -1,0 +1,91 @@
+{{ 'section-brands-bar.css' | asset_url | stylesheet_tag }}
+
+<div class="brands-bar page-width color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  {%- if section.settings.title != blank -%}
+    <h2 class="brands-bar__title">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <ul class="brands-bar__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="brands-bar__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="brands-bar__link" target="_blank" rel="noopener">
+          {%- endif -%}
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 400
+                | image_tag:
+                  class: 'brands-bar__image',
+                  loading: 'lazy',
+                  alt: block.settings.name | default: 'Marca'
+              }}
+            {%- else -%}
+              <span style="display:inline-block;width:12rem;height:4rem;background:rgba(var(--color-foreground),0.1);border-radius:4px"></span>
+            {%- endif -%}
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Barra de marcas",
+  "class": "section-brands-bar",
+  "tag": "section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Nuestras marcas"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de colores",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Marca",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo de la marca"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre de la marca"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace (opcional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de marcas",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,105 @@
+{{ 'section-category-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="category-grid page-width color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  {%- if section.settings.title != blank -%}
+    <h2 class="category-grid__title">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <ul class="category-grid__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="category-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }} {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 100 }}ms"{% endif %}>
+          {%- liquid
+            if block.settings.collection != blank
+              assign link_url = block.settings.collection.url
+              assign link_title = block.settings.label | default: block.settings.collection.title
+              assign link_image = block.settings.image | default: block.settings.collection.image
+            else
+              assign link_url = '#'
+              assign link_title = block.settings.label | default: 'Categoría'
+              assign link_image = block.settings.image
+            endif
+          -%}
+          <a href="{{ link_url }}" class="category-grid__link" aria-label="{{ link_title | escape }}">
+            <div class="category-grid__image-wrapper">
+              {%- if link_image != blank -%}
+                {{
+                  link_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw',
+                    widths: '300, 400, 500, 600, 800'
+                }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="category-grid__overlay">
+              <p class="category-grid__name">{{ link_title | escape }}</p>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Grilla de categorías",
+  "class": "section-category-grid",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Somos distribuidores de todas las marcas top en el mercado"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de colores",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Categoría",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Colección"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texto personalizado",
+          "info": "Si está vacío, se usa el nombre de la colección"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen",
+          "info": "Si está vacía, se usa la imagen de la colección"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grilla de categorías",
+      "blocks": [
+        { "type": "category_card" },
+        { "type": "category_card" },
+        { "type": "category_card" },
+        { "type": "category_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

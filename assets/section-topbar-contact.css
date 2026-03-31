@@ -1,0 +1,50 @@
+.topbar-contact {
+  padding: 0.6rem 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.02rem;
+  line-height: 1;
+}
+
+.topbar-contact__grid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.topbar-contact__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: rgba(var(--color-foreground), 0.85);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.topbar-contact__item:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.topbar-contact__item svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+}
+
+.topbar-contact__email {
+  margin-right: auto;
+}
+
+.topbar-contact__separator {
+  width: 1px;
+  height: 1.4rem;
+  background: rgba(var(--color-foreground), 0.3);
+}
+
+@media screen and (max-width: 749px) {
+  .topbar-contact {
+    display: none;
+  }
+}

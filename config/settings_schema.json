@@ -1451,5 +1451,33 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Pisos Manríquez - Contacto",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Datos de contacto global"
+      },
+      {
+        "type": "text",
+        "id": "pm_whatsapp",
+        "label": "WhatsApp principal",
+        "default": "+56 9 73763087",
+        "info": "Se usa en el botón flotante y el footer"
+      },
+      {
+        "type": "text",
+        "id": "pm_phone",
+        "label": "Teléfono principal",
+        "default": "2 3305 8688"
+      },
+      {
+        "type": "text",
+        "id": "pm_email",
+        "label": "Email principal",
+        "default": "contacto@pisosmanriquez.cl"
+      }
+    ]
   }
 ]

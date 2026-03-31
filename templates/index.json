@@ -1,48 +1,110 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "slideshow_hero": {
+      "type": "slideshow",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "slide_1": {
+          "type": "slide",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Pisos Manríquez",
+            "heading_size": "h0",
+            "subheading": "45 años de experiencia en pisos y revestimientos",
+            "button_label": "Ver productos",
+            "link": "shopify://collections/all",
+            "button_style_secondary": true,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "image_overlay_opacity": 30,
+            "color_scheme": "scheme-3",
+            "text_alignment": "center"
           }
         }
       },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+      "block_order": ["slide_1"],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
+        "layout": "full_bleed",
+        "slide_height": "large",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
         "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "show_text_below": false,
+        "accessibility_info": "Slideshow"
       }
     },
-    "featured_collection": {
+    "category_grid": {
+      "type": "category-grid",
+      "blocks": {
+        "cat_1": {
+          "type": "category_card",
+          "settings": {
+            "label": "Pisos Flotantes"
+          }
+        },
+        "cat_2": {
+          "type": "category_card",
+          "settings": {
+            "label": "Pisos Vinílicos"
+          }
+        },
+        "cat_3": {
+          "type": "category_card",
+          "settings": {
+            "label": "Papel Mural"
+          }
+        },
+        "cat_4": {
+          "type": "category_card",
+          "settings": {
+            "label": "Pasto Sintético"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
+      "settings": {
+        "title": "Somos distribuidores de todas las marcas top en el mercado",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "image_with_text_cta": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_block": {
+          "type": "heading",
+          "settings": {
+            "heading": "Venta e instalación de piso flotante",
+            "heading_size": "h1"
+          }
+        },
+        "button_block": {
+          "type": "button",
+          "settings": {
+            "button_label": "Ver pisos",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading_block", "button_block"],
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_pisos": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "Pisos destacados",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -55,7 +117,7 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "swipe_on_mobile": true,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -63,13 +125,116 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
+        "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "promo_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "promo_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Pisos, pisos y más pisos",
+            "heading_size": "h0"
+          }
+        },
+        "promo_button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Ver catálogo",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": ["promo_heading", "promo_button"],
+      "settings": {
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "image_behavior": "none",
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "featured_revestimientos": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Revestimientos y cerámicos",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "brands_bar": {
+      "type": "brands-bar",
+      "blocks": {
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "name": "Carpenter"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "name": "BS Chile"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "name": "Winter"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "name": "Getnet"
+          }
+        }
+      },
+      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4"],
+      "settings": {
+        "title": "Nuestras marcas",
+        "color_scheme": "scheme-1"
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "slideshow_hero",
+    "category_grid",
+    "image_with_text_cta",
+    "featured_pisos",
+    "promo_banner",
+    "featured_revestimientos",
+    "brands_bar"
   ]
 }
