@@ -366,7 +366,7 @@
   }
 }
 
-/* ---------- ROW 2 : navigation bar ---------- */
+/* ---------- ROW 2 : navigation bar (10 categories) ---------- */
 .header-pm__nav {
   background: #3a1f0f;
   width: 100%;
@@ -376,44 +376,55 @@
 .header-pm__nav .header__inline-menu {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 5rem;
+  padding: 0 1.5rem;
   display: flex;
   justify-content: center;
 }
 
 .header-pm__nav .list-menu--inline {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0;
   width: 100%;
 }
 
 .header-pm__nav .list-menu--inline > li {
-  flex: 0 1 auto;
+  flex: 1 1 0%;
+  text-align: center;
 }
 
 .header-pm__nav .header__menu-item {
-  padding: 1.05rem 1.5rem;
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 0.6rem;
+  font-size: 1.05rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06rem;
-  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.02rem;
+  color: rgba(255, 255, 255, 0.85);
   position: relative;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
   white-space: nowrap;
+  width: 100%;
 }
 
 .header-pm__nav .header__menu-item:hover {
   color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.header-pm__nav .header__menu-item[aria-current="page"] {
+  color: #fff;
+  background: rgba(240, 90, 40, 0.15);
 }
 
 .header-pm__nav .header__menu-item::after {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 1.5rem;
-  right: 1.5rem;
+  left: 0;
+  right: 0;
   height: 3px;
   background: #f05a28;
   transform: scaleX(0);
@@ -425,12 +436,18 @@
   transform: scaleX(1);
 }
 
+/* thin vertical separators between nav items */
+.header-pm__nav .list-menu--inline > li + li {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* caret icon inside nav links (for mega-menu) */
 .header-pm__nav .header__menu-item .svg-wrapper,
 .header-pm__nav .header__menu-item > svg {
-  color: rgba(255, 255, 255, 0.6);
-  width: 0.8rem;
-  height: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-left: 0.2rem;
 }
 
 /* mega-menu dropdown resets for dark nav context */
@@ -438,6 +455,24 @@
   background: #fff;
   color: #121212;
   border-top: 3px solid #f05a28;
+}
+
+/* ---------- MOBILE DRAWER PM BRANDING ---------- */
+.header-pm-active ~ .cart-notification,
+.header-pm-active .menu-drawer {
+  --color-foreground: 255, 255, 255;
+}
+
+.menu-drawer .menu-drawer__menu-item {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+}
+
+.menu-drawer .menu-drawer__menu-item:hover,
+.menu-drawer .menu-drawer__menu-item--active {
+  color: #f05a28;
 }
 
 /* ---------- MOBILE ---------- */
@@ -515,11 +550,21 @@
   }
 
   .header-pm__nav .header__inline-menu {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 
   .header-pm__nav .header__menu-item {
-    padding: 1rem 1rem;
+    padding: 0.85rem 0.4rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.01rem;
+  }
+}
+
+/* ---------- LARGE DESKTOP (≥1400) ---------- */
+@media screen and (min-width: 1400px) {
+  .header-pm__nav .header__menu-item {
+    padding: 0.95rem 1.2rem;
     font-size: 1.1rem;
+    letter-spacing: 0.04rem;
   }
 }
