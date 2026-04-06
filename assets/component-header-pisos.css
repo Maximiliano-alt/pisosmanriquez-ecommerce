@@ -376,14 +376,15 @@
 .header-pm__nav .header__inline-menu {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: center;
 }
 
 .header-pm__nav .list-menu--inline {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: nowrap;
   gap: 0;
   width: 100%;
 }
@@ -391,32 +392,34 @@
 .header-pm__nav .list-menu--inline > li {
   flex: 1 1 0%;
   text-align: center;
+  position: relative;
 }
 
 .header-pm__nav .header__menu-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 0.6rem;
-  font-size: 1.05rem;
+  padding: 1rem 0.8rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02rem;
-  color: rgba(255, 255, 255, 0.85);
+  text-transform: capitalize;
+  letter-spacing: 0.01rem;
+  color: rgba(255, 255, 255, 0.88);
   position: relative;
   transition: color 0.2s ease, background-color 0.2s ease;
   white-space: nowrap;
   width: 100%;
+  line-height: 1.2;
 }
 
 .header-pm__nav .header__menu-item:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.header-pm__nav .header__menu-item[aria-current="page"] {
+.header-pm__nav .header__menu-item[aria-current="page"],
+.header-pm__nav .header__active-menu-item {
   color: #fff;
-  background: rgba(240, 90, 40, 0.15);
 }
 
 .header-pm__nav .header__menu-item::after {
@@ -436,46 +439,148 @@
   transform: scaleX(1);
 }
 
-/* thin vertical separators between nav items */
-.header-pm__nav .list-menu--inline > li + li {
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+.header-pm__nav .list-menu--inline > li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
-/* caret icon inside nav links (for mega-menu) */
+/* reset Dawn's extra padding on summary items inside our nav */
+.header-pm__nav summary.list-menu__item {
+  padding-right: 0;
+}
+
+/* caret for items with sub-menus */
+.header-pm__nav .header__menu-item .icon-caret,
 .header-pm__nav .header__menu-item .svg-wrapper,
-.header-pm__nav .header__menu-item > svg {
+.header-pm__nav .header__menu-item > svg:not(:first-child) {
   color: rgba(255, 255, 255, 0.5);
   width: 0.7rem;
   height: 0.7rem;
-  margin-left: 0.2rem;
+  margin-left: 0.3rem;
+  flex-shrink: 0;
 }
 
-/* mega-menu dropdown resets for dark nav context */
+/* --- dropdown sub-menu on dark nav context --- */
+.header-pm__nav .header__submenu {
+  background: #fff;
+  color: #121212;
+  border: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-top: 3px solid #f05a28;
+  min-width: 22rem;
+}
+
+.header-pm__nav .header__submenu .header__menu-item {
+  color: #3a1f0f;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: none;
+  padding: 0.9rem 2rem;
+  justify-content: flex-start;
+  white-space: normal;
+  background: transparent;
+}
+
+.header-pm__nav .header__submenu .header__menu-item:hover {
+  color: #f05a28;
+  background: rgba(240, 90, 40, 0.04);
+}
+
+.header-pm__nav .header__submenu .header__menu-item::after {
+  display: none;
+}
+
+.header-pm__nav .header__submenu .list-menu__item--active {
+  color: #f05a28;
+  font-weight: 600;
+}
+
+/* --- mega-menu panel on dark nav context --- */
 .header-pm__nav .mega-menu__content {
   background: #fff;
   color: #121212;
   border-top: 3px solid #f05a28;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.header-pm__nav .mega-menu__link {
+  color: #3a1f0f;
+}
+
+.header-pm__nav .mega-menu__link:hover,
+.header-pm__nav .mega-menu__link--active {
+  color: #f05a28;
+}
+
+.header-pm__nav .mega-menu__link--level-2 {
+  color: #3a1f0f;
+  font-weight: 700;
 }
 
 /* ---------- MOBILE DRAWER PM BRANDING ---------- */
-.header-pm-active ~ .cart-notification,
-.header-pm-active .menu-drawer {
+.menu-drawer {
+  background: #3a1f0f !important;
+}
+
+.menu-drawer,
+.menu-drawer .menu-drawer__submenu {
   --color-foreground: 255, 255, 255;
+  --color-background: 58, 31, 15;
 }
 
 .menu-drawer .menu-drawer__menu-item {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03rem;
+  letter-spacing: 0.02rem;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+  padding: 1.2rem 0;
 }
 
-.menu-drawer .menu-drawer__menu-item:hover,
+.menu-drawer .menu-drawer__menu-item:hover {
+  color: #f05a28;
+}
+
 .menu-drawer .menu-drawer__menu-item--active {
   color: #f05a28;
 }
 
-/* ---------- MOBILE ---------- */
+.menu-drawer .menu-drawer__close-button {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.menu-drawer .menu-drawer__close-button:hover {
+  color: #f05a28;
+}
+
+.menu-drawer .menu-drawer__utility-links {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-drawer .menu-drawer__account {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.menu-drawer .menu-drawer__account:hover {
+  color: #f05a28;
+}
+
+.menu-drawer .list-social__link {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.menu-drawer .list-social__link:hover {
+  color: #fff;
+}
+
+/* ---------- MOBILE (< 990px) ---------- */
 @media screen and (max-width: 989px) {
   .header-pm__main {
     padding: 0.8rem 1.5rem;
@@ -554,17 +659,24 @@
   }
 
   .header-pm__nav .header__menu-item {
-    padding: 0.85rem 0.4rem;
-    font-size: 0.95rem;
-    letter-spacing: 0.01rem;
+    padding: 0.85rem 0.45rem;
+    font-size: 1.05rem;
   }
 }
 
-/* ---------- LARGE DESKTOP (≥1400) ---------- */
+/* ---------- STANDARD DESKTOP (1200–1399) ---------- */
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .header-pm__nav .header__menu-item {
+    padding: 1rem 0.7rem;
+    font-size: 1.15rem;
+  }
+}
+
+/* ---------- LARGE DESKTOP (≥ 1400) ---------- */
 @media screen and (min-width: 1400px) {
   .header-pm__nav .header__menu-item {
-    padding: 0.95rem 1.2rem;
-    font-size: 1.1rem;
-    letter-spacing: 0.04rem;
+    padding: 1.05rem 1.4rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.03rem;
   }
 }
