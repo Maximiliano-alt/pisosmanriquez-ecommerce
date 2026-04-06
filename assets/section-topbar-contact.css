@@ -1,50 +1,76 @@
-.topbar-contact {
-  padding: 0.6rem 0;
-  font-size: 1.3rem;
-  letter-spacing: 0.02rem;
+/* Pisos Manríquez — Top contact bar (dark) */
+
+.topbar-pm {
+  background: #121212;
+  color: #fff;
+  padding: 0.55rem 0;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
-.topbar-contact__grid {
+.topbar-pm__inner {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
-.topbar-contact__item {
+.topbar-pm__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.topbar-pm__item {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
-  color: rgba(var(--color-foreground), 0.85);
   transition: color 0.2s ease;
   white-space: nowrap;
 }
 
-.topbar-contact__item:hover {
-  color: rgb(var(--color-foreground));
+.topbar-pm__item:hover {
+  color: #fff;
 }
 
-.topbar-contact__item svg {
-  width: 1.6rem;
-  height: 1.6rem;
+.topbar-pm__item svg {
+  width: 1.4rem;
+  height: 1.4rem;
   flex-shrink: 0;
 }
 
-.topbar-contact__email {
-  margin-right: auto;
+.topbar-pm__item--wa svg {
+  color: #25d366;
 }
 
-.topbar-contact__separator {
+.topbar-pm__sep {
   width: 1px;
-  height: 1.4rem;
-  background: rgba(var(--color-foreground), 0.3);
+  height: 1.2rem;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 @media screen and (max-width: 749px) {
-  .topbar-contact {
+  .topbar-pm__inner {
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .topbar-pm__item span {
     display: none;
+  }
+
+  .topbar-pm__item svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .topbar-pm__sep {
+    display: none;
+  }
+
+  .topbar-pm__right {
+    gap: 2rem;
   }
 }

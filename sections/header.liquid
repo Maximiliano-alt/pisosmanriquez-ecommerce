@@ -137,15 +137,14 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--middle-left header--mobile-{{ section.settings.mobile_logo_position }} page-width header-pm-active{% if section.settings.menu != blank %} header--has-menu{% endif %}">
-    {%- comment -%} Row 1: Logo + Search + Icons {%- endcomment -%}
-    <div class="header-pm">
-      {%- comment -%} Mobile drawer toggle {%- endcomment -%}
+  <header class="header header--middle-left header--mobile-{{ section.settings.mobile_logo_position }} header-pm-active{% if section.settings.menu != blank %} header--has-menu{% endif %}">
+    {%- comment -%} Row 1 : Logo + Badge + Branches + CTA + Search + Icons {%- endcomment -%}
+    <div class="header-pm__main">
+
       {%- if section.settings.menu != blank -%}
         {%- render 'header-drawer' -%}
       {%- endif -%}
 
-      {%- comment -%} Logo {%- endcomment -%}
       <div class="header-pm__logo">
         {%- if request.page_type == 'index' -%}
           <h1 class="header__heading" style="margin:0">
@@ -179,82 +178,185 @@
         {%- endif -%}
       </div>
 
-      {%- comment -%} Visible search bar (desktop) {%- endcomment -%}
-      <div class="header-pm__search">
-        <form action="{{ routes.search_url }}" method="get" role="search" class="header-pm__search-form">
-          <input
-            type="search"
-            name="q"
-            class="header-pm__search-input"
-            placeholder="{{ 'general.search.search' | t }}"
-            aria-label="{{ 'general.search.search' | t }}"
-          >
-          <button type="submit" class="header-pm__search-btn" aria-label="{{ 'general.search.search' | t }}">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          </button>
-        </form>
+      {%- if section.settings.badge_years != blank -%}
+        <div class="header-pm__badge" aria-label="{{ section.settings.badge_years }} {{ section.settings.badge_label }}">
+          <span class="header-pm__badge-number">{{ section.settings.badge_years }}</span>
+          <span class="header-pm__badge-label">{{ section.settings.badge_label }}</span>
+        </div>
+      {%- endif -%}
+
+      <div class="header-pm__branches">
+        {%- if section.settings.showroom_name != blank -%}
+          <div class="header-pm__showroom">
+            <svg class="header-pm__icon-loc" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div class="header-pm__showroom-info">
+              <strong>{{ section.settings.showroom_name }}</strong>
+              {%- if section.settings.showroom_address != blank -%}
+                <span>{{ section.settings.showroom_address }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.showroom_phone != blank or section.settings.showroom_whatsapp != blank -%}
+          <div class="header-pm__showroom-contact">
+            {%- if section.settings.showroom_phone != blank -%}
+              <a href="tel:{{ section.settings.showroom_phone | remove: ' ' }}" class="header-pm__contact-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                {{ section.settings.showroom_phone }}
+              </a>
+            {%- endif -%}
+            {%- if section.settings.showroom_whatsapp != blank -%}
+              <a href="https://wa.me/{{ section.settings.showroom_whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" class="header-pm__contact-link header-pm__contact-link--wa">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                {{ section.settings.showroom_whatsapp }}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- assign branch_blocks = section.blocks | where: "type", "branch" -%}
+        {%- if branch_blocks.size > 0 -%}
+          <details class="header-pm__branches-toggle">
+            <summary class="header-pm__branches-summary">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1.3rem;height:1.3rem"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>{{ branch_blocks.size | plus: 1 }} sucursales</span>
+              <svg class="header-pm__caret" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="header-pm__branches-dropdown">
+              <div class="header-pm__branch-card header-pm__branch-card--main">
+                <strong>{{ section.settings.showroom_name }}</strong>
+                {%- if section.settings.showroom_address != blank -%}
+                  <span>{{ section.settings.showroom_address }}</span>
+                {%- endif -%}
+                <div class="header-pm__branch-links">
+                  {%- if section.settings.showroom_phone != blank -%}
+                    <a href="tel:{{ section.settings.showroom_phone | remove: ' ' }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      {{ section.settings.showroom_phone }}
+                    </a>
+                  {%- endif -%}
+                  {%- if section.settings.showroom_whatsapp != blank -%}
+                    <a href="https://wa.me/{{ section.settings.showroom_whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">
+                      <svg class="icon-wa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                      {{ section.settings.showroom_whatsapp }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+              {%- for block in branch_blocks -%}
+                <div class="header-pm__branch-card" {{ block.shopify_attributes }}>
+                  <strong>{{ block.settings.branch_name }}</strong>
+                  <div class="header-pm__branch-links">
+                    {%- if block.settings.branch_phone != blank -%}
+                      <a href="tel:{{ block.settings.branch_phone | remove: ' ' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        {{ block.settings.branch_phone }}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.branch_whatsapp != blank -%}
+                      <a href="https://wa.me/{{ block.settings.branch_whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">
+                        <svg class="icon-wa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                        {{ block.settings.branch_whatsapp }}
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.branch_email != blank -%}
+                      <a href="mailto:{{ block.settings.branch_email }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        {{ block.settings.branch_email }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          </details>
+        {%- endif -%}
       </div>
 
-      {%- comment -%} Icons: search modal (mobile) + account + cart {%- endcomment -%}
-      <div class="header-pm__icons">
-        {% render 'header-search', input_id: 'Search-In-Modal' %}
-
-        {%- if shop.customer_accounts_enabled -%}
+      <div class="header-pm__actions">
+        {%- if section.settings.whatsapp_cta != blank -%}
           <a
-            href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-            class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
-            rel="nofollow"
+            href="https://wa.me/{{ section.settings.whatsapp_cta | remove: '+' | remove: ' ' }}"
+            target="_blank"
+            rel="noopener"
+            class="header-pm__cta-wa"
           >
-            {%- if section.settings.enable_customer_avatar -%}
-              <account-icon>
-                {%- if customer and customer.has_avatar? -%}
-                  {{ customer | avatar }}
-                {%- else -%}
-                  <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-                {%- endif -%}
-              </account-icon>
-            {%- else -%}
-              <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">
-              {%- liquid
-                if customer
-                  echo 'customer.account_fallback' | t
-                else
-                  echo 'customer.log_in' | t
-                endif
-              -%}
-            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            <span>{{ section.settings.whatsapp_cta_text | default: 'Escríbenos' }}</span>
           </a>
         {%- endif -%}
 
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when '@app' -%}
-              {% render block %}
-          {%- endcase -%}
-        {%- endfor -%}
+        <div class="header-pm__search">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="header-pm__search-form">
+            <input type="search" name="q" class="header-pm__search-input" placeholder="{{ 'general.search.search' | t }}" aria-label="{{ 'general.search.search' | t }}">
+            <button type="submit" class="header-pm__search-btn" aria-label="{{ 'general.search.search' | t }}">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+          </form>
+        </div>
 
-        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-          {% if cart == empty %}
-            <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-          {% else %}
-            <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-          {% endif %}
-          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-          {%- if cart != empty -%}
-            <div class="cart-count-bubble">
-              {%- if cart.item_count < 100 -%}
-                <span aria-hidden="true">{{ cart.item_count }}</span>
+        <div class="header-pm__icons">
+          {% render 'header-search', input_id: 'Search-In-Modal' %}
+
+          {%- if shop.customer_accounts_enabled -%}
+            <a
+              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+              class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+              rel="nofollow"
+            >
+              {%- if section.settings.enable_customer_avatar -%}
+                <account-icon>
+                  {%- if customer and customer.has_avatar? -%}
+                    {{ customer | avatar }}
+                  {%- else -%}
+                    <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                  {%- endif -%}
+                </account-icon>
+              {%- else -%}
+                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
               {%- endif -%}
-              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-            </div>
+              <span class="visually-hidden">
+                {%- liquid
+                  if customer
+                    echo 'customer.account_fallback' | t
+                  else
+                    echo 'customer.log_in' | t
+                  endif
+                -%}
+              </span>
+            </a>
           {%- endif -%}
-        </a>
+
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+            {%- endcase -%}
+          {%- endfor -%}
+
+          <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+            {% if cart == empty %}
+              <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+            {% else %}
+              <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+            {% endif %}
+            <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+            {%- if cart != empty -%}
+              <div class="cart-count-bubble">
+                {%- if cart.item_count < 100 -%}
+                  <span aria-hidden="true">{{ cart.item_count }}</span>
+                {%- endif -%}
+                <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+              </div>
+            {%- endif -%}
+          </a>
+        </div>
       </div>
+
     </div>
 
-    {%- comment -%} Row 2: Category navigation bar {%- endcomment -%}
+    {%- comment -%} Row 2 : Category navigation bar (dark brown) {%- endcomment -%}
     {%- if section.settings.menu != blank -%}
       <div class="header-pm__nav">
         {%- if section.settings.menu_type_desktop == 'dropdown' -%}
@@ -432,28 +534,16 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 10,
   "settings": [
     {
       "type": "select",
       "id": "logo_position",
       "options": [
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
-        }
+        { "value": "top-left", "label": "t:sections.header.settings.logo_position.options__2.label" },
+        { "value": "top-center", "label": "t:sections.header.settings.logo_position.options__3.label" },
+        { "value": "middle-left", "label": "t:sections.header.settings.logo_position.options__1.label" },
+        { "value": "middle-center", "label": "t:sections.header.settings.logo_position.options__4.label" }
       ],
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
@@ -463,14 +553,8 @@
       "type": "select",
       "id": "mobile_logo_position",
       "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
+        { "value": "center", "label": "t:sections.header.settings.mobile_logo_position.options__1.label" },
+        { "value": "left", "label": "t:sections.header.settings.mobile_logo_position.options__2.label" }
       ],
       "default": "center",
       "label": "t:sections.header.settings.mobile_logo_position.label"
@@ -485,18 +569,9 @@
       "type": "select",
       "id": "menu_type_desktop",
       "options": [
-        {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
-          "value": "mega",
-          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
+        { "value": "dropdown", "label": "t:sections.header.settings.menu_type_desktop.options__1.label" },
+        { "value": "mega", "label": "t:sections.header.settings.menu_type_desktop.options__2.label" },
+        { "value": "drawer", "label": "t:sections.header.settings.menu_type_desktop.options__3.label" }
       ],
       "default": "dropdown",
       "label": "t:sections.header.settings.menu_type_desktop.label"
@@ -505,22 +580,10 @@
       "type": "select",
       "id": "sticky_header_type",
       "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
+        { "value": "none", "label": "t:sections.header.settings.sticky_header_type.options__1.label" },
+        { "value": "on-scroll-up", "label": "t:sections.header.settings.sticky_header_type.options__2.label" },
+        { "value": "always", "label": "t:sections.header.settings.sticky_header_type.options__3.label" },
+        { "value": "reduce-logo-size", "label": "t:sections.header.settings.sticky_header_type.options__4.label" }
       ],
       "default": "on-scroll-up",
       "label": "t:sections.header.settings.sticky_header_type.label"
@@ -574,6 +637,66 @@
     },
     {
       "type": "header",
+      "content": "Pisos Manríquez — Showroom principal"
+    },
+    {
+      "type": "text",
+      "id": "showroom_name",
+      "label": "Nombre del showroom",
+      "default": "Showroom Las Condes"
+    },
+    {
+      "type": "text",
+      "id": "showroom_address",
+      "label": "Dirección",
+      "default": "Manquehue Sur 1581, Las Condes"
+    },
+    {
+      "type": "text",
+      "id": "showroom_phone",
+      "label": "Teléfono showroom",
+      "default": "2 3305 8688"
+    },
+    {
+      "type": "text",
+      "id": "showroom_whatsapp",
+      "label": "WhatsApp showroom",
+      "default": "+56 9 73763087"
+    },
+    {
+      "type": "header",
+      "content": "Badge de experiencia"
+    },
+    {
+      "type": "text",
+      "id": "badge_years",
+      "label": "Número (años)",
+      "default": "45"
+    },
+    {
+      "type": "text",
+      "id": "badge_label",
+      "label": "Texto del badge",
+      "default": "años de experiencia"
+    },
+    {
+      "type": "header",
+      "content": "Botón WhatsApp CTA"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_cta",
+      "label": "Número WhatsApp para CTA",
+      "default": "+56 9 73763087"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_cta_text",
+      "label": "Texto del botón",
+      "default": "Escríbenos"
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.spacing"
     },
     {
@@ -614,6 +737,33 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "branch",
+      "name": "Sucursal",
+      "settings": [
+        {
+          "type": "text",
+          "id": "branch_name",
+          "label": "Nombre de la sucursal",
+          "default": "Sucursal"
+        },
+        {
+          "type": "text",
+          "id": "branch_phone",
+          "label": "Teléfono"
+        },
+        {
+          "type": "text",
+          "id": "branch_whatsapp",
+          "label": "WhatsApp"
+        },
+        {
+          "type": "text",
+          "id": "branch_email",
+          "label": "Email"
+        }
+      ]
     }
   ]
 }
