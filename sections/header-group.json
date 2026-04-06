@@ -13,27 +13,7 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "BIENVENIDO A PISOS MANRIQUEZ",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement-bar-0"
-      ],
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
+      "settings": {}
     },
     "header": {
       "type": "header",
@@ -49,6 +29,14 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
+        "showroom_name": "Showroom Las Condes",
+        "showroom_address": "Manquehue Sur 1581, Las Condes",
+        "showroom_phone": "2 3305 8688",
+        "showroom_whatsapp": "+56 9 73763087",
+        "badge_years": "45",
+        "badge_label": "años de experiencia",
+        "whatsapp_cta": "+56 9 73763087",
+        "whatsapp_cta_text": "Escríbenos",
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
@@ -59,10 +47,9 @@
       "name": "Barra de contacto",
       "settings": {
         "email": "contacto@pisosmanriquez.cl",
-        "whatsapp_1": "+56 9 73763087",
-        "whatsapp_2": "+56 9 7725 8003",
         "phone": "2 3305 8688",
-        "color_scheme": ""
+        "whatsapp_1": "+56 9 73763087",
+        "whatsapp_2": "+56 9 7725 8003"
       }
     }
   },
