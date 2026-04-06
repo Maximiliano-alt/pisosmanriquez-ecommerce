@@ -13,12 +13,21 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {}
+      "settings": {
+        "promo_text": "¿Necesitas ayuda? Contáctanos por WhatsApp",
+        "whatsapp_1": "+569 73763087",
+        "whatsapp_2": "+569 77258003",
+        "phone_connector": "o llámanos al",
+        "phone": "2 33058688",
+        "schedule": "Lun-Vie 08:00 a 19:00",
+        "cta_text": "Escríbenos",
+        "cta_link": ""
+      }
     },
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-left",
+        "logo_position": "middle-center",
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
