@@ -179,7 +179,9 @@
       },
       "taxes_included": "已包含稅額。",
       "duties_included": "已包含關稅。",
-      "duties_and_taxes_included": "已包含關稅和稅額。"
+      "duties_and_taxes_included": "已包含關稅和稅額。",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "媒體庫"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "檢視全部",
-      "view_all_label": "檢視 {{ collection_name }} 商品系列的全部產品"
+      "view_all_label": "檢視 {{ collection_name }} 商品系列的全部產品",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "檢視全部"

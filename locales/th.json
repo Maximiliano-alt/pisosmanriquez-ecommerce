@@ -179,7 +179,9 @@
       "product_variants": "ตัวเลือกสินค้า",
       "taxes_included": "รวมภาษีแล้ว",
       "duties_included": "รวมอากรแล้ว",
-      "duties_and_taxes_included": "รวมภาษีและอากรแล้ว"
+      "duties_and_taxes_included": "รวมภาษีและอากรแล้ว",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "แกลเลอรีสื่อ"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "ดูทั้งหมด",
-      "view_all_label": "ดูสินค้าทั้งหมดในคอลเลกชัน {{ collection_name }}"
+      "view_all_label": "ดูสินค้าทั้งหมดในคอลเลกชัน {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "ดูทั้งหมด"

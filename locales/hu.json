@@ -179,7 +179,9 @@
       },
       "taxes_included": "Tartalmazza az adókat.",
       "duties_included": "Tartalmazza a vámokat.",
-      "duties_and_taxes_included": "Tartalmazza a vámokat és az adókat."
+      "duties_and_taxes_included": "Tartalmazza a vámokat és az adókat.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Médiatár"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Az összes megtekintése",
-      "view_all_label": "Az ebben a kollekcióban szereplő összes termék megtekintése: {{ collection_name }}"
+      "view_all_label": "Az ebben a kollekcióban szereplő összes termék megtekintése: {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Az összes megtekintése"

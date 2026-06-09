@@ -179,7 +179,9 @@
       },
       "taxes_included": "세금이 포함된 가격입니다.",
       "duties_included": "관세가 포함된 가격입니다.",
-      "duties_and_taxes_included": "관세 및 세금이 포함된 가격입니다."
+      "duties_and_taxes_included": "관세 및 세금이 포함된 가격입니다.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "미디어 갤러리"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "모두 보기",
-      "view_all_label": "{{ collection_name }} 컬렉션의 모든 제품 보기"
+      "view_all_label": "{{ collection_name }} 컬렉션의 모든 제품 보기",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "모두 보기"

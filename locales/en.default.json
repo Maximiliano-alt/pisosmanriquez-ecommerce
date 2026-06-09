@@ -117,6 +117,8 @@
       "inventory_out_of_stock": "Out of stock",
       "inventory_out_of_stock_continue_selling": "In stock",
       "sku": "SKU",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²",
       "on_sale": "Sale",
       "product_variants": "Product variants",
       "media": {
@@ -325,7 +327,8 @@
     },
     "featured_collection": {
       "view_all": "View all",
-      "view_all_label": "View all products in the {{ collection_name }} collection"
+      "view_all_label": "View all products in the {{ collection_name }} collection",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "View all"

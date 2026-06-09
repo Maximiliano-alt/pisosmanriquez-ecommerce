@@ -179,7 +179,9 @@
       "product_variants": "Варианти на продукта",
       "taxes_included": "С включени данъци.",
       "duties_included": "С включено мито.",
-      "duties_and_taxes_included": "С включено мито и данъци."
+      "duties_and_taxes_included": "С включено мито и данъци.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Мултимедийна галерия"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Покажи всички",
-      "view_all_label": "Покажи всички продукти в колекция {{ collection_name }}"
+      "view_all_label": "Покажи всички продукти в колекция {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Покажи всички"

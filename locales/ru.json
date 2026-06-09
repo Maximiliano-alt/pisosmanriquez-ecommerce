@@ -181,7 +181,9 @@
       "product_variants": "Варианты товара",
       "taxes_included": "Налоги включены.",
       "duties_included": "Пошлины включены.",
-      "duties_and_taxes_included": "Пошлины и налоги включены."
+      "duties_and_taxes_included": "Пошлины и налоги включены.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Галерея мультимедиа"
@@ -337,7 +339,8 @@
     },
     "featured_collection": {
       "view_all": "Посмотреть все",
-      "view_all_label": "Посмотреть все продукты в коллекции \"{{ collection_name }}\""
+      "view_all_label": "Посмотреть все продукты в коллекции \"{{ collection_name }}\"",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Посмотреть все"

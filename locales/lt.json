@@ -181,7 +181,9 @@
       },
       "taxes_included": "Mokesčiai įtraukti.",
       "duties_included": "Muito mokesčiai įtraukti.",
-      "duties_and_taxes_included": "Muito ir kiti mokesčiai įtraukti."
+      "duties_and_taxes_included": "Muito ir kiti mokesčiai įtraukti.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Medijų galerija"
@@ -337,7 +339,8 @@
     },
     "featured_collection": {
       "view_all": "Žr. viską",
-      "view_all_label": "Žr. visus kolekcijos „{{ collection_name }}“ gaminius"
+      "view_all_label": "Žr. visus kolekcijos „{{ collection_name }}“ gaminius",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Žr. viską"

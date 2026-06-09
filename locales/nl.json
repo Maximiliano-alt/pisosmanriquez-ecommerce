@@ -179,7 +179,9 @@
       "product_variants": "Productvarianten",
       "taxes_included": "Belastingen inbegrepen.",
       "duties_included": "Douanerechten inbegrepen.",
-      "duties_and_taxes_included": "Douanerechten en belastingen inbegrepen."
+      "duties_and_taxes_included": "Douanerechten en belastingen inbegrepen.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Mediagalerij"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Alles bekijken",
-      "view_all_label": "Bekijk alle producten in de collectie {{ collection_name }}"
+      "view_all_label": "Bekijk alle producten in de collectie {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Alles bekijken"

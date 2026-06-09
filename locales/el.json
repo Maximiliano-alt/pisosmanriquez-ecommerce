@@ -179,7 +179,9 @@
       },
       "taxes_included": "Οι φόροι συμπεριλαμβάνονται.",
       "duties_included": "Οι δασμοί συμπεριλαμβάνονται.",
-      "duties_and_taxes_included": "Οι δασμοί και οι φόροι συμπεριλαμβάνονται."
+      "duties_and_taxes_included": "Οι δασμοί και οι φόροι συμπεριλαμβάνονται.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Συλλογή μέσων"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Προβολή όλων",
-      "view_all_label": "Προβολή όλων των προϊόντων στη συλλογή {{ collection_name }}"
+      "view_all_label": "Προβολή όλων των προϊόντων στη συλλογή {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Προβολή όλων"

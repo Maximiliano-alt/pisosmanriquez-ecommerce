@@ -180,7 +180,9 @@
       },
       "taxes_included": "Impostos incluídos.",
       "duties_included": "Encargos incluídos.",
-      "duties_and_taxes_included": "Encargos e impostos incluídos."
+      "duties_and_taxes_included": "Encargos e impostos incluídos.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Galeria de conteúdo multimédia"
@@ -327,7 +329,8 @@
     },
     "featured_collection": {
       "view_all": "Ver tudo",
-      "view_all_label": "Ver todos os produtos da coleção {{ collection_name }}"
+      "view_all_label": "Ver todos os produtos da coleção {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Ver tudo"

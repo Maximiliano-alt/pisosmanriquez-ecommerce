@@ -181,7 +181,9 @@
       },
       "taxes_included": "Vrátane daní.",
       "duties_included": "Vrátane ciel.",
-      "duties_and_taxes_included": "Vrátane ciel a daní."
+      "duties_and_taxes_included": "Vrátane ciel a daní.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Galéria médií"
@@ -337,7 +339,8 @@
     },
     "featured_collection": {
       "view_all": "Zobraziť všetko",
-      "view_all_label": "Pozrite si všetky produkty z kolekcie {{ collection_name }}"
+      "view_all_label": "Pozrite si všetky produkty z kolekcie {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Zobraziť všetko"

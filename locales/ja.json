@@ -179,7 +179,9 @@
       },
       "taxes_included": "税込。",
       "duties_included": "関税込。",
-      "duties_and_taxes_included": "関税と税金が含まれます。"
+      "duties_and_taxes_included": "関税と税金が含まれます。",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "メディアギャラリー"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "すべてを表示する",
-      "view_all_label": "{{ collection_name }}コレクションの商品をすべて表示する"
+      "view_all_label": "{{ collection_name }}コレクションの商品をすべて表示する",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "すべてを表示する"

@@ -181,7 +181,9 @@
       },
       "taxes_included": "Davki vključeni.",
       "duties_included": "Dajatve vključene.",
-      "duties_and_taxes_included": "Dajatve in davki vključeni."
+      "duties_and_taxes_included": "Dajatve in davki vključeni.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Galerija predstavnostnih vsebin"
@@ -337,7 +339,8 @@
     },
     "featured_collection": {
       "view_all": "Prikaži vse",
-      "view_all_label": "Prikaži vse izdelke v zbirki {{ collection_name }}"
+      "view_all_label": "Prikaži vse izdelke v zbirki {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Prikaži vse"

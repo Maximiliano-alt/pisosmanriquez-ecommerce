@@ -207,6 +207,27 @@
                   <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
                   {{- product.selected_or_first_available_variant.sku -}}
                 </p>
+              {%- when 'unit_of_sale' -%}
+                {%- liquid
+                  assign unidad = product.metafields.custom.unidad_venta.value | default: block.settings.default_unit
+                  assign rinde = product.metafields.custom.rinde_m2.value
+                -%}
+                <div
+                  class="product__unit-of-sale{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  id="UnitOfSale-{{ section.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if unidad != blank -%}
+                    <span class="product__unit-of-sale-unit">
+                      {{ 'products.product.unit_of_sale_html' | t: unit: unidad }}
+                    </span>
+                  {%- endif -%}
+                  {%- if rinde != blank -%}
+                    <span class="product__unit-of-sale-yield">
+                      {{ 'products.product.unit_yield_html' | t: unit: unidad, m2: rinde }}
+                    </span>
+                  {%- endif -%}
+                </div>
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
@@ -794,6 +815,44 @@
       "name": "t:sections.main-product.blocks.sku.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.main-product.blocks.sku.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.main-product.blocks.sku.settings.text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.main-product.blocks.sku.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.sku.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "unit_of_sale",
+      "name": "Unidad de venta",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Muestra la unidad de venta (Caja, Rollo, m², etc.) leída del metafield del producto custom.unidad_venta, y opcionalmente el rendimiento en m² desde custom.rinde_m2."
+        },
+        {
+          "type": "text",
+          "id": "default_unit",
+          "label": "Unidad por defecto",
+          "info": "Se usa cuando el producto no tiene el metafield custom.unidad_venta.",
+          "default": "Unidad"
+        },
         {
           "type": "select",
           "id": "text_style",

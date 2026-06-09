@@ -179,7 +179,9 @@
       "product_variants": "Produktvarianter",
       "taxes_included": "Skatter ingår.",
       "duties_included": "Tullavgifter ingår.",
-      "duties_and_taxes_included": "Tullavgifter och skatter ingår."
+      "duties_and_taxes_included": "Tullavgifter och skatter ingår.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Mediagalleri"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Visa alla",
-      "view_all_label": "Visa alla produkter i produktserien {{ collection_name }}"
+      "view_all_label": "Visa alla produkter i produktserien {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Visa alla"

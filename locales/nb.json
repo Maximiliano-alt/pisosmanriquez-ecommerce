@@ -179,7 +179,9 @@
       "product_variants": "Produktvarianter",
       "taxes_included": "Inkludert avgifter.",
       "duties_included": "Inkluder tollplikter.",
-      "duties_and_taxes_included": "Inkludert tollplikter og avgifter."
+      "duties_and_taxes_included": "Inkludert tollplikter og avgifter.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Mediegalleri"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Vis alle",
-      "view_all_label": "Vis alle produktene i {{ collection_name }}-samlingen"
+      "view_all_label": "Vis alle produktene i {{ collection_name }}-samlingen",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Vis alle"

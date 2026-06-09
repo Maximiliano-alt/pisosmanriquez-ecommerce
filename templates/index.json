@@ -47,29 +47,75 @@
         "cat_1": {
           "type": "category_card",
           "settings": {
-            "label": "Pisos Flotantes"
+            "label": "Pisos Flotantes",
+            "collection": "pisos-flotantes"
           }
         },
         "cat_2": {
           "type": "category_card",
           "settings": {
-            "label": "Pisos Vinílicos"
+            "label": "Pisos Vinílicos",
+            "collection": "pisos-vinilicos"
           }
         },
         "cat_3": {
           "type": "category_card",
           "settings": {
-            "label": "Papel Mural"
+            "label": "Cerámico y Porcelanato",
+            "collection": "ceramico-y-porcelanato"
           }
         },
         "cat_4": {
           "type": "category_card",
           "settings": {
-            "label": "Pasto Sintético"
+            "label": "Papel Mural",
+            "collection": "papel-mural"
+          }
+        },
+        "cat_5": {
+          "type": "category_card",
+          "settings": {
+            "label": "Pasto Sintético",
+            "collection": "pasto-sintetico"
+          }
+        },
+        "cat_6": {
+          "type": "category_card",
+          "settings": {
+            "label": "Pisos de Ingeniería",
+            "collection": "pisos-de-ingenieria"
+          }
+        },
+        "cat_7": {
+          "type": "category_card",
+          "settings": {
+            "label": "Alfombras",
+            "collection": "alfombras"
+          }
+        },
+        "cat_8": {
+          "type": "category_card",
+          "settings": {
+            "label": "Cortinas Roller",
+            "collection": "cortinas-roller"
+          }
+        },
+        "cat_9": {
+          "type": "category_card",
+          "settings": {
+            "label": "Molduras",
+            "collection": "molduras"
+          }
+        },
+        "cat_10": {
+          "type": "category_card",
+          "settings": {
+            "label": "Servicios",
+            "collection": "servicios"
           }
         }
       },
-      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6", "cat_7", "cat_8", "cat_9", "cat_10"],
       "settings": {
         "title": "Somos distribuidores de todas las marcas top en el mercado",
         "color_scheme": "scheme-1"

@@ -179,7 +179,9 @@
       },
       "taxes_included": "Termasuk pajak.",
       "duties_included": "Termasuk bea cukai.",
-      "duties_and_taxes_included": "Termasuk bea cukai dan pajak."
+      "duties_and_taxes_included": "Termasuk bea cukai dan pajak.",
+      "unit_of_sale_html": "Sold by <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Each {{ unit }} covers {{ m2 }} m²"
     },
     "modal": {
       "label": "Galeri media"
@@ -317,7 +319,8 @@
     },
     "featured_collection": {
       "view_all": "Lihat semua",
-      "view_all_label": "Lihat semua produk dalam koleksi {{ collection_name }}"
+      "view_all_label": "Lihat semua produk dalam koleksi {{ collection_name }}",
+      "empty": "Products will appear here soon."
     },
     "collection_list": {
       "view_all": "Lihat semua"

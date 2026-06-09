@@ -1,6 +1,20 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .featured-collection__empty {
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+  .featured-collection__empty-text {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.6);
+    font-size: 1.6rem;
+  }
+</style>
+
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
@@ -134,33 +148,11 @@
             {%- endfor -%}
           {% endpaginate %}
         {%- else -%}
-          {%- for i in (1..section.settings.columns_desktop) -%}
-            <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
-              {% liquid
-                assign ridx = forloop.rindex
-                case ridx
-                  when 5
-                    assign ridx = 1
-                  when 6
-                    assign ridx = 2
-                endcase
-              %}
-              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
-              {% render 'card-product',
-                show_vendor: section.settings.show_vendor,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                lazy_load: false,
-                placeholder_image: placeholder_image
-              %}
-            </li>
-          {%- endfor -%}
+          <li class="grid__item featured-collection__empty">
+            <p class="featured-collection__empty-text">
+              {{ 'sections.featured_collection.empty' | t }}
+            </p>
+          </li>
         {%- endif -%}
       </ul>
       {%- if show_mobile_slider or show_desktop_slider -%}

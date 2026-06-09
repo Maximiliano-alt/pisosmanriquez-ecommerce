@@ -170,6 +170,8 @@
       "inventory_out_of_stock": "Agotado",
       "inventory_out_of_stock_continue_selling": "En existencias",
       "sku": "SKU",
+      "unit_of_sale_html": "Se vende por <strong>{{ unit }}</strong>",
+      "unit_yield_html": "Cada {{ unit }} rinde {{ m2 }} m²",
       "volume_pricing": {
         "title": "Precios por volumen",
         "note": "Precio por volumen disponible",
@@ -178,7 +180,7 @@
         "price_at_each_html": "a {{ price }} por unidad"
       },
       "product_variants": "Variantes de producto",
-      "taxes_included": "Impuestos incluidos.",
+      "taxes_included": "IVA incluido.",
       "duties_included": "Aranceles incluidos.",
       "duties_and_taxes_included": "Aranceles e impuestos incluidos."
     },
@@ -327,7 +329,8 @@
     },
     "featured_collection": {
       "view_all": "Ver todo",
-      "view_all_label": "Ver todos los productos de la colección {{ collection_name }}"
+      "view_all_label": "Ver todos los productos de la colección {{ collection_name }}",
+      "empty": "Pronto encontrarás productos en esta sección."
     },
     "collection_list": {
       "view_all": "Ver todo"
