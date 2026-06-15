@@ -9,68 +9,99 @@
  */
 {
   "sections": {
-    "slideshow_hero": {
-      "type": "slideshow",
+    "pm_hero": {
+      "type": "pm-hero",
       "blocks": {
         "slide_1": {
           "type": "slide",
           "settings": {
-            "heading": "45 años de experiencia",
-            "heading_size": "h0",
-            "subheading": "Distribuidores de pisos y revestimientos — Santiago, Chile",
+            "asset_name": "pm-slider-53.png",
+            "heading": "45 años transformando espacios",
+            "subheading": "Los mejores pisos y revestimientos de Chile",
             "button_label": "Ver catálogo",
-            "link": "shopify://collections/all",
+            "button_link": "/collections/all",
             "button_style_secondary": false,
+            "text_align": "center",
             "box_align": "middle-center",
-            "show_text_box": true,
-            "image_overlay_opacity": 45,
-            "color_scheme": "scheme-4",
-            "text_alignment": "center"
+            "image_overlay_opacity": 35
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
+            "asset_name": "pm-slider-54.png",
             "heading": "Pisos Flotantes",
-            "heading_size": "h1",
-            "subheading": "La mejor selección de pisos laminados, de ingeniería y vinílicos",
-            "button_label": "Ver pisos",
-            "link": "shopify://collections/pisos-flotantes",
+            "subheading": "La mayor variedad de pisos laminados y de ingeniería",
+            "button_label": "Ver pisos flotantes",
+            "button_link": "/collections/pisos-flotantes",
             "button_style_secondary": false,
+            "text_align": "left",
             "box_align": "middle-left",
-            "show_text_box": true,
-            "image_overlay_opacity": 45,
-            "color_scheme": "scheme-4",
-            "text_alignment": "left"
+            "image_overlay_opacity": 35
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
+            "asset_name": "pm-slider-55.png",
             "heading": "Cerámico y Porcelanato",
-            "heading_size": "h1",
             "subheading": "Revestimientos premium para interiores y exteriores",
             "button_label": "Ver cerámicos",
-            "link": "shopify://collections/ceramico-y-porcelanato",
+            "button_link": "/collections/ceramico-y-porcelanato",
             "button_style_secondary": false,
+            "text_align": "right",
             "box_align": "middle-right",
-            "show_text_box": true,
-            "image_overlay_opacity": 45,
-            "color_scheme": "scheme-4",
-            "text_alignment": "right"
+            "image_overlay_opacity": 35
+          }
+        },
+        "slide_4": {
+          "type": "slide",
+          "settings": {
+            "asset_name": "pm-slider-56.png",
+            "heading": "Pisos Vinílicos",
+            "subheading": "Resistentes al agua y de fácil instalación",
+            "button_label": "Ver vinílicos",
+            "button_link": "/collections/pisos-vinilicos",
+            "button_style_secondary": false,
+            "text_align": "center",
+            "box_align": "bottom-center",
+            "image_overlay_opacity": 40
+          }
+        },
+        "slide_5": {
+          "type": "slide",
+          "settings": {
+            "asset_name": "pm-slider-57.png",
+            "heading": "Alfombras y Cortinas Roller",
+            "subheading": "Completa tu proyecto de decoración interior",
+            "button_label": "Ver colección",
+            "button_link": "/collections/all",
+            "button_style_secondary": false,
+            "text_align": "center",
+            "box_align": "middle-center",
+            "image_overlay_opacity": 40
+          }
+        },
+        "slide_6": {
+          "type": "slide",
+          "settings": {
+            "asset_name": "pm-slider-decorativas.jpg",
+            "heading": "Lamas Decorativas",
+            "subheading": "14 palmetas por caja — diseño moderno para tus espacios",
+            "button_label": "Ver decorativas",
+            "button_link": "/collections/papel-mural",
+            "button_style_secondary": false,
+            "text_align": "left",
+            "box_align": "middle-left",
+            "image_overlay_opacity": 30
           }
         }
       },
-      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "block_order": ["slide_1", "slide_2", "slide_3", "slide_4", "slide_5", "slide_6"],
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "large",
-        "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 6,
-        "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Slideshow de Pisos Manríquez"
+        "accessibility_info": "Slideshow Pisos Manríquez"
       }
     },
     "promo_strip": {
@@ -98,70 +129,80 @@
           "type": "category_card",
           "settings": {
             "label": "Pisos Flotantes",
-            "collection": "pisos-flotantes"
+            "collection": "pisos-flotantes",
+            "asset_name": "pm-cat-pisos-flotantes.webp"
           }
         },
         "cat_2": {
           "type": "category_card",
           "settings": {
             "label": "Pisos Vinílicos",
-            "collection": "pisos-vinilicos"
+            "collection": "pisos-vinilicos",
+            "asset_name": "pm-cat-pisos-vinilicos.webp"
           }
         },
         "cat_3": {
           "type": "category_card",
           "settings": {
             "label": "Cerámico y Porcelanato",
-            "collection": "ceramico-y-porcelanato"
+            "collection": "ceramico-y-porcelanato",
+            "asset_name": ""
           }
         },
         "cat_4": {
           "type": "category_card",
           "settings": {
             "label": "Papel Mural",
-            "collection": "papel-mural"
+            "collection": "papel-mural",
+            "asset_name": "pm-cat-papel-mural.webp"
           }
         },
         "cat_5": {
           "type": "category_card",
           "settings": {
             "label": "Pasto Sintético",
-            "collection": "pasto-sintetico"
+            "collection": "pasto-sintetico",
+            "asset_name": "pm-cat-pasto-sintetico.webp"
           }
         },
         "cat_6": {
           "type": "category_card",
           "settings": {
             "label": "Pisos de Ingeniería",
-            "collection": "pisos-de-ingenieria"
+            "collection": "pisos-de-ingenieria",
+            "asset_name": ""
           }
         },
         "cat_7": {
           "type": "category_card",
           "settings": {
             "label": "Alfombras",
-            "collection": "alfombras"
+            "collection": "alfombras",
+            "asset_name": "pm-cat-alfombras.webp"
           }
         },
         "cat_8": {
           "type": "category_card",
           "settings": {
             "label": "Cortinas Roller",
-            "collection": "cortinas-roller"
+            "collection": "cortinas-roller",
+            "asset_name": "pm-cat-cortinas-roller.webp"
           }
         },
         "cat_9": {
           "type": "category_card",
           "settings": {
             "label": "Molduras",
-            "collection": "molduras"
+            "collection": "molduras",
+            "asset_name": ""
           }
         },
         "cat_10": {
           "type": "category_card",
           "settings": {
             "label": "Servicios",
-            "collection": "servicios"
+            "collection": "servicios",
+            "asset_name": ""
           }
         }
       },
@@ -316,63 +357,43 @@
       "blocks": {
         "brand_1": {
           "type": "brand",
-          "settings": {
-            "name": "Carpenter"
-          }
+          "settings": { "name": "Carpenter" }
         },
         "brand_2": {
           "type": "brand",
-          "settings": {
-            "name": "BS Chile"
-          }
+          "settings": { "name": "BS Chile" }
         },
         "brand_3": {
           "type": "brand",
-          "settings": {
-            "name": "Winter"
-          }
+          "settings": { "name": "Winter" }
         },
         "brand_4": {
           "type": "brand",
-          "settings": {
-            "name": "Getnet"
-          }
+          "settings": { "name": "Getnet" }
         },
         "brand_5": {
           "type": "brand",
-          "settings": {
-            "name": "Pergo"
-          }
+          "settings": { "name": "Pergo" }
         },
         "brand_6": {
           "type": "brand",
-          "settings": {
-            "name": "Kronospan"
-          }
+          "settings": { "name": "Kronospan" }
         },
         "brand_7": {
           "type": "brand",
-          "settings": {
-            "name": "Porcelanosa"
-          }
+          "settings": { "name": "Porcelanosa" }
         },
         "brand_8": {
           "type": "brand",
-          "settings": {
-            "name": "Armstrong"
-          }
+          "settings": { "name": "Armstrong" }
         },
         "brand_9": {
           "type": "brand",
-          "settings": {
-            "name": "Alloc"
-          }
+          "settings": { "name": "Alloc" }
         },
         "brand_10": {
           "type": "brand",
-          "settings": {
-            "name": "Quick-Step"
-          }
+          "settings": { "name": "Quick-Step" }
         }
       },
       "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6", "brand_7", "brand_8", "brand_9", "brand_10"],
@@ -383,7 +404,7 @@
     }
   },
   "order": [
-    "slideshow_hero",
+    "pm_hero",
     "promo_strip",
     "category_grid",
     "image_with_text_cta",

@@ -15,14 +15,27 @@
               assign link_title = block.settings.label | default: block.settings.collection.title
               assign link_image = block.settings.image | default: block.settings.collection.image
             else
-              assign link_url = '#'
+              assign link_url = '/collections/' | append: block.settings.collection_handle | default: '#'
               assign link_title = block.settings.label | default: 'Categoría'
               assign link_image = block.settings.image
             endif
+            assign asset_img = block.settings.asset_name
           -%}
           <a href="{{ link_url }}" class="category-grid__link" aria-label="{{ link_title | escape }}">
             <div class="category-grid__image-wrapper">
-              {%- if link_image != blank -%}
+              {%- if asset_img != blank -%}
+                <img
+                  src="{{ asset_img | asset_url }}"
+                  alt="{{ link_title | escape }}"
+                  loading="lazy"
+                  width="600"
+                  height="800"
+                  class="category-grid__asset-img"
+                >
+                <div class="category-grid__overlay">
+                  <p class="category-grid__name">{{ link_title | escape }}</p>
+                </div>
+              {%- elsif link_image != blank -%}
                 {{
                   link_image
                   | image_url: width: 600
@@ -87,10 +100,17 @@
           "info": "Si está vacío, se usa el nombre de la colección"
         },
         {
+          "type": "text",
+          "id": "asset_name",
+          "label": "Imagen desde assets/ (prioritaria)",
+          "info": "Ej: pm-cat-pisos-flotantes.webp — tiene prioridad sobre image picker",
+          "placeholder": "pm-cat-pisos-flotantes.webp"
+        },
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "Imagen",
-          "info": "Si está vacía, se usa la imagen de la colección"
+          "label": "Imagen (Shopify CDN)",
+          "info": "Se usa si asset_name está vacío"
         }
       ]
     }

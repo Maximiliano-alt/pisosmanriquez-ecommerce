@@ -1,9 +1,8 @@
 {%- assign wa_number = settings.pm_whatsapp | default: '+56 9 73763087' | remove: '+' | remove: ' ' -%}
 
-<!-- Badge ESTACIONAMIENTO GRATUITO (marca propia Pisos Manríquez) -->
+<!-- Badge ESTACIONAMIENTO GRATUITO (usa imagen propia de marca) -->
 <div class="pm-parking-badge" aria-label="Estacionamiento gratuito disponible">
-  <div class="pm-parking-badge__icon" aria-hidden="true">P</div>
-  <div class="pm-parking-badge__text">ESTACIONAMIENTO<br>GRATUITO</div>
+  <img src="{{ 'pm-estacionamiento.png' | asset_url }}" alt="Estacionamiento gratuito" class="pm-parking-badge__img" width="160" height="160" loading="lazy">
 </div>
 
 <a
@@ -44,66 +43,35 @@
     height: 2.8rem;
   }
 
-  /* Badge ESTACIONAMIENTO GRATUITO */
+  /* Badge ESTACIONAMIENTO GRATUITO (imagen real de marca) */
   .pm-parking-badge {
     position: fixed;
-    bottom: 10rem;
-    right: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: #f05a28;
-    color: #fff;
-    border-radius: 3rem;
-    padding: 0.7rem 1.2rem 0.7rem 0.7rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    bottom: 9.5rem;
+    right: 1.6rem;
     z-index: 9998;
     cursor: default;
     transition: transform 0.2s ease;
-    max-width: 17rem;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
   }
 
   .pm-parking-badge:hover {
-    transform: scale(1.03);
+    transform: scale(1.06);
   }
 
-  .pm-parking-badge__icon {
-    width: 3rem;
-    height: 3rem;
-    background: rgba(0, 0, 0, 0.18);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    font-weight: 900;
-    flex-shrink: 0;
-    letter-spacing: -0.05em;
-  }
-
-  .pm-parking-badge__text {
-    font-size: 1.05rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 1.25;
+  .pm-parking-badge__img {
+    width: 9rem;
+    height: auto;
+    display: block;
   }
 
   @media screen and (max-width: 749px) {
     .pm-parking-badge {
-      bottom: 9.5rem;
-      right: 1.4rem;
-      padding: 0.5rem 0.9rem 0.5rem 0.5rem;
+      bottom: 9rem;
+      right: 1.2rem;
     }
 
-    .pm-parking-badge__icon {
-      width: 2.4rem;
-      height: 2.4rem;
-      font-size: 1.3rem;
-    }
-
-    .pm-parking-badge__text {
-      font-size: 0.9rem;
+    .pm-parking-badge__img {
+      width: 7rem;
     }
   }
 </style>
