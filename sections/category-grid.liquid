@@ -26,7 +26,7 @@
               {%- if asset_img != blank -%}
                 <img
                   src="{{ asset_img | asset_url }}"
-                  alt="{{ link_title | escape }}"
+                  alt="{{ 'Pisos Manríquez — ' | append: link_title | escape }}"
                   loading="lazy"
                   width="600"
                   height="800"

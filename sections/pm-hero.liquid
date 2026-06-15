@@ -21,7 +21,7 @@
         {%- if block.settings.asset_name != blank -%}
           <img
             src="{{ block.settings.asset_name | asset_url }}"
-            alt="{{ block.settings.heading | default: 'Pisos Manríquez' | escape }}"
+            alt="{{ 'Pisos Manríquez — ' | append: block.settings.heading | default: 'Pisos Manríquez — distribuidores de pisos y revestimientos en Santiago, Chile' | escape }}"
             class="pm-hero__img"
             {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
             width="1600"

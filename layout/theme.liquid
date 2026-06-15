@@ -296,6 +296,50 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Pisos Manríquez",
+      "url": "{{ shop.url }}",
+      "logo": "{{ 'pm-logo-03.png' | asset_url }}",
+      "image": "{{ 'pm-slider-53.png' | asset_url }}",
+      "description": "Distribuidores de pisos flotantes, vinílicos, cerámicos, papel mural, pasto sintético, alfombras, cortinas roller y más. Más de 45 años de experiencia en Chile.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Manquehue Sur 1581",
+        "addressLocality": "Las Condes",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "telephone": ["+56973763087", "+56977258003", "+56233058688"],
+      "email": "contacto@pisosmanriquez.cl",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "18:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "10:00",
+          "closes": "14:00"
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4087,
+        "longitude": -70.5785
+      },
+      "sameAs": [
+        "https://www.pisosmanriquez.cl"
+      ],
+      "priceRange": "$$"
+    }
+    </script>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

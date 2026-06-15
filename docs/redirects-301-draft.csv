@@ -1,0 +1,25 @@
+old_url,new_url,notes
+/categoria-producto/pisos-flotantes/,/collections/pisos-flotantes,Categoría WooCommerce → colección Shopify
+/categoria-producto/pisos-vinilicos/,/collections/pisos-vinilicos,Categoría WooCommerce → colección Shopify
+/categoria-producto/ceramico-y-porcelanato/,/collections/ceramico-y-porcelanato,Categoría WooCommerce → colección Shopify
+/categoria-producto/papel-mural/,/collections/papel-mural,Categoría WooCommerce → colección Shopify
+/categoria-producto/pasto-sintetico/,/collections/pasto-sintetico,Categoría WooCommerce → colección Shopify
+/categoria-producto/pisos-de-ingenieria/,/collections/pisos-de-ingenieria,Categoría WooCommerce → colección Shopify
+/categoria-producto/alfombras/,/collections/alfombras,Categoría WooCommerce → colección Shopify
+/categoria-producto/cortinas-roller/,/collections/cortinas-roller,Categoría WooCommerce → colección Shopify
+/categoria-producto/molduras/,/collections/molduras,Categoría WooCommerce → colección Shopify
+/categoria-producto/servicios/,/collections/servicios,Categoría WooCommerce → colección Shopify
+/product-category/pisos-flotantes/,/collections/pisos-flotantes,URL alternativa en inglés (WooCommerce)
+/product-category/pisos-vinilicos/,/collections/pisos-vinilicos,URL alternativa en inglés (WooCommerce)
+/product-category/ceramico-y-porcelanato/,/collections/ceramico-y-porcelanato,URL alternativa en inglés (WooCommerce)
+/product-category/papel-mural/,/collections/papel-mural,URL alternativa en inglés (WooCommerce)
+/product-category/pasto-sintetico/,/collections/pasto-sintetico,URL alternativa en inglés (WooCommerce)
+/product-category/pisos-de-ingenieria/,/collections/pisos-de-ingenieria,URL alternativa en inglés (WooCommerce)
+/product-category/alfombras/,/collections/alfombras,URL alternativa en inglés (WooCommerce)
+/product-category/cortinas-roller/,/collections/cortinas-roller,URL alternativa en inglés (WooCommerce)
+/product-category/molduras/,/collections/molduras,URL alternativa en inglés (WooCommerce)
+/product-category/servicios/,/collections/servicios,URL alternativa en inglés (WooCommerce)
+/tienda/,/collections/all,Página principal de tienda WooCommerce → catálogo Shopify
+/shop/,/collections/all,URL alternativa en inglés → catálogo Shopify
+/nosotros/,/pages/nosotros,Página corporativa (crear en Shopify si no existe)
+/contacto/,/pages/contacto,Página de contacto (crear en Shopify si no existe)
