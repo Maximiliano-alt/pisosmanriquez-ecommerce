@@ -146,7 +146,7 @@
           "settings": {
             "label": "Cerámico y Porcelanato",
             "collection": "ceramico-y-porcelanato",
-            "asset_name": ""
+            "asset_name": "pm-cat-ceramico.webp"
           }
         },
         "cat_4": {
@@ -170,7 +170,7 @@
           "settings": {
             "label": "Pisos de Ingeniería",
             "collection": "pisos-de-ingenieria",
-            "asset_name": ""
+            "asset_name": "pm-ambiente-01.jpg"
           }
         },
         "cat_7": {
@@ -194,7 +194,7 @@
           "settings": {
             "label": "Molduras",
             "collection": "molduras",
-            "asset_name": ""
+            "asset_name": "pm-ambiente-02.jpg"
           }
         },
         "cat_10": {
@@ -202,7 +202,7 @@
           "settings": {
             "label": "Servicios",
             "collection": "servicios",
-            "asset_name": ""
+            "asset_name": "pm-slider-55.png"
           }
         }
       },
