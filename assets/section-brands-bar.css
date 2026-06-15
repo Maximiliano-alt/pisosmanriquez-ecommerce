@@ -54,11 +54,32 @@
   max-width: 14rem;
   object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.7;
+  opacity: 0.6;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
 .brands-bar__item:hover .brands-bar__image {
   filter: grayscale(0%);
   opacity: 1;
+}
+
+/* Text-based brand name (shown when no logo image uploaded yet) */
+.brands-bar__name-text {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.45);
+  padding: 0.8rem 1.6rem;
+  border: 1.5px solid rgba(var(--color-foreground), 0.15);
+  border-radius: 4px;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
+}
+
+.brands-bar__item:hover .brands-bar__name-text {
+  color: #f05a28;
+  border-color: #f05a28;
+  background: rgba(240, 90, 40, 0.06);
 }

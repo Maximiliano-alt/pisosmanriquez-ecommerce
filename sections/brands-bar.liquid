@@ -21,8 +21,10 @@
                   loading: 'lazy',
                   alt: block.settings.name | default: 'Marca'
               }}
+            {%- elsif block.settings.name != blank -%}
+              <span class="brands-bar__name-text">{{ block.settings.name | escape }}</span>
             {%- else -%}
-              <span style="display:inline-block;width:12rem;height:4rem;background:rgba(var(--color-foreground),0.1);border-radius:4px"></span>
+              <span class="brands-bar__name-text">Marca</span>
             {%- endif -%}
           {%- if block.settings.link != blank -%}
             </a>

@@ -15,30 +15,80 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "heading": "Pisos Manríquez",
+            "heading": "45 años de experiencia",
             "heading_size": "h0",
-            "subheading": "45 años de experiencia en pisos y revestimientos",
-            "button_label": "Ver productos",
+            "subheading": "Distribuidores de pisos y revestimientos — Santiago, Chile",
+            "button_label": "Ver catálogo",
             "link": "shopify://collections/all",
-            "button_style_secondary": true,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "image_overlay_opacity": 30,
-            "color_scheme": "scheme-3",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "image_overlay_opacity": 45,
+            "color_scheme": "scheme-4",
             "text_alignment": "center"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "heading": "Pisos Flotantes",
+            "heading_size": "h1",
+            "subheading": "La mejor selección de pisos laminados, de ingeniería y vinílicos",
+            "button_label": "Ver pisos",
+            "link": "shopify://collections/pisos-flotantes",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": true,
+            "image_overlay_opacity": 45,
+            "color_scheme": "scheme-4",
+            "text_alignment": "left"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "heading": "Cerámico y Porcelanato",
+            "heading_size": "h1",
+            "subheading": "Revestimientos premium para interiores y exteriores",
+            "button_label": "Ver cerámicos",
+            "link": "shopify://collections/ceramico-y-porcelanato",
+            "button_style_secondary": false,
+            "box_align": "middle-right",
+            "show_text_box": true,
+            "image_overlay_opacity": 45,
+            "color_scheme": "scheme-4",
+            "text_alignment": "right"
           }
         }
       },
-      "block_order": ["slide_1"],
+      "block_order": ["slide_1", "slide_2", "slide_3"],
       "settings": {
         "layout": "full_bleed",
         "slide_height": "large",
         "slider_visual": "dots",
         "auto_rotate": true,
-        "change_slides_speed": 5,
+        "change_slides_speed": 6,
         "image_behavior": "none",
         "show_text_below": false,
-        "accessibility_info": "Slideshow"
+        "accessibility_info": "Slideshow de Pisos Manríquez"
+      }
+    },
+    "promo_strip": {
+      "type": "announcement-bar",
+      "blocks": {
+        "strip_1": {
+          "type": "announcement",
+          "settings": {
+            "text": "🏆 45 años de experiencia &nbsp;|&nbsp; 🚗 Estacionamiento gratuito &nbsp;|&nbsp; 📦 Despacho a todo Chile &nbsp;|&nbsp; 🔧 Instalación profesional &nbsp;|&nbsp; ✅ Distribuidores exclusivos de las marcas top",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["strip_1"],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "auto_rotate": false,
+        "change_slides_speed": 5
       }
     },
     "category_grid": {
@@ -127,20 +177,27 @@
         "heading_block": {
           "type": "heading",
           "settings": {
-            "heading": "Venta e instalación de piso flotante",
+            "heading": "Venta e instalación profesional de pisos",
             "heading_size": "h1"
+          }
+        },
+        "text_block": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Llevamos más de 45 años transformando espacios en Chile. Contamos con la mayor variedad de pisos flotantes, vinílicos, cerámicos y revestimientos, con asesoría personalizada y servicio de instalación profesional.</p>",
+            "text_style": "body"
           }
         },
         "button_block": {
           "type": "button",
           "settings": {
-            "button_label": "Ver pisos",
+            "button_label": "Ver catálogo completo",
             "button_link": "shopify://collections/all",
             "button_style_secondary": false
           }
         }
       },
-      "block_order": ["heading_block", "button_block"],
+      "block_order": ["heading_block", "text_block", "button_block"],
       "settings": {
         "height": "adapt",
         "desktop_image_width": "medium",
@@ -152,8 +209,8 @@
         "color_scheme": "scheme-1",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     },
     "featured_pisos": {
@@ -164,7 +221,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "pisos-flotantes",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -190,31 +247,37 @@
         "promo_heading": {
           "type": "heading",
           "settings": {
-            "heading": "Pisos, pisos y más pisos",
-            "heading_size": "h0"
+            "heading": "¿Necesitas asesoría?",
+            "heading_size": "h1"
+          }
+        },
+        "promo_text": {
+          "type": "text",
+          "settings": {
+            "text": "Nuestros especialistas te ayudan a elegir el piso perfecto para tu proyecto"
           }
         },
         "promo_button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Ver catálogo",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_label_1": "Contáctanos por WhatsApp",
+            "button_link_1": "https://wa.me/56973763087",
+            "button_style_secondary_1": false,
+            "button_label_2": "Ver catálogo",
+            "button_link_2": "shopify://collections/all",
+            "button_style_secondary_2": true
           }
         }
       },
-      "block_order": ["promo_heading", "promo_button"],
+      "block_order": ["promo_heading", "promo_text", "promo_button"],
       "settings": {
-        "image_overlay_opacity": 40,
+        "image_overlay_opacity": 50,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
-        "show_text_box": false,
+        "show_text_box": true,
         "image_behavior": "none",
         "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-2",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
@@ -223,12 +286,12 @@
     "featured_revestimientos": {
       "type": "featured-collection",
       "settings": {
-        "title": "Revestimientos y cerámicos",
+        "title": "Cerámicos y Porcelanatos",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "ceramico-y-porcelanato",
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -274,17 +337,54 @@
           "settings": {
             "name": "Getnet"
           }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "name": "Pergo"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "name": "Kronospan"
+          }
+        },
+        "brand_7": {
+          "type": "brand",
+          "settings": {
+            "name": "Porcelanosa"
+          }
+        },
+        "brand_8": {
+          "type": "brand",
+          "settings": {
+            "name": "Armstrong"
+          }
+        },
+        "brand_9": {
+          "type": "brand",
+          "settings": {
+            "name": "Alloc"
+          }
+        },
+        "brand_10": {
+          "type": "brand",
+          "settings": {
+            "name": "Quick-Step"
+          }
         }
       },
-      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4"],
+      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6", "brand_7", "brand_8", "brand_9", "brand_10"],
       "settings": {
-        "title": "Nuestras marcas",
+        "title": "Marcas que distribuimos",
         "color_scheme": "scheme-1"
       }
     }
   },
   "order": [
     "slideshow_hero",
+    "promo_strip",
     "category_grid",
     "image_with_text_cta",
     "featured_pisos",

@@ -3,7 +3,7 @@
 .topbar-pm {
   background: #121212;
   color: #fff;
-  padding: 0.55rem 0;
+  padding: 0.6rem 0;
   font-size: 1.2rem;
   line-height: 1;
 }
@@ -12,32 +12,59 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .topbar-pm__right {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.8rem;
 }
 
+/* Email link (left side — plain, not pill) */
 .topbar-pm__item {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   transition: color 0.2s ease;
   white-space: nowrap;
+  font-size: 1.15rem;
 }
 
 .topbar-pm__item:hover {
   color: #fff;
 }
 
+/* Phone & WhatsApp on the right get pill-button treatment */
+.topbar-pm__right .topbar-pm__item {
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 2rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.topbar-pm__right .topbar-pm__item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+
+.topbar-pm__item--wa {
+  border-color: rgba(37, 211, 102, 0.4) !important;
+}
+
+.topbar-pm__item--wa:hover {
+  border-color: #25d366 !important;
+  background: rgba(37, 211, 102, 0.1) !important;
+}
+
 .topbar-pm__item svg {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.35rem;
+  height: 1.35rem;
   flex-shrink: 0;
 }
 
@@ -47,30 +74,47 @@
 
 .topbar-pm__sep {
   width: 1px;
-  height: 1.2rem;
-  background: rgba(255, 255, 255, 0.18);
+  height: 1.4rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@media screen and (max-width: 899px) {
+  /* Hide email text on mid-size screens */
+  .topbar-pm__inner > .topbar-pm__item span {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 749px) {
   .topbar-pm__inner {
     justify-content: center;
-    gap: 2rem;
+    gap: 0;
   }
 
-  .topbar-pm__item span {
+  /* On mobile: icon-only pills */
+  .topbar-pm__right .topbar-pm__item span {
     display: none;
   }
 
+  .topbar-pm__right .topbar-pm__item {
+    padding: 0.5rem 0.7rem;
+  }
+
   .topbar-pm__item svg {
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .topbar-pm__sep {
     display: none;
   }
 
+  /* Hide email entirely on mobile */
+  .topbar-pm__inner > .topbar-pm__item {
+    display: none;
+  }
+
   .topbar-pm__right {
-    gap: 2rem;
+    gap: 0.6rem;
   }
 }
