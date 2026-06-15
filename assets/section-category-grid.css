@@ -86,7 +86,8 @@
   transition: transform 0.45s ease;
 }
 
-.category-grid__item:hover .category-grid__image-wrapper img {
+.category-grid__item:hover .category-grid__image-wrapper img,
+.category-grid__item:hover .category-grid__asset-img {
   transform: scale(1.07);
 }
 
