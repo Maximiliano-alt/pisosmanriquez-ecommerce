@@ -1,0 +1,234 @@
+{{ 'section-quote-form.css' | asset_url | stylesheet_tag }}
+
+<div class="quote-form page-width color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.title != blank -%}
+    <h2 class="quote-form__title">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+
+  {%- if section.settings.subtitle != blank -%}
+    <p class="quote-form__subtitle">{{ section.settings.subtitle | escape }}</p>
+  {%- endif -%}
+
+  <form
+    class="quote-form__form"
+    data-n8n-endpoint="{{ section.settings.webhook_url }}"
+    novalidate
+  >
+    <div class="quote-form__grid">
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-name">Nombre completo <span aria-hidden="true">*</span></label>
+        <input
+          class="quote-form__input"
+          type="text"
+          id="qf-name"
+          name="name"
+          placeholder="Tu nombre"
+          required
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-phone">Teléfono <span aria-hidden="true">*</span></label>
+        <input
+          class="quote-form__input"
+          type="tel"
+          id="qf-phone"
+          name="phone"
+          placeholder="+56 9 XXXX XXXX"
+          required
+          autocomplete="tel"
+        >
+      </div>
+
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-email">Correo electrónico</label>
+        <input
+          class="quote-form__input"
+          type="email"
+          id="qf-email"
+          name="email"
+          placeholder="tu@correo.cl"
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-commune">Comuna</label>
+        <input
+          class="quote-form__input"
+          type="text"
+          id="qf-commune"
+          name="commune"
+          placeholder="Ej: Las Condes"
+        >
+      </div>
+
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-category">Producto / Categoría <span aria-hidden="true">*</span></label>
+        <select class="quote-form__input quote-form__select" id="qf-category" name="category" required>
+          <option value="" disabled selected>Selecciona una categoría</option>
+          <option value="pisos-flotantes">Pisos Flotantes</option>
+          <option value="pisos-vinilicos">Pisos Vinílicos</option>
+          <option value="ceramico-y-porcelanato">Cerámico y Porcelanato</option>
+          <option value="papel-mural">Papel Mural</option>
+          <option value="pasto-sintetico">Pasto Sintético</option>
+          <option value="pisos-de-ingenieria">Pisos de Ingeniería</option>
+          <option value="alfombras">Alfombras</option>
+          <option value="cortinas-roller">Cortinas Roller</option>
+          <option value="molduras">Molduras</option>
+          <option value="servicios">Servicios / Instalación</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="quote-form__field">
+        <label class="quote-form__label" for="qf-sqm">Metros cuadrados (m²)</label>
+        <input
+          class="quote-form__input"
+          type="number"
+          id="qf-sqm"
+          name="sqm"
+          placeholder="Ej: 45"
+          min="1"
+          step="0.5"
+        >
+      </div>
+    </div>
+
+    <div class="quote-form__field quote-form__field--full">
+      <label class="quote-form__label" for="qf-message">Mensaje / Detalle del proyecto</label>
+      <textarea
+        class="quote-form__input quote-form__textarea"
+        id="qf-message"
+        name="message"
+        placeholder="Cuéntanos sobre tu proyecto: tipo de espacio, dimensiones, preferencias de diseño, fecha estimada…"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="quote-form__footer">
+      <p class="quote-form__privacy">
+        Al enviar este formulario aceptas que nos contactemos contigo para coordinar tu cotización.
+      </p>
+      <button type="submit" class="quote-form__submit">
+        {{ section.settings.button_label | default: 'Solicitar cotización' | escape }}
+      </button>
+    </div>
+
+    <div class="quote-form__feedback" aria-live="polite" hidden></div>
+  </form>
+</div>
+
+<script>
+(function () {
+  const form = document.querySelector('.quote-form__form');
+  if (!form) return;
+
+  const feedback = form.querySelector('.quote-form__feedback');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const endpoint = form.dataset.n8nEndpoint;
+    if (!endpoint) {
+      showFeedback('error', 'El formulario no está configurado todavía. Contáctanos por WhatsApp.');
+      return;
+    }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const submitBtn = form.querySelector('.quote-form__submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        form.reset();
+        showFeedback('success', '¡Listo! Nos pondremos en contacto contigo muy pronto.');
+        submitBtn.textContent = 'Solicitar cotización';
+        submitBtn.disabled = false;
+      } else {
+        throw new Error('Server error ' + res.status);
+      }
+    } catch (err) {
+      showFeedback('error', 'Hubo un error al enviar. Por favor contáctanos por WhatsApp.');
+      submitBtn.textContent = 'Solicitar cotización';
+      submitBtn.disabled = false;
+    }
+  });
+
+  function showFeedback(type, msg) {
+    feedback.textContent = msg;
+    feedback.className = 'quote-form__feedback quote-form__feedback--' + type;
+    feedback.hidden = false;
+    setTimeout(() => { feedback.hidden = true; }, 8000);
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Formulario de cotización",
+  "class": "section-quote-form",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Solicita tu cotización"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Te contactamos en menos de 24 horas hábiles con la mejor propuesta para tu proyecto."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Solicitar cotización"
+    },
+    {
+      "type": "text",
+      "id": "webhook_url",
+      "label": "Webhook n8n (data-n8n-endpoint)",
+      "info": "URL del webhook n8n para procesar el formulario. Déjalo vacío mientras no esté configurado.",
+      "placeholder": "https://n8n.tudominio.com/webhook/cotizacion"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de colores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Relleno superior",
+      "min": 0, "max": 100, "step": 4, "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Relleno inferior",
+      "min": 0, "max": 100, "step": 4, "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Formulario de cotización"
+    }
+  ]
+}
+{% endschema %}

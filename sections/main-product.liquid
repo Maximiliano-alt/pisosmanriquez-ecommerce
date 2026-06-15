@@ -506,6 +506,47 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+              {%- when 'quote_cta' -%}
+                <div class="pm-quote-cta" {{ block.shopify_attributes }}>
+                  <a
+                    href="{{ block.settings.quote_page | default: '/pages/cotizacion' }}"
+                    class="pm-quote-cta__btn"
+                  >
+                    {{ block.settings.cta_label | default: '¿Necesitas cotización? Escríbenos' | escape }}
+                  </a>
+                  {%- if block.settings.cta_note != blank -%}
+                    <p class="pm-quote-cta__note">{{ block.settings.cta_note | escape }}</p>
+                  {%- endif -%}
+                </div>
+                <style>
+                  .pm-quote-cta { margin-top: 1.6rem; }
+                  .pm-quote-cta__btn {
+                    display: block;
+                    width: 100%;
+                    padding: 1.1rem 2.4rem;
+                    background: transparent;
+                    color: #f05a28;
+                    border: 2px solid #f05a28;
+                    border-radius: var(--buttons-radius, 4px);
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    letter-spacing: 0.03em;
+                    text-align: center;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    transition: background 0.2s ease, color 0.2s ease;
+                  }
+                  .pm-quote-cta__btn:hover {
+                    background: #f05a28;
+                    color: #fff;
+                  }
+                  .pm-quote-cta__note {
+                    font-size: 1.3rem;
+                    opacity: 0.65;
+                    text-align: center;
+                    margin: 0.8rem 0 0;
+                  }
+                </style>
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -984,6 +1025,31 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        }
+      ]
+    },
+    {
+      "type": "quote_cta",
+      "name": "CTA Cotización",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Texto del botón",
+          "default": "¿Necesitas cotización? Escríbenos"
+        },
+        {
+          "type": "url",
+          "id": "quote_page",
+          "label": "Enlace al formulario de cotización",
+          "info": "Por defecto: /pages/cotizacion"
+        },
+        {
+          "type": "text",
+          "id": "cta_note",
+          "label": "Nota bajo el botón",
+          "placeholder": "Ej: Te respondemos en menos de 24 hrs hábiles"
         }
       ]
     },
