@@ -446,6 +446,53 @@
         "subtitle": "Encuentra el revestimiento perfecto para cada espacio"
       }
     },
+    "pm_why_us": {
+      "type": "pm-why-us",
+      "blocks": {
+        "why_1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "years",
+            "stat": "+45",
+            "heading": "Años de experiencia",
+            "text": "Desde 1980 transformando espacios en Chile con los mejores productos del mercado."
+          }
+        },
+        "why_2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "tools",
+            "stat": "100%",
+            "heading": "Instalación profesional",
+            "text": "Equipo certificado para instalación de todos los tipos de revestimientos."
+          }
+        },
+        "why_3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "location",
+            "stat": "5",
+            "heading": "Puntos de atención",
+            "text": "Showroom en Las Condes más 4 puntos de atención en Santiago y Viña del Mar."
+          }
+        },
+        "why_4": {
+          "type": "pillar",
+          "settings": {
+            "icon": "award",
+            "stat": "+20",
+            "heading": "Marcas top del mercado",
+            "text": "Distribuidores oficiales de Carpenter, BS Chile, Winter, Getnet, Pergo y más."
+          }
+        }
+      },
+      "block_order": ["why_1", "why_2", "why_3", "why_4"],
+      "settings": {
+        "title": "¿Por qué Pisos Manríquez?",
+        "subtitle": "Más de 45 años siendo la referencia en pisos y revestimientos en Chile",
+        "color_scheme": "scheme-2"
+      }
+    },
     "pm_quote_band": {
       "type": "pm-quote-band",
       "settings": {
@@ -504,6 +551,7 @@
     "promo_strip",
     "category_grid",
     "pm_style_selector",
+    "pm_why_us",
     "pm_quote_band",
     "pm_steps",
     "image_with_text_cta",

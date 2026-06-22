@@ -1,0 +1,130 @@
+.pm-why {
+  padding-top: 5.6rem;
+  padding-bottom: 5.6rem;
+}
+
+.pm-why__title {
+  text-align: center;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pm-why__title::after {
+  content: '';
+  display: block;
+  width: 4.8rem;
+  height: 0.3rem;
+  background: #f05a28;
+  margin: 0.9rem auto 0;
+  border-radius: 2px;
+}
+
+.pm-why__subtitle {
+  text-align: center;
+  font-size: 1.6rem;
+  opacity: 0.7;
+  margin: 0 0 4rem;
+}
+
+/* Grid: 2 cols mobile → 4 cols desktop */
+.pm-why__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.2rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .pm-why__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem 3.2rem;
+  }
+}
+
+.pm-why__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon circle */
+.pm-why__icon {
+  width: 7.2rem;
+  height: 7.2rem;
+  border-radius: 50%;
+  background: rgba(240, 90, 40, 0.1);
+  border: 2px solid rgba(240, 90, 40, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f05a28;
+  margin-bottom: 1.6rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.pm-why__item:hover .pm-why__icon {
+  background: #f05a28;
+  border-color: #f05a28;
+  color: #fff;
+}
+
+.pm-why__icon svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+/* Big stat number */
+.pm-why__stat {
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-weight: 900;
+  color: #f05a28;
+  line-height: 1;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.pm-why__heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.8rem;
+  line-height: 1.3;
+}
+
+.pm-why__text {
+  font-size: 1.4rem;
+  line-height: 1.55;
+  opacity: 0.7;
+  margin: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .pm-why {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .pm-why__icon {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .pm-why__icon svg {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .pm-why__heading {
+    font-size: 1.5rem;
+  }
+
+  .pm-why__text {
+    font-size: 1.3rem;
+  }
+}

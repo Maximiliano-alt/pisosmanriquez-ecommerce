@@ -1,0 +1,181 @@
+{{ 'section-pm-why-us.css' | asset_url | stylesheet_tag }}
+
+<section class="pm-why color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="pm-why__inner page-width">
+    {%- if section.settings.title != blank -%}
+      <h2 class="pm-why__title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="pm-why__subtitle">{{ section.settings.subtitle | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="pm-why__grid" role="list">
+        {%- for block in section.blocks -%}
+          <li
+            class="pm-why__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 100 }}ms"{% endif %}
+          >
+            <div class="pm-why__icon" aria-hidden="true">
+              {%- case block.settings.icon -%}
+                {%- when 'years' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="24" cy="24" r="20"/>
+                    <path d="M24 14v10l6 4"/>
+                    <path d="M14 6l-4-4M34 6l4-4"/>
+                  </svg>
+                {%- when 'tools' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M40 8a8 8 0 0 0-11.3 0L10 26.7a8 8 0 0 0 11.3 11.3L40 19.3A8 8 0 0 0 40 8z"/>
+                    <path d="M8 40l6-6M30 10l8 8"/>
+                  </svg>
+                {%- when 'location' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M24 4C16.3 4 10 10.3 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.7-6.3-14-14-14z"/>
+                    <circle cx="24" cy="18" r="4"/>
+                  </svg>
+                {%- when 'award' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="24" cy="18" r="14"/>
+                    <path d="M16 30l-4 14 12-6 12 6-4-14"/>
+                    <path d="M24 10l2.5 5 5.5.8-4 3.9.9 5.5L24 22.5 18.6 25.2l.9-5.5L15.5 15.8l5.5-.8z"/>
+                  </svg>
+                {%- when 'truck' -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="12" width="30" height="22" rx="2"/>
+                    <path d="M32 18h8l6 8v8h-14V18z"/>
+                    <circle cx="10" cy="38" r="4"/>
+                    <circle cx="36" cy="38" r="4"/>
+                  </svg>
+                {%- else -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="24,4 30,18 46,18 34,28 38,44 24,36 10,44 14,28 2,18 18,18"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+
+            {%- if block.settings.stat != blank -%}
+              <p class="pm-why__stat">{{ block.settings.stat | escape }}</p>
+            {%- endif -%}
+            <h3 class="pm-why__heading">{{ block.settings.heading | escape }}</h3>
+            {%- if block.settings.text != blank -%}
+              <p class="pm-why__text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "¿Por qué elegirnos?",
+  "class": "section-pm-why-us",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "¿Por qué Pisos Manríquez?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de colores",
+      "default": "scheme-2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pilar",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "years",    "label": "Reloj / Años" },
+            { "value": "tools",    "label": "Herramientas / Instalación" },
+            { "value": "location", "label": "Ubicación / Showroom" },
+            { "value": "award",    "label": "Premio / Marcas" },
+            { "value": "truck",    "label": "Camión / Despacho" },
+            { "value": "star",     "label": "Estrella" }
+          ],
+          "default": "award"
+        },
+        {
+          "type": "text",
+          "id": "stat",
+          "label": "Número destacado",
+          "info": "Ej: +45, 5★, 10.000+",
+          "placeholder": "+45"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título del pilar",
+          "default": "Años de experiencia"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Descripción"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "¿Por qué elegirnos?",
+      "blocks": [
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "years",
+            "stat": "+45",
+            "heading": "Años de experiencia",
+            "text": "Desde 1980 transformando espacios en Chile con los mejores productos del mercado."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "tools",
+            "stat": "100%",
+            "heading": "Instalación profesional",
+            "text": "Equipo certificado para instalación de todos los tipos de revestimientos."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "location",
+            "stat": "5",
+            "heading": "Puntos de atención",
+            "text": "Showroom en Las Condes más 4 puntos de atención en Santiago y Viña del Mar."
+          }
+        },
+        {
+          "type": "pillar",
+          "settings": {
+            "icon": "award",
+            "stat": "+20",
+            "heading": "Marcas top del mercado",
+            "text": "Distribuidores oficiales de Carpenter, BS Chile, Winter, Getnet, Pergo y más."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
