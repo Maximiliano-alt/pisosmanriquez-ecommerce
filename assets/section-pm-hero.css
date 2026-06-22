@@ -47,11 +47,11 @@
   display: block;
 }
 
-/* Placeholder (no image) */
+/* Placeholder (no image) — gradiente oscuro neutro, nunca negro puro */
 .pm-hero__placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(160deg, #2a1508 0%, #3a1f0f 60%, #1a0d04 100%);
+  background: linear-gradient(160deg, #1a1a1a 0%, #2d1a0a 60%, #111111 100%);
 }
 
 /* Dark overlay (opacity set via CSS var) */

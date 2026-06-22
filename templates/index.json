@@ -15,9 +15,9 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "asset_name": "pm-slider-53.png",
-            "heading": "45 años transformando espacios",
-            "subheading": "Los mejores pisos y revestimientos de Chile",
+            "asset_name": "pm-hero-ambiente-01.jpg",
+            "heading": "45 años vistiendo los mejores espacios de Chile",
+            "subheading": "Pisos flotantes · Cerámico · Vinílicos · Papel mural · Pasto sintético",
             "button_label": "Ver catálogo",
             "button_link": "/collections/all",
             "button_style_secondary": false,
@@ -27,7 +27,7 @@
             "button_style_secondary_2": true,
             "text_align": "center",
             "box_align": "middle-center",
-            "image_overlay_opacity": 35
+            "image_overlay_opacity": 45
           }
         },
         "slide_2": {
