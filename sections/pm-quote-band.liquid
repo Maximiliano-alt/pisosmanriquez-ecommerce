@@ -1,0 +1,36 @@
+{{ 'section-pm-quote-band.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign wa = section.settings.whatsapp_number | default: '56973763087'
+-%}
+<div class="pm-quote page-width color-{{ section.settings.color_scheme }}" style="padding-top: {{ section.settings.padding_top | default: 40 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 40 }}px;">
+  <div class="pm-quote__inner">
+    <div class="pm-quote__copy">
+      {%- if section.settings.title != blank -%}<h2 class="pm-quote__title"><span class="pm-quote__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 2 2 5-5"/></svg></span>{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.subtitle != blank -%}<p class="pm-quote__subtitle">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+    </div>
+    <form class="pm-quote__form" data-wa="{{ wa }}" data-n8n="{{ section.settings.webhook_url }}">
+      <div class="pm-quote__field"><label class="pm-quote__label" for="pmq-cat">Categoría</label>
+        <select class="pm-quote__input" id="pmq-cat" name="category" required>
+          <option value="" disabled selected>¿Qué buscas?</option>
+          <option>Pisos Flotantes</option><option>Pisos Vinílicos / SPC</option><option>Cerámico y Porcelanato</option><option>Papel Mural</option><option>Pasto Sintético</option><option>Pisos de Ingeniería</option><option>Alfombras</option><option>Cortinas Roller</option><option>Molduras</option><option>Instalación / Servicios</option>
+        </select></div>
+      <div class="pm-quote__field pm-quote__field--m2"><label class="pm-quote__label" for="pmq-m2">Metros cuadrados (aprox.)</label><input class="pm-quote__input" type="number" inputmode="numeric" min="1" id="pmq-m2" name="m2" placeholder="Ej: 35" required></div>
+      <div class="pm-quote__field"><label class="pm-quote__label" for="pmq-name">Nombre</label><input class="pm-quote__input" type="text" id="pmq-name" name="name" placeholder="Tu nombre" autocomplete="name"></div>
+      <button type="submit" class="pm-quote__btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"/></svg>Cotizar por WhatsApp</button>
+    </form>
+  </div>
+</div>
+<script>
+(function(){var form=document.querySelector('.pm-quote__form');if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();var wa=form.dataset.wa;var cat=(form.querySelector('#pmq-cat')||{}).value||'';var m2=(form.querySelector('#pmq-m2')||{}).value||'';var name=(form.querySelector('#pmq-name')||{}).value||'';if(!cat||!m2){if(form.reportValidity)form.reportValidity();return;}var msg='Hola Pisos Manriquez, quiero cotizar:%0A';if(name)msg+='- Nombre: '+encodeURIComponent(name)+'%0A';msg+='- Categoria: '+encodeURIComponent(cat)+'%0A';msg+='- Metros cuadrados: '+encodeURIComponent(m2)+' m2%0A';msg+='Me pueden enviar precio con instalacion?';var n8n=form.dataset.n8n;if(n8n){try{fetch(n8n,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'home_quote_band',name:name,category:cat,m2:m2})});}catch(err){}}window.open('https://wa.me/'+wa+'?text='+msg,'_blank');});})();
+</script>
+{% schema %}
+{ "name":"Cotización rápida","class":"section-pm-quote","tag":"section","settings":[
+ {"type":"text","id":"title","label":"Título","default":"Cotiza tu proyecto en 1 minuto"},
+ {"type":"text","id":"subtitle","label":"Subtítulo","default":"Dinos los m² y la categoría — te enviamos precio con instalación por WhatsApp."},
+ {"type":"text","id":"whatsapp_number","label":"WhatsApp (sin +)","default":"56973763087"},
+ {"type":"url","id":"webhook_url","label":"Webhook n8n (opcional)","info":"Si lo defines, se envía copia del lead a n8n al cotizar."},
+ {"type":"color_scheme","id":"color_scheme","label":"Esquema de colores","default":"scheme-1"},
+ {"type":"range","id":"padding_top","label":"Padding superior","min":0,"max":100,"step":4,"unit":"px","default":40},
+ {"type":"range","id":"padding_bottom","label":"Padding inferior","min":0,"max":100,"step":4,"unit":"px","default":40}],
+ "presets":[{"name":"Cotización rápida"}] }
+{% endschema %}

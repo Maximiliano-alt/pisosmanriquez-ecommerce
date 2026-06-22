@@ -1,0 +1,29 @@
+{{ 'section-pm-locations.css' | asset_url | stylesheet_tag }}
+<div class="pm-loc page-width color-{{ section.settings.color_scheme }}" style="padding-top: {{ section.settings.padding_top | default: 44 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 44 }}px;">
+  <div class="pm-loc__card">
+    <div class="pm-loc__main">
+      <p class="pm-loc__eyebrow"><span class="pm-loc__pin" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.5-6-10a6 6 0 0 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2.5"/></svg></span>{{ section.settings.eyebrow | default: 'Visítanos' | escape }}</p>
+      {%- if section.settings.title != blank -%}<h2 class="pm-loc__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+      {%- if section.settings.address != blank -%}<p class="pm-loc__address">{{ section.settings.address }}</p>{%- endif -%}
+      <div class="pm-loc__actions">
+        {%- if section.settings.maps_link != blank -%}<a class="pm-loc__btn" href="{{ section.settings.maps_link }}" target="_blank" rel="noopener">Cómo llegar</a>{%- endif -%}
+        {%- if section.settings.whatsapp_number != blank -%}<a class="pm-loc__btn pm-loc__btn--wa" href="https://wa.me/{{ section.settings.whatsapp_number }}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>{%- endif -%}
+      </div>
+    </div>
+    {%- if section.blocks.size > 0 -%}<div class="pm-loc__points"><p class="pm-loc__points-title">{{ section.settings.points_title | default: 'Puntos de atención' | escape }}</p><ul class="pm-loc__list" role="list">{%- for block in section.blocks -%}<li class="pm-loc__item" {{ block.shopify_attributes }}><span class="pm-loc__city">{{ block.settings.city | escape }}</span>{%- if block.settings.detail != blank -%}<span class="pm-loc__detail">{{ block.settings.detail | escape }}</span>{%- endif -%}</li>{%- endfor -%}</ul></div>{%- endif -%}
+  </div>
+</div>
+{% schema %}
+{ "name":"Showroom y ubicaciones","class":"section-pm-loc","tag":"section","max_blocks":8,"settings":[
+ {"type":"text","id":"eyebrow","label":"Etiqueta superior","default":"Visítanos"},
+ {"type":"text","id":"title","label":"Título","default":"Showroom y 5 puntos de atención"},
+ {"type":"richtext","id":"address","label":"Dirección showroom","default":"<p>Showroom: Manquehue Sur 1581, Las Condes · Estacionamiento gratuito</p>"},
+ {"type":"url","id":"maps_link","label":"Enlace Google Maps","default":"https://maps.google.com/?q=Manquehue+Sur+1581+Las+Condes"},
+ {"type":"text","id":"whatsapp_number","label":"WhatsApp (sin +)","default":"56973763087"},
+ {"type":"text","id":"points_title","label":"Título lista de puntos","default":"Puntos de atención"},
+ {"type":"color_scheme","id":"color_scheme","label":"Esquema de colores","default":"scheme-1"},
+ {"type":"range","id":"padding_top","label":"Padding superior","min":0,"max":100,"step":4,"unit":"px","default":44},
+ {"type":"range","id":"padding_bottom","label":"Padding inferior","min":0,"max":100,"step":4,"unit":"px","default":44}],
+ "blocks":[{"type":"point","name":"Punto de atención","settings":[{"type":"text","id":"city","label":"Ciudad / Comuna","default":"Las Condes"},{"type":"text","id":"detail","label":"Detalle (opcional)"}]}],
+ "presets":[{"name":"Showroom y ubicaciones","blocks":[{"type":"point","settings":{"city":"Las Condes","detail":"Showroom"}},{"type":"point","settings":{"city":"Huechuraba","detail":""}},{"type":"point","settings":{"city":"Viña del Mar","detail":""}},{"type":"point","settings":{"city":"Chicureo","detail":""}},{"type":"point","settings":{"city":"Macul","detail":""}}]}] }
+{% endschema %}

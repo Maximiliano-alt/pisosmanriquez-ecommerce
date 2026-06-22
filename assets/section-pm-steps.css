@@ -1,0 +1,12 @@
+.pm-steps { text-align:center; }
+.pm-steps__title { margin:0 0 6px; font-size:2.6rem; color:#3a1f0f; }
+.pm-steps__subtitle { margin:0 auto 28px; color:#7a6a5a; font-size:1.5rem; max-width:52ch; }
+.pm-steps__list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.pm-steps__item { position:relative; background:#f7f4f1; border-radius:14px; padding:30px 22px 26px; text-align:center; }
+.pm-steps__num { width:46px; height:46px; margin:0 auto 14px; border-radius:50%; background:#3a1f0f; color:#ffe600; font-size:1.9rem; font-weight:600; display:flex; align-items:center; justify-content:center; }
+.pm-steps__name { margin:0 0 6px; font-size:1.8rem; color:#3a1f0f; }
+.pm-steps__text { margin:0; color:#6a5a4a; font-size:1.4rem; line-height:1.5; }
+.pm-steps__cta { margin-top:26px; }
+.pm-steps__btn { display:inline-block; background:#f05a28; color:#fff; text-decoration:none; font-size:1.5rem; font-weight:600; padding:13px 26px; border-radius:8px; transition:filter .15s ease; }
+.pm-steps__btn:hover { filter:brightness(0.95); }
+@media screen and (max-width:749px){ .pm-steps__list{ grid-template-columns:1fr; gap:14px; } .pm-steps__title{ font-size:2.1rem; } }

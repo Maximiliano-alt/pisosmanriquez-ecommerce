@@ -1,0 +1,21 @@
+{{ 'section-pm-steps.css' | asset_url | stylesheet_tag }}
+<div class="pm-steps page-width color-{{ section.settings.color_scheme }}" style="padding-top: {{ section.settings.padding_top | default: 44 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 44 }}px;">
+  {%- if section.settings.title != blank -%}<h2 class="pm-steps__title">{{ section.settings.title | escape }}</h2>{%- endif -%}
+  {%- if section.settings.subtitle != blank -%}<p class="pm-steps__subtitle">{{ section.settings.subtitle | escape }}</p>{%- endif -%}
+  {%- if section.blocks.size > 0 -%}<ol class="pm-steps__list" role="list">
+    {%- for block in section.blocks -%}<li class="pm-steps__item" {{ block.shopify_attributes }}><div class="pm-steps__num" aria-hidden="true">{{ forloop.index }}</div><h3 class="pm-steps__name">{{ block.settings.heading | escape }}</h3>{%- if block.settings.text != blank -%}<p class="pm-steps__text">{{ block.settings.text | escape }}</p>{%- endif -%}</li>{%- endfor -%}
+  </ol>{%- endif -%}
+  {%- if section.settings.button_label != blank -%}<div class="pm-steps__cta"><a class="pm-steps__btn" href="{{ section.settings.button_link | default: '/collections/all' }}">{{ section.settings.button_label | escape }}</a></div>{%- endif -%}
+</div>
+{% schema %}
+{ "name":"Cómo comprar (3 pasos)","class":"section-pm-steps","tag":"section","max_blocks":4,"settings":[
+ {"type":"text","id":"title","label":"Título","default":"Cómo comprar"},
+ {"type":"text","id":"subtitle","label":"Subtítulo","default":"De la elección a la instalación, te acompañamos en cada paso."},
+ {"type":"text","id":"button_label","label":"Texto del botón","default":"Ver catálogo completo"},
+ {"type":"url","id":"button_link","label":"Enlace del botón"},
+ {"type":"color_scheme","id":"color_scheme","label":"Esquema de colores","default":"scheme-1"},
+ {"type":"range","id":"padding_top","label":"Padding superior","min":0,"max":100,"step":4,"unit":"px","default":44},
+ {"type":"range","id":"padding_bottom","label":"Padding inferior","min":0,"max":100,"step":4,"unit":"px","default":44}],
+ "blocks":[{"type":"step","name":"Paso","settings":[{"type":"text","id":"heading","label":"Título del paso","default":"Paso"},{"type":"text","id":"text","label":"Descripción"}]}],
+ "presets":[{"name":"Cómo comprar (3 pasos)","blocks":[{"type":"step","settings":{"heading":"Elige","text":"Explora el catálogo o visita el showroom y elige tu producto."}},{"type":"step","settings":{"heading":"Cotizamos y medimos","text":"Te enviamos precio con instalación y coordinamos la visita a terreno."}},{"type":"step","settings":{"heading":"Instalamos","text":"Nuestro equipo profesional instala con garantía y prolijidad."}}]}] }
+{% endschema %}

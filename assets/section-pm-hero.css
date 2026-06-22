@@ -229,3 +229,10 @@
 .pm-hero__dot:hover {
   background: rgba(255, 255, 255, 0.8);
 }
+
+/* --- kicker + dual CTA (mejora home) --- */
+.pm-hero__kicker { display:inline-block; color:#ffe600; font-size:1.3rem; font-weight:600; letter-spacing:.04em; margin:0 0 8px; text-shadow:0 1px 2px rgba(0,0,0,.35); }
+.pm-hero__btns { display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+.pm-hero__content--align-center .pm-hero__btns { justify-content:center; }
+.pm-hero__content--align-right .pm-hero__btns { justify-content:flex-end; }
+@media screen and (max-width:749px){ .pm-hero__btns{ gap:8px; } }

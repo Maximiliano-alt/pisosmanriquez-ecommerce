@@ -33,21 +33,20 @@
 
         <div class="pm-hero__overlay" style="--overlay-opacity: {{ block.settings.image_overlay_opacity | default: 40 }}"></div>
 
-        {%- if block.settings.heading != blank or block.settings.subheading != blank or block.settings.button_label != blank -%}
+        {%- if block.settings.kicker != blank or block.settings.heading != blank or block.settings.subheading != blank or block.settings.button_label != blank or block.settings.button_label_2 != blank -%}
           <div class="pm-hero__content pm-hero__content--{{ box_align }} pm-hero__content--align-{{ text_align }}">
+            {%- if block.settings.kicker != blank -%}<p class="pm-hero__kicker">{{ block.settings.kicker | escape }}</p>{%- endif -%}
             {%- if block.settings.heading != blank -%}
               <h2 class="pm-hero__heading">{{ block.settings.heading | escape }}</h2>
             {%- endif -%}
             {%- if block.settings.subheading != blank -%}
               <p class="pm-hero__subheading">{{ block.settings.subheading | escape }}</p>
             {%- endif -%}
-            {%- if block.settings.button_label != blank -%}
-              <a
-                href="{{ block.settings.button_link | default: '/' }}"
-                class="pm-hero__btn{% if block.settings.button_style_secondary %} pm-hero__btn--secondary{% endif %}"
-              >
-                {{ block.settings.button_label | escape }}
-              </a>
+            {%- if block.settings.button_label != blank or block.settings.button_label_2 != blank -%}
+              <div class="pm-hero__btns">
+                {%- if block.settings.button_label != blank -%}<a href="{{ block.settings.button_link | default: '/' }}" class="pm-hero__btn{% if block.settings.button_style_secondary %} pm-hero__btn--secondary{% endif %}">{{ block.settings.button_label | escape }}</a>{%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}<a href="{{ block.settings.button_link_2 | default: '/' }}" class="pm-hero__btn{% if block.settings.button_style_secondary_2 %} pm-hero__btn--secondary{% endif %}">{{ block.settings.button_label_2 | escape }}</a>{%- endif -%}
+              </div>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -196,6 +195,10 @@
           "label": "Botón estilo secundario (outline)",
           "default": false
         },
+        { "type":"text","id":"kicker","label":"Línea superior (kicker)","info":"Texto corto en amarillo arriba del título" },
+        { "type":"text","id":"button_label_2","label":"Texto del botón 2" },
+        { "type":"url","id":"button_link_2","label":"Enlace del botón 2" },
+        { "type":"checkbox","id":"button_style_secondary_2","label":"Botón 2 estilo secundario (outline)","default":true },
         {
           "type": "select",
           "id": "text_align",

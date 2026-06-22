@@ -1,0 +1,16 @@
+.pm-quote { border-radius:14px; }
+.pm-quote__inner { background:#faece7; border:1.5px solid #f05a28; border-radius:14px; padding:28px 28px; display:grid; grid-template-columns:1fr 1.15fr; gap:28px; align-items:center; }
+.pm-quote__title { display:flex; align-items:center; gap:10px; margin:0 0 8px; font-size:2.4rem; line-height:1.15; color:#993c1d; }
+.pm-quote__icon { display:inline-flex; width:30px; height:30px; color:#f05a28; }
+.pm-quote__icon svg { width:100%; height:100%; }
+.pm-quote__subtitle { margin:0; color:#712b13; font-size:1.5rem; line-height:1.5; max-width:42ch; }
+.pm-quote__form { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.pm-quote__field { display:flex; flex-direction:column; }
+.pm-quote__label { font-size:1.2rem; font-weight:500; color:#5a3320; margin-bottom:5px; }
+.pm-quote__input { height:46px; border:1px solid #e0c4b6; border-radius:8px; padding:0 12px; font-size:1.5rem; background:#fff; color:#3a1f0f; width:100%; }
+.pm-quote__input:focus { outline:2px solid #f05a28; outline-offset:1px; border-color:#f05a28; }
+.pm-quote__btn { grid-column:1 / -1; display:inline-flex; align-items:center; justify-content:center; gap:9px; height:50px; border:0; border-radius:8px; cursor:pointer; background:#25d366; color:#fff; font-size:1.6rem; font-weight:600; transition:filter .15s ease, transform .05s ease; }
+.pm-quote__btn:hover { filter:brightness(0.95); }
+.pm-quote__btn:active { transform:scale(0.99); }
+@media screen and (max-width:989px){ .pm-quote__inner{ grid-template-columns:1fr; padding:22px 18px; gap:18px; } .pm-quote__title{ font-size:2rem; } .pm-quote__subtitle{ font-size:1.4rem; } }
+@media screen and (max-width:480px){ .pm-quote__form{ grid-template-columns:1fr; } }

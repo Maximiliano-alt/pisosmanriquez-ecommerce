@@ -21,6 +21,10 @@
             "button_label": "Ver catálogo",
             "button_link": "/collections/all",
             "button_style_secondary": false,
+            "kicker": "Distribuidores de las marcas top de Chile",
+            "button_label_2": "Cotiza tu proyecto",
+            "button_link_2": "#shopify-section-pm_quote_band",
+            "button_style_secondary_2": true,
             "text_align": "center",
             "box_align": "middle-center",
             "image_overlay_opacity": 35
@@ -401,16 +405,71 @@
         "title": "Marcas que distribuimos",
         "color_scheme": "scheme-1"
       }
+    },
+    "pm_quote_band": {
+      "type": "pm-quote-band",
+      "settings": {
+        "title": "Cotiza tu proyecto en 1 minuto",
+        "subtitle": "Dinos los m² y la categoría — te enviamos precio con instalación por WhatsApp.",
+        "whatsapp_number": "56973763087",
+        "webhook_url": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "pm_steps": {
+      "type": "pm-steps",
+      "blocks": {
+        "s1": {"type": "step", "settings": {"heading": "Elige", "text": "Explora el catálogo o visita el showroom y elige tu producto."}},
+        "s2": {"type": "step", "settings": {"heading": "Cotizamos y medimos", "text": "Te enviamos precio con instalación y coordinamos la visita a terreno."}},
+        "s3": {"type": "step", "settings": {"heading": "Instalamos", "text": "Nuestro equipo profesional instala con garantía y prolijidad."}}
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "title": "Cómo comprar",
+        "subtitle": "De la elección a la instalación, te acompañamos en cada paso.",
+        "button_label": "Ver catálogo completo",
+        "button_link": "shopify://collections/all",
+        "color_scheme": "scheme-1",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "pm_locations": {
+      "type": "pm-locations",
+      "blocks": {
+        "p1": {"type": "point", "settings": {"city": "Las Condes", "detail": "Showroom"}},
+        "p2": {"type": "point", "settings": {"city": "Huechuraba", "detail": ""}},
+        "p3": {"type": "point", "settings": {"city": "Viña del Mar", "detail": ""}},
+        "p4": {"type": "point", "settings": {"city": "Chicureo", "detail": ""}},
+        "p5": {"type": "point", "settings": {"city": "Macul", "detail": ""}}
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5"],
+      "settings": {
+        "eyebrow": "Visítanos",
+        "title": "Showroom y 5 puntos de atención",
+        "address": "<p>Showroom: Manquehue Sur 1581, Las Condes · Estacionamiento gratuito</p>",
+        "maps_link": "https://maps.google.com/?q=Manquehue+Sur+1581+Las+Condes",
+        "whatsapp_number": "56973763087",
+        "points_title": "Puntos de atención",
+        "color_scheme": "scheme-1",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
     }
   },
   "order": [
     "pm_hero",
     "promo_strip",
     "category_grid",
+    "pm_quote_band",
+    "pm_steps",
     "image_with_text_cta",
     "featured_pisos",
     "promo_banner",
     "featured_revestimientos",
+    "pm_locations",
     "brands_bar"
   ]
 }
