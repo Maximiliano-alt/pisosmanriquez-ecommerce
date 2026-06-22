@@ -406,6 +406,46 @@
         "color_scheme": "scheme-1"
       }
     },
+    "pm_style_selector": {
+      "type": "pm-style-selector",
+      "blocks": {
+        "style_madera": {
+          "type": "style_card",
+          "settings": {
+            "title": "Look Madera",
+            "description": "Calidez y elegancia natural para tus espacios",
+            "button_label": "Ver pisos de madera",
+            "link": "/collections/pisos-flotantes",
+            "asset_name": "pm-style-madera.jpg"
+          }
+        },
+        "style_marmol": {
+          "type": "style_card",
+          "settings": {
+            "title": "Look Mármol · Cerámico",
+            "description": "Sofisticación y durabilidad en cada detalle",
+            "button_label": "Ver cerámicos",
+            "link": "/collections/ceramico-y-porcelanato",
+            "asset_name": "pm-style-marmol.jpg"
+          }
+        },
+        "style_exterior": {
+          "type": "style_card",
+          "settings": {
+            "title": "Pasto y Exteriores",
+            "description": "Transforma tu jardín o terraza todo el año",
+            "button_label": "Ver pasto sintético",
+            "link": "/collections/pasto-sintetico",
+            "asset_name": "pm-style-exterior.jpg"
+          }
+        }
+      },
+      "block_order": ["style_madera", "style_marmol", "style_exterior"],
+      "settings": {
+        "title": "Elige tu estilo",
+        "subtitle": "Encuentra el revestimiento perfecto para cada espacio"
+      }
+    },
     "pm_quote_band": {
       "type": "pm-quote-band",
       "settings": {
@@ -463,6 +503,7 @@
     "pm_hero",
     "promo_strip",
     "category_grid",
+    "pm_style_selector",
     "pm_quote_band",
     "pm_steps",
     "image_with_text_cta",

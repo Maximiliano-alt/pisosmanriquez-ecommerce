@@ -1,0 +1,174 @@
+{{ 'section-pm-style-selector.css' | asset_url | stylesheet_tag }}
+
+<section class="pm-style page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  {%- if section.settings.title != blank -%}
+    <h2 class="pm-style__title">{{ section.settings.title | escape }}</h2>
+    {%- if section.settings.subtitle != blank -%}
+      <p class="pm-style__subtitle">{{ section.settings.subtitle | escape }}</p>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <ul class="pm-style__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign bg_img = block.settings.collection_image | default: block.settings.image
+          assign asset_file = block.settings.asset_name
+          assign link_url = block.settings.link | default: '/collections/all'
+        -%}
+        <li
+          class="pm-style__card{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 150 }}ms"{% endif %}
+        >
+          <a href="{{ link_url }}" class="pm-style__card-link" aria-label="{{ block.settings.title | escape }}">
+            <div class="pm-style__img-wrap">
+              {%- if bg_img != blank -%}
+                {{
+                  bg_img
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 33vw, (min-width: 600px) 50vw, 100vw',
+                    widths: '480, 600, 750, 900',
+                    class: 'pm-style__img',
+                    alt: block.settings.title | escape
+                }}
+              {%- elsif asset_file != blank -%}
+                <img
+                  src="{{ asset_file | asset_url }}"
+                  alt="{{ block.settings.title | escape }}"
+                  class="pm-style__img"
+                  loading="lazy"
+                  width="900"
+                  height="600"
+                >
+              {%- else -%}
+                <div class="pm-style__img-placeholder"></div>
+              {%- endif -%}
+
+              <div class="pm-style__overlay"></div>
+
+              <div class="pm-style__content">
+                {%- if block.settings.eyebrow != blank -%}
+                  <span class="pm-style__eyebrow">{{ block.settings.eyebrow | escape }}</span>
+                {%- endif -%}
+                <h3 class="pm-style__card-title">{{ block.settings.title | escape }}</h3>
+                {%- if block.settings.description != blank -%}
+                  <p class="pm-style__description">{{ block.settings.description | escape }}</p>
+                {%- endif -%}
+                <span class="pm-style__btn">{{ block.settings.button_label | default: 'Ver productos' | escape }}</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Elige tu estilo",
+  "class": "section-pm-style-selector",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Elige tu estilo"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "style_card",
+      "name": "Estilo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Etiqueta superior",
+          "info": "Texto pequeño sobre el título. Ej: 'Tendencia 2025'"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Look Madera"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Descripción corta"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Texto del botón",
+          "default": "Ver productos"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "asset_name",
+          "label": "Imagen desde assets/ (fallback)",
+          "placeholder": "pm-style-madera.jpg"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elige tu estilo",
+      "blocks": [
+        {
+          "type": "style_card",
+          "settings": {
+            "title": "Look Madera",
+            "description": "Calidez y elegancia natural para tus espacios",
+            "button_label": "Ver pisos de madera",
+            "link": "/collections/pisos-flotantes",
+            "asset_name": "pm-style-madera.jpg"
+          }
+        },
+        {
+          "type": "style_card",
+          "settings": {
+            "title": "Look Mármol · Cerámico",
+            "description": "Sofisticación y durabilidad en cada detalle",
+            "button_label": "Ver cerámicos",
+            "link": "/collections/ceramico-y-porcelanato",
+            "asset_name": "pm-style-marmol.jpg"
+          }
+        },
+        {
+          "type": "style_card",
+          "settings": {
+            "title": "Pasto y Exteriores",
+            "description": "Transforma tu jardín o terraza todo el año",
+            "button_label": "Ver pasto sintético",
+            "link": "/collections/pasto-sintetico",
+            "asset_name": "pm-style-exterior.jpg"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
