@@ -91,23 +91,39 @@
   transform: scale(1.07);
 }
 
-/* Placeholder when no image: dark gradient with brand orange accent */
+/* Placeholder naranja cuando no hay imagen — nunca negro */
 .category-grid__placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #2a1508 0%, #3a1f0f 60%, #1a0d04 100%);
+  background: linear-gradient(160deg, #f05a28 0%, #d94d1f 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1.2rem;
+  text-align: center;
 }
 
-.category-grid__placeholder svg {
-  width: 40%;
-  height: 40%;
-  opacity: 0.18;
-  color: #f05a28;
+.category-grid__placeholder-name {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.category-grid__placeholder-name::after {
+  content: '';
+  display: block;
+  width: 2.4rem;
+  height: 0.2rem;
+  background: rgba(255, 255, 255, 0.6);
+  margin: 0.8rem auto 0;
+  border-radius: 2px;
 }
 
 .category-grid__overlay {
@@ -119,11 +135,6 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0,0,0,0.2) 70%, transparent 100%);
 }
 
-/* On placeholder (no image), extend overlay to cover full card */
-.category-grid__image-wrapper:has(.category-grid__placeholder) .category-grid__overlay {
-  display: none;
-}
-
 .category-grid__name {
   color: #fff;
   font-size: 1.3rem;
@@ -132,26 +143,6 @@
   letter-spacing: 0.05rem;
   margin: 0;
   text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-/* Name label inside placeholder */
-.category-grid__placeholder-label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  text-align: center;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-}
-
-.category-grid__placeholder-label span {
-  display: block;
-  width: 2.8rem;
-  height: 0.25rem;
-  background: #f05a28;
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
 }
 
 @media screen and (min-width: 750px) {

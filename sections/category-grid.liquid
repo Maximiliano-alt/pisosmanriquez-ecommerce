@@ -8,24 +8,43 @@
   {%- if section.blocks.size > 0 -%}
     <ul class="category-grid__list" role="list">
       {%- for block in section.blocks -%}
-        <li class="category-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" {{ block.shopify_attributes }} {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 100 }}ms"{% endif %}>
-          {%- liquid
-            if block.settings.collection != blank
-              assign link_url = block.settings.collection.url
-              assign link_title = block.settings.label | default: block.settings.collection.title
-              assign link_image = block.settings.image | default: block.settings.collection.image
-            else
-              assign link_url = '/collections/' | append: block.settings.collection_handle | default: '#'
-              assign link_title = block.settings.label | default: 'Categoría'
-              assign link_image = block.settings.image
-            endif
-            assign asset_img = block.settings.asset_name
-          -%}
+        {%- liquid
+          if block.settings.collection != blank
+            assign link_url   = block.settings.collection.url
+            assign link_title = block.settings.label | default: block.settings.collection.title
+            assign coll_img   = block.settings.collection.image
+          else
+            assign link_url   = '#'
+            assign link_title = block.settings.label | default: 'Categoría'
+            assign coll_img   = nil
+          endif
+          assign picker_img = block.settings.image
+          assign asset_file = block.settings.asset_name
+          assign display_img = coll_img | default: picker_img
+        -%}
+        <li
+          class="category-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 100 }}ms"{% endif %}
+        >
           <a href="{{ link_url }}" class="category-grid__link" aria-label="{{ link_title | escape }}">
             <div class="category-grid__image-wrapper">
-              {%- if asset_img != blank -%}
+              {%- if display_img != blank -%}
+                {{
+                  display_img
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 990px) 20vw, (min-width: 600px) 33vw, 50vw',
+                    widths: '280, 380, 480, 600',
+                    alt: 'Pisos Manríquez — ' | append: link_title
+                }}
+                <div class="category-grid__overlay">
+                  <p class="category-grid__name">{{ link_title | escape }}</p>
+                </div>
+              {%- elsif asset_file != blank -%}
                 <img
-                  src="{{ asset_img | asset_url }}"
+                  src="{{ asset_file | asset_url }}"
                   alt="{{ 'Pisos Manríquez — ' | append: link_title | escape }}"
                   loading="lazy"
                   width="600"
@@ -35,24 +54,9 @@
                 <div class="category-grid__overlay">
                   <p class="category-grid__name">{{ link_title | escape }}</p>
                 </div>
-              {%- elsif link_image != blank -%}
-                {{
-                  link_image
-                  | image_url: width: 600
-                  | image_tag:
-                    loading: 'lazy',
-                    sizes: '(min-width: 990px) 20vw, (min-width: 600px) 33vw, 50vw',
-                    widths: '280, 380, 480, 600'
-                }}
-                <div class="category-grid__overlay">
-                  <p class="category-grid__name">{{ link_title | escape }}</p>
-                </div>
               {%- else -%}
                 <div class="category-grid__placeholder">
-                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                </div>
-                <div class="category-grid__overlay">
-                  <p class="category-grid__name">{{ link_title | escape }}</p>
+                  <p class="category-grid__placeholder-name">{{ link_title | escape }}</p>
                 </div>
               {%- endif -%}
             </div>
@@ -100,17 +104,17 @@
           "info": "Si está vacío, se usa el nombre de la colección"
         },
         {
-          "type": "text",
-          "id": "asset_name",
-          "label": "Imagen desde assets/ (prioritaria)",
-          "info": "Ej: pm-cat-pisos-flotantes.webp — tiene prioridad sobre image picker",
-          "placeholder": "pm-cat-pisos-flotantes.webp"
-        },
-        {
           "type": "image_picker",
           "id": "image",
-          "label": "Imagen (Shopify CDN)",
-          "info": "Se usa si asset_name está vacío"
+          "label": "Imagen override (Shopify CDN)",
+          "info": "Se usa si la colección no tiene imagen asignada"
+        },
+        {
+          "type": "text",
+          "id": "asset_name",
+          "label": "Imagen desde assets/ (último fallback)",
+          "info": "Ej: pm-cat-pisos-flotantes.webp",
+          "placeholder": "pm-cat-pisos-flotantes.webp"
         }
       ]
     }
