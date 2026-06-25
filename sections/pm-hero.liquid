@@ -1,260 +1,64 @@
 {{ 'section-pm-hero.css' | asset_url | stylesheet_tag }}
 
-{%- if section.blocks.size > 0 -%}
-<div class="pm-hero"
-  data-autoplay="{{ section.settings.auto_rotate }}"
-  data-speed="{{ section.settings.change_slides_speed | default: 6 }}"
-  aria-label="{{ section.settings.accessibility_info | default: 'Hero slideshow' | escape }}"
->
-  <div class="pm-hero__track">
-    {%- for block in section.blocks -%}
-      {%- liquid
-        assign text_align = block.settings.text_align | default: 'center'
-        assign box_align  = block.settings.box_align  | default: 'middle-center'
-      -%}
-      <div
-        class="pm-hero__slide{% if forloop.first %} is-active{% endif %}"
-        {{ block.shopify_attributes }}
-        role="group"
-        aria-label="{{ 'sections.slideshow.slide_count' | t: current: forloop.index, total: section.blocks.size }}"
-      >
-        {%- if block.settings.asset_name != blank -%}
-          <img
-            src="{{ block.settings.asset_name | asset_url }}"
-            alt="{{ 'Pisos Manríquez — ' | append: block.settings.heading | default: 'Pisos Manríquez — distribuidores de pisos y revestimientos en Santiago, Chile' | escape }}"
-            class="pm-hero__img"
-            {% if forloop.first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
-            width="1600"
-            height="700"
-          >
-        {%- else -%}
-          <div class="pm-hero__placeholder"></div>
-        {%- endif -%}
-
-        <div class="pm-hero__overlay" style="--overlay-opacity: {{ block.settings.image_overlay_opacity | default: 40 }}"></div>
-
-        {%- if block.settings.kicker != blank or block.settings.heading != blank or block.settings.subheading != blank or block.settings.button_label != blank or block.settings.button_label_2 != blank -%}
-          <div class="pm-hero__content pm-hero__content--{{ box_align }} pm-hero__content--align-{{ text_align }}">
-            {%- if block.settings.kicker != blank -%}<p class="pm-hero__kicker">{{ block.settings.kicker | escape }}</p>{%- endif -%}
-            {%- if block.settings.heading != blank -%}
-              <h2 class="pm-hero__heading">{{ block.settings.heading | escape }}</h2>
-            {%- endif -%}
-            {%- if block.settings.subheading != blank -%}
-              <p class="pm-hero__subheading">{{ block.settings.subheading | escape }}</p>
-            {%- endif -%}
-            {%- if block.settings.button_label != blank or block.settings.button_label_2 != blank -%}
-              <div class="pm-hero__btns">
-                {%- if block.settings.button_label != blank -%}<a href="{{ block.settings.button_link | default: '/' }}" class="pm-hero__btn{% if block.settings.button_style_secondary %} pm-hero__btn--secondary{% endif %}">{{ block.settings.button_label | escape }}</a>{%- endif -%}
-                {%- if block.settings.button_label_2 != blank -%}<a href="{{ block.settings.button_link_2 | default: '/' }}" class="pm-hero__btn{% if block.settings.button_style_secondary_2 %} pm-hero__btn--secondary{% endif %}">{{ block.settings.button_label_2 | escape }}</a>{%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endfor -%}
-  </div>
-
-  {%- if section.blocks.size > 1 -%}
-    <button class="pm-hero__arrow pm-hero__arrow--prev" aria-label="Slide anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <button class="pm-hero__arrow pm-hero__arrow--next" aria-label="Siguiente slide">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-
-    <div class="pm-hero__dots" role="tablist" aria-label="Slides">
-      {%- for block in section.blocks -%}
-        <button
-          class="pm-hero__dot{% if forloop.first %} is-active{% endif %}"
-          role="tab"
-          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-          aria-label="Slide {{ forloop.index }}"
-          data-index="{{ forloop.index0 }}"
-        ></button>
-      {%- endfor -%}
+<section class="pm-hero{% unless section.settings.image %} pm-hero--no-image{% endunless %}">
+  {%- if section.settings.image != blank -%}
+    <div class="pm-hero__media">
+      {{
+        section.settings.image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          class: 'pm-hero__img',
+          widths: '750, 1100, 1500, 2000, 2400',
+          sizes: '100vw',
+          alt: section.settings.headline | escape
+      }}
     </div>
   {%- endif -%}
-</div>
-{%- endif -%}
 
-<script>
-(function() {
-  const hero = document.querySelector('.pm-hero');
-  if (!hero) return;
+  <div class="pm-hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
 
-  const track   = hero.querySelector('.pm-hero__track');
-  const slides  = [...hero.querySelectorAll('.pm-hero__slide')];
-  const dots    = [...hero.querySelectorAll('.pm-hero__dot')];
-  const prev    = hero.querySelector('.pm-hero__arrow--prev');
-  const next    = hero.querySelector('.pm-hero__arrow--next');
-  const speed   = parseInt(hero.dataset.speed || '6', 10) * 1000;
-  const autoplay = hero.dataset.autoplay !== 'false';
+  {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
+    <div class="pm-hero__badge" aria-hidden="true"><span>{{ section.settings.badge_text }}</span></div>
+  {%- endif -%}
 
-  let current = 0;
-  let timer;
-
-  function goTo(idx) {
-    slides[current].classList.remove('is-active');
-    if (dots[current]) dots[current].classList.remove('is-active');
-    current = (idx + slides.length) % slides.length;
-    slides[current].classList.add('is-active');
-    if (dots[current]) { dots[current].classList.add('is-active'); dots[current].setAttribute('aria-selected', 'true'); }
-    dots.forEach((d, i) => { if (i !== current) d.setAttribute('aria-selected', 'false'); });
-  }
-
-  function startTimer() {
-    if (!autoplay || slides.length < 2) return;
-    timer = setInterval(() => goTo(current + 1), speed);
-  }
-
-  function resetTimer() { clearInterval(timer); startTimer(); }
-
-  if (prev) prev.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
-  if (next) next.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
-  dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); resetTimer(); }));
-
-  hero.addEventListener('mouseenter', () => clearInterval(timer));
-  hero.addEventListener('mouseleave', () => startTimer());
-
-  // Touch/swipe
-  let touchStartX = 0;
-  hero.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  hero.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); resetTimer(); }
-  }, { passive: true });
-
-  startTimer();
-})();
-</script>
+  <div class="pm-hero__content">
+    {%- if section.settings.headline != blank -%}
+      <h2 class="pm-hero__title">{{ section.settings.headline | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheadline != blank -%}
+      <p class="pm-hero__sub">{{ section.settings.subheadline | escape }}</p>
+    {%- endif -%}
+    <div class="pm-hero__ctas">
+      {%- if section.settings.cta1_text != blank -%}
+        <a class="pm-hero__btn pm-hero__btn--primary" href="{{ section.settings.cta1_link | default: routes.all_products_collection_url }}">{{ section.settings.cta1_text | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta2_text != blank -%}
+        <a class="pm-hero__btn pm-hero__btn--ghost" href="{{ section.settings.cta2_link | default: '#' }}">{{ section.settings.cta2_text | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
   "name": "Hero Pisos Manríquez",
-  "class": "section-pm-hero",
-  "tag": "section",
-  "max_blocks": 8,
+  "class": "pm-hero-section",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "auto_rotate",
-      "label": "Rotar automáticamente",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "change_slides_speed",
-      "label": "Segundos por slide",
-      "min": 3,
-      "max": 12,
-      "step": 1,
-      "default": 6
-    },
-    {
-      "type": "text",
-      "id": "accessibility_info",
-      "label": "Descripción accesible",
-      "default": "Slideshow Pisos Manríquez"
-    }
+    { "type": "image_picker", "id": "image", "label": "Imagen de fondo", "info": "Ambiente de piso de madera en interior moderno. Si queda vacío se usa un degradado." },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Oscurecer imagen (overlay)", "default": 45 },
+    { "type": "text", "id": "headline", "label": "Título", "default": "45 años vistiendo los mejores espacios" },
+    { "type": "text", "id": "subheadline", "label": "Subtítulo", "default": "Pisos flotantes · Vinílicos · Cerámicos · Alfombras · Papel mural · Pasto sintético" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta1_text", "label": "Botón 1 (naranja)", "default": "Ver catálogo" },
+    { "type": "url", "id": "cta1_link", "label": "Enlace botón 1" },
+    { "type": "text", "id": "cta2_text", "label": "Botón 2 (outline)", "default": "Cotiza tu proyecto" },
+    { "type": "url", "id": "cta2_link", "label": "Enlace botón 2" },
+    { "type": "header", "content": "Badge" },
+    { "type": "checkbox", "id": "show_badge", "label": "Mostrar badge 45 años", "default": true },
+    { "type": "text", "id": "badge_text", "label": "Texto del badge", "default": "45 AÑOS" }
   ],
-  "blocks": [
-    {
-      "type": "slide",
-      "name": "Slide",
-      "settings": [
-        {
-          "type": "text",
-          "id": "asset_name",
-          "label": "Nombre de archivo en assets/",
-          "info": "Ej: pm-slider-53.png — debe estar en la carpeta assets del tema",
-          "placeholder": "pm-slider-53.png"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Título"
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subtítulo"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Texto del botón"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Enlace del botón"
-        },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary",
-          "label": "Botón estilo secundario (outline)",
-          "default": false
-        },
-        { "type":"text","id":"kicker","label":"Línea superior (kicker)","info":"Texto corto en amarillo arriba del título" },
-        { "type":"text","id":"button_label_2","label":"Texto del botón 2" },
-        { "type":"url","id":"button_link_2","label":"Enlace del botón 2" },
-        { "type":"checkbox","id":"button_style_secondary_2","label":"Botón 2 estilo secundario (outline)","default":true },
-        {
-          "type": "select",
-          "id": "text_align",
-          "label": "Alineación de texto",
-          "options": [
-            { "value": "left", "label": "Izquierda" },
-            { "value": "center", "label": "Centro" },
-            { "value": "right", "label": "Derecha" }
-          ],
-          "default": "center"
-        },
-        {
-          "type": "select",
-          "id": "box_align",
-          "label": "Posición del contenido",
-          "options": [
-            { "value": "top-left", "label": "Arriba izquierda" },
-            { "value": "top-center", "label": "Arriba centro" },
-            { "value": "top-right", "label": "Arriba derecha" },
-            { "value": "middle-left", "label": "Centro izquierda" },
-            { "value": "middle-center", "label": "Centro" },
-            { "value": "middle-right", "label": "Centro derecha" },
-            { "value": "bottom-left", "label": "Abajo izquierda" },
-            { "value": "bottom-center", "label": "Abajo centro" },
-            { "value": "bottom-right", "label": "Abajo derecha" }
-          ],
-          "default": "middle-center"
-        },
-        {
-          "type": "range",
-          "id": "image_overlay_opacity",
-          "label": "Opacidad del overlay (%)",
-          "min": 0,
-          "max": 80,
-          "step": 5,
-          "default": 35
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Hero Pisos Manríquez",
-      "blocks": [
-        {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-53.png",
-            "heading": "45 años de experiencia",
-            "subheading": "Distribuidores de pisos y revestimientos — Santiago, Chile",
-            "button_label": "Ver catálogo",
-            "button_link": "/collections/all"
-          }
-        }
-      ]
-    }
-  ]
+  "presets": [ { "name": "Hero Pisos Manríquez" } ]
 }
 {% endschema %}

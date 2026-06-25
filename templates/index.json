@@ -1,214 +1,32 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "pm_hero": {
       "type": "pm-hero",
-      "blocks": {
-        "slide_1": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-hero-ambiente-01.jpg",
-            "heading": "45 años vistiendo los mejores espacios de Chile",
-            "subheading": "Pisos flotantes · Cerámico · Vinílicos · Papel mural · Pasto sintético",
-            "button_label": "Ver catálogo",
-            "button_link": "/collections/all",
-            "button_style_secondary": false,
-            "kicker": "Distribuidores de las marcas top de Chile",
-            "button_label_2": "Cotiza tu proyecto",
-            "button_link_2": "#shopify-section-pm_quote_band",
-            "button_style_secondary_2": true,
-            "text_align": "center",
-            "box_align": "middle-center",
-            "image_overlay_opacity": 45
-          }
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-54.png",
-            "heading": "Pisos Flotantes",
-            "subheading": "La mayor variedad de pisos laminados y de ingeniería",
-            "button_label": "Ver pisos flotantes",
-            "button_link": "/collections/pisos-flotantes",
-            "button_style_secondary": false,
-            "text_align": "left",
-            "box_align": "middle-left",
-            "image_overlay_opacity": 35
-          }
-        },
-        "slide_3": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-55.png",
-            "heading": "Cerámico y Porcelanato",
-            "subheading": "Revestimientos premium para interiores y exteriores",
-            "button_label": "Ver cerámicos",
-            "button_link": "/collections/ceramico-y-porcelanato",
-            "button_style_secondary": false,
-            "text_align": "right",
-            "box_align": "middle-right",
-            "image_overlay_opacity": 35
-          }
-        },
-        "slide_4": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-56.png",
-            "heading": "Pisos Vinílicos",
-            "subheading": "Resistentes al agua y de fácil instalación",
-            "button_label": "Ver vinílicos",
-            "button_link": "/collections/pisos-vinilicos",
-            "button_style_secondary": false,
-            "text_align": "center",
-            "box_align": "bottom-center",
-            "image_overlay_opacity": 40
-          }
-        },
-        "slide_5": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-57.png",
-            "heading": "Alfombras y Cortinas Roller",
-            "subheading": "Completa tu proyecto de decoración interior",
-            "button_label": "Ver colección",
-            "button_link": "/collections/all",
-            "button_style_secondary": false,
-            "text_align": "center",
-            "box_align": "middle-center",
-            "image_overlay_opacity": 40
-          }
-        },
-        "slide_6": {
-          "type": "slide",
-          "settings": {
-            "asset_name": "pm-slider-decorativas.jpg",
-            "heading": "Lamas Decorativas",
-            "subheading": "14 palmetas por caja — diseño moderno para tus espacios",
-            "button_label": "Ver decorativas",
-            "button_link": "/collections/papel-mural",
-            "button_style_secondary": false,
-            "text_align": "left",
-            "box_align": "middle-left",
-            "image_overlay_opacity": 30
-          }
-        }
-      },
-      "block_order": ["slide_1", "slide_2", "slide_3", "slide_4", "slide_5", "slide_6"],
       "settings": {
-        "auto_rotate": true,
-        "change_slides_speed": 6,
-        "accessibility_info": "Slideshow Pisos Manríquez"
-      }
-    },
-    "promo_strip": {
-      "type": "announcement-bar",
-      "blocks": {
-        "strip_1": {
-          "type": "announcement",
-          "settings": {
-            "text": "🏆 45 años de experiencia &nbsp;|&nbsp; 🚗 Estacionamiento gratuito &nbsp;|&nbsp; 📦 Despacho a todo Chile &nbsp;|&nbsp; 🔧 Instalación profesional &nbsp;|&nbsp; ✅ Distribuidores exclusivos de las marcas top",
-            "link": ""
-          }
-        }
-      },
-      "block_order": ["strip_1"],
-      "settings": {
-        "color_scheme": "scheme-2",
-        "auto_rotate": false,
-        "change_slides_speed": 5
+        "overlay_opacity": 45,
+        "headline": "45 años vistiendo los mejores espacios",
+        "subheadline": "Pisos flotantes · Vinílicos · Cerámicos · Alfombras · Papel mural · Pasto sintético",
+        "cta1_text": "Ver catálogo",
+        "cta1_link": "shopify://collections/all",
+        "cta2_text": "Cotiza tu proyecto",
+        "cta2_link": "",
+        "show_badge": true,
+        "badge_text": "45 AÑOS"
       }
     },
     "category_grid": {
       "type": "category-grid",
       "blocks": {
-        "cat_1": {
-          "type": "category_card",
-          "settings": {
-            "label": "Pisos Flotantes",
-            "collection": "pisos-flotantes",
-            "asset_name": "pm-cat-pisos-flotantes.webp"
-          }
-        },
-        "cat_2": {
-          "type": "category_card",
-          "settings": {
-            "label": "Pisos Vinílicos",
-            "collection": "pisos-vinilicos",
-            "asset_name": "pm-cat-pisos-vinilicos.webp"
-          }
-        },
-        "cat_3": {
-          "type": "category_card",
-          "settings": {
-            "label": "Cerámico y Porcelanato",
-            "collection": "ceramico-y-porcelanato",
-            "asset_name": "pm-cat-ceramico.webp"
-          }
-        },
-        "cat_4": {
-          "type": "category_card",
-          "settings": {
-            "label": "Papel Mural",
-            "collection": "papel-mural",
-            "asset_name": "pm-cat-papel-mural.webp"
-          }
-        },
-        "cat_5": {
-          "type": "category_card",
-          "settings": {
-            "label": "Pasto Sintético",
-            "collection": "pasto-sintetico",
-            "asset_name": "pm-cat-pasto-sintetico.webp"
-          }
-        },
-        "cat_6": {
-          "type": "category_card",
-          "settings": {
-            "label": "Pisos de Ingeniería",
-            "collection": "pisos-de-ingenieria",
-            "asset_name": "pm-ambiente-01.jpg"
-          }
-        },
-        "cat_7": {
-          "type": "category_card",
-          "settings": {
-            "label": "Alfombras",
-            "collection": "alfombras",
-            "asset_name": "pm-cat-alfombras.webp"
-          }
-        },
-        "cat_8": {
-          "type": "category_card",
-          "settings": {
-            "label": "Cortinas Roller",
-            "collection": "cortinas-roller",
-            "asset_name": "pm-cat-cortinas-roller.webp"
-          }
-        },
-        "cat_9": {
-          "type": "category_card",
-          "settings": {
-            "label": "Molduras",
-            "collection": "molduras",
-            "asset_name": "pm-ambiente-02.jpg"
-          }
-        },
-        "cat_10": {
-          "type": "category_card",
-          "settings": {
-            "label": "Servicios",
-            "collection": "servicios",
-            "asset_name": "pm-slider-55.png"
-          }
-        }
+        "cat_1": { "type": "category_card", "settings": { "label": "Pisos Flotantes", "collection": "pisos-flotantes" } },
+        "cat_2": { "type": "category_card", "settings": { "label": "Pisos Vinílicos", "collection": "pisos-vinilicos" } },
+        "cat_3": { "type": "category_card", "settings": { "label": "Cerámico y Porcelanato", "collection": "ceramico-y-porcelanato" } },
+        "cat_4": { "type": "category_card", "settings": { "label": "Papel Mural", "collection": "papel-mural" } },
+        "cat_5": { "type": "category_card", "settings": { "label": "Pasto Sintético", "collection": "pasto-sintetico" } },
+        "cat_6": { "type": "category_card", "settings": { "label": "Pisos de Ingeniería", "collection": "pisos-de-ingenieria" } },
+        "cat_7": { "type": "category_card", "settings": { "label": "Alfombras", "collection": "alfombras" } },
+        "cat_8": { "type": "category_card", "settings": { "label": "Cortinas Roller", "collection": "cortinas-roller" } },
+        "cat_9": { "type": "category_card", "settings": { "label": "Molduras", "collection": "molduras" } },
+        "cat_10": { "type": "category_card", "settings": { "label": "Servicios", "collection": "servicios" } }
       },
       "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6", "cat_7", "cat_8", "cat_9", "cat_10"],
       "settings": {
@@ -219,30 +37,10 @@
     "image_with_text_cta": {
       "type": "image-with-text",
       "blocks": {
-        "heading_block": {
-          "type": "heading",
-          "settings": {
-            "heading": "Venta e instalación profesional de pisos",
-            "heading_size": "h1"
-          }
-        },
-        "text_block": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Llevamos más de 45 años transformando espacios en Chile. Contamos con la mayor variedad de pisos flotantes, vinílicos, cerámicos y revestimientos, con asesoría personalizada y servicio de instalación profesional.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_block": {
-          "type": "button",
-          "settings": {
-            "button_label": "Ver catálogo completo",
-            "button_link": "shopify://collections/all",
-            "button_style_secondary": false
-          }
-        }
+        "heading_block": { "type": "heading", "settings": { "heading": "Venta e instalación de piso flotante", "heading_size": "h1" } },
+        "button_block": { "type": "button", "settings": { "button_label": "Ver pisos", "button_link": "shopify://collections/all", "button_style_secondary": false } }
       },
-      "block_order": ["heading_block", "text_block", "button_block"],
+      "block_order": ["heading_block", "button_block"],
       "settings": {
         "height": "adapt",
         "desktop_image_width": "medium",
@@ -254,8 +52,8 @@
         "color_scheme": "scheme-1",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_pisos": {
@@ -266,7 +64,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "pisos-flotantes",
+        "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -289,40 +87,18 @@
     "promo_banner": {
       "type": "image-banner",
       "blocks": {
-        "promo_heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "¿Necesitas asesoría?",
-            "heading_size": "h1"
-          }
-        },
-        "promo_text": {
-          "type": "text",
-          "settings": {
-            "text": "Nuestros especialistas te ayudan a elegir el piso perfecto para tu proyecto"
-          }
-        },
-        "promo_button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Contáctanos por WhatsApp",
-            "button_link_1": "https://wa.me/56973763087",
-            "button_style_secondary_1": false,
-            "button_label_2": "Ver catálogo",
-            "button_link_2": "shopify://collections/all",
-            "button_style_secondary_2": true
-          }
-        }
+        "promo_heading": { "type": "heading", "settings": { "heading": "Pisos, pisos y más pisos", "heading_size": "h0" } },
+        "promo_button": { "type": "buttons", "settings": { "button_label_1": "Ver catálogo", "button_link_1": "shopify://collections/all", "button_style_secondary_1": true, "button_label_2": "", "button_link_2": "", "button_style_secondary_2": false } }
       },
-      "block_order": ["promo_heading", "promo_text", "promo_button"],
+      "block_order": ["promo_heading", "promo_button"],
       "settings": {
-        "image_overlay_opacity": 50,
+        "image_overlay_opacity": 40,
         "image_height": "medium",
         "desktop_content_position": "middle-center",
-        "show_text_box": true,
+        "show_text_box": false,
         "image_behavior": "none",
         "desktop_content_alignment": "center",
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-3",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
@@ -331,12 +107,12 @@
     "featured_revestimientos": {
       "type": "featured-collection",
       "settings": {
-        "title": "Cerámicos y Porcelanatos",
+        "title": "Revestimientos y cerámicos",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "ceramico-y-porcelanato",
+        "collection": "all",
         "products_to_show": 4,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -356,209 +132,39 @@
         "padding_bottom": 36
       }
     },
+    "pm_quote_form": {
+      "type": "pm-quote-form",
+      "settings": {
+        "bg_color": "#E85D04",
+        "title": "Cotiza tu proyecto",
+        "subtitle": "Cuéntanos qué necesitas y te enviamos una cotización por WhatsApp.",
+        "whatsapp": "+56 9 7376 3087",
+        "button_text": "Recibir cotización por WhatsApp"
+      }
+    },
     "brands_bar": {
       "type": "brands-bar",
       "blocks": {
-        "brand_1": {
-          "type": "brand",
-          "settings": { "name": "Carpenter" }
-        },
-        "brand_2": {
-          "type": "brand",
-          "settings": { "name": "BS Chile" }
-        },
-        "brand_3": {
-          "type": "brand",
-          "settings": { "name": "Winter" }
-        },
-        "brand_4": {
-          "type": "brand",
-          "settings": { "name": "Getnet" }
-        },
-        "brand_5": {
-          "type": "brand",
-          "settings": { "name": "Pergo" }
-        },
-        "brand_6": {
-          "type": "brand",
-          "settings": { "name": "Kronospan" }
-        },
-        "brand_7": {
-          "type": "brand",
-          "settings": { "name": "Porcelanosa" }
-        },
-        "brand_8": {
-          "type": "brand",
-          "settings": { "name": "Armstrong" }
-        },
-        "brand_9": {
-          "type": "brand",
-          "settings": { "name": "Alloc" }
-        },
-        "brand_10": {
-          "type": "brand",
-          "settings": { "name": "Quick-Step" }
-        }
+        "brand_1": { "type": "brand", "settings": { "name": "Carpenter" } },
+        "brand_2": { "type": "brand", "settings": { "name": "BS Chile" } },
+        "brand_3": { "type": "brand", "settings": { "name": "Winter" } },
+        "brand_4": { "type": "brand", "settings": { "name": "Getnet" } }
       },
-      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6", "brand_7", "brand_8", "brand_9", "brand_10"],
+      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4"],
       "settings": {
-        "title": "Marcas que distribuimos",
+        "title": "Nuestras marcas",
         "color_scheme": "scheme-1"
-      }
-    },
-    "pm_style_selector": {
-      "type": "pm-style-selector",
-      "blocks": {
-        "style_madera": {
-          "type": "style_card",
-          "settings": {
-            "title": "Look Madera",
-            "description": "Calidez y elegancia natural para tus espacios",
-            "button_label": "Ver pisos de madera",
-            "link": "/collections/pisos-flotantes",
-            "asset_name": "pm-style-madera.jpg"
-          }
-        },
-        "style_marmol": {
-          "type": "style_card",
-          "settings": {
-            "title": "Look Mármol · Cerámico",
-            "description": "Sofisticación y durabilidad en cada detalle",
-            "button_label": "Ver cerámicos",
-            "link": "/collections/ceramico-y-porcelanato",
-            "asset_name": "pm-style-marmol.jpg"
-          }
-        },
-        "style_exterior": {
-          "type": "style_card",
-          "settings": {
-            "title": "Pasto y Exteriores",
-            "description": "Transforma tu jardín o terraza todo el año",
-            "button_label": "Ver pasto sintético",
-            "link": "/collections/pasto-sintetico",
-            "asset_name": "pm-style-exterior.jpg"
-          }
-        }
-      },
-      "block_order": ["style_madera", "style_marmol", "style_exterior"],
-      "settings": {
-        "title": "Elige tu estilo",
-        "subtitle": "Encuentra el revestimiento perfecto para cada espacio"
-      }
-    },
-    "pm_why_us": {
-      "type": "pm-why-us",
-      "blocks": {
-        "why_1": {
-          "type": "pillar",
-          "settings": {
-            "icon": "years",
-            "stat": "+45",
-            "heading": "Años de experiencia",
-            "text": "Desde 1980 transformando espacios en Chile con los mejores productos del mercado."
-          }
-        },
-        "why_2": {
-          "type": "pillar",
-          "settings": {
-            "icon": "tools",
-            "stat": "100%",
-            "heading": "Instalación profesional",
-            "text": "Equipo certificado para instalación de todos los tipos de revestimientos."
-          }
-        },
-        "why_3": {
-          "type": "pillar",
-          "settings": {
-            "icon": "location",
-            "stat": "5",
-            "heading": "Puntos de atención",
-            "text": "Showroom en Las Condes más 4 puntos de atención en Santiago y Viña del Mar."
-          }
-        },
-        "why_4": {
-          "type": "pillar",
-          "settings": {
-            "icon": "award",
-            "stat": "+20",
-            "heading": "Marcas top del mercado",
-            "text": "Distribuidores oficiales de Carpenter, BS Chile, Winter, Getnet, Pergo y más."
-          }
-        }
-      },
-      "block_order": ["why_1", "why_2", "why_3", "why_4"],
-      "settings": {
-        "title": "¿Por qué Pisos Manríquez?",
-        "subtitle": "Más de 45 años siendo la referencia en pisos y revestimientos en Chile",
-        "color_scheme": "scheme-2"
-      }
-    },
-    "pm_quote_band": {
-      "type": "pm-quote-band",
-      "settings": {
-        "title": "Cotiza tu proyecto en 1 minuto",
-        "subtitle": "Dinos los m² y la categoría — te enviamos precio con instalación por WhatsApp.",
-        "whatsapp_number": "56973763087",
-        "webhook_url": "",
-        "color_scheme": "scheme-1",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "pm_steps": {
-      "type": "pm-steps",
-      "blocks": {
-        "s1": {"type": "step", "settings": {"heading": "Elige", "text": "Explora el catálogo o visita el showroom y elige tu producto."}},
-        "s2": {"type": "step", "settings": {"heading": "Cotizamos y medimos", "text": "Te enviamos precio con instalación y coordinamos la visita a terreno."}},
-        "s3": {"type": "step", "settings": {"heading": "Instalamos", "text": "Nuestro equipo profesional instala con garantía y prolijidad."}}
-      },
-      "block_order": ["s1", "s2", "s3"],
-      "settings": {
-        "title": "Cómo comprar",
-        "subtitle": "De la elección a la instalación, te acompañamos en cada paso.",
-        "button_label": "Ver catálogo completo",
-        "button_link": "shopify://collections/all",
-        "color_scheme": "scheme-1",
-        "padding_top": 44,
-        "padding_bottom": 44
-      }
-    },
-    "pm_locations": {
-      "type": "pm-locations",
-      "blocks": {
-        "p1": {"type": "point", "settings": {"city": "Las Condes", "detail": "Showroom"}},
-        "p2": {"type": "point", "settings": {"city": "Huechuraba", "detail": ""}},
-        "p3": {"type": "point", "settings": {"city": "Viña del Mar", "detail": ""}},
-        "p4": {"type": "point", "settings": {"city": "Chicureo", "detail": ""}},
-        "p5": {"type": "point", "settings": {"city": "Macul", "detail": ""}}
-      },
-      "block_order": ["p1", "p2", "p3", "p4", "p5"],
-      "settings": {
-        "eyebrow": "Visítanos",
-        "title": "Showroom y 5 puntos de atención",
-        "address": "<p>Showroom: Manquehue Sur 1581, Las Condes · Estacionamiento gratuito</p>",
-        "maps_link": "https://maps.google.com/?q=Manquehue+Sur+1581+Las+Condes",
-        "whatsapp_number": "56973763087",
-        "points_title": "Puntos de atención",
-        "color_scheme": "scheme-1",
-        "padding_top": 44,
-        "padding_bottom": 44
       }
     }
   },
   "order": [
     "pm_hero",
-    "promo_strip",
     "category_grid",
-    "pm_style_selector",
-    "pm_why_us",
-    "pm_quote_band",
-    "pm_steps",
     "image_with_text_cta",
     "featured_pisos",
     "promo_banner",
     "featured_revestimientos",
-    "pm_locations",
+    "pm_quote_form",
     "brands_bar"
   ]
 }

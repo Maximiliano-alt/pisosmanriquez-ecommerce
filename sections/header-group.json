@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -14,20 +5,16 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "promo_text": "¿Necesitas ayuda? Contáctanos por WhatsApp",
-        "whatsapp_1": "+569 73763087",
-        "whatsapp_2": "+569 77258003",
-        "phone_connector": "o llámanos al",
-        "phone": "2 33058688",
+        "showroom": "Showroom Las Condes",
+        "address": "Manquehue Sur 1581, Las Condes",
         "schedule": "Lun-Vie 08:00 a 19:00",
-        "cta_text": "Escríbenos",
-        "cta_link": ""
+        "email": "contacto@pisosmanriquez.cl"
       }
     },
     "header": {
       "type": "header",
       "settings": {
-        "logo_position": "middle-center",
+        "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "customer-account-main-menu",
         "menu_type_desktop": "mega",
@@ -38,6 +25,10 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
+        "search_placeholder": "¿Qué tipo de piso buscas?",
+        "phone_wa_1": "+56 9 7376 3087",
+        "phone_wa_2": "+56 9 7725 8003",
+        "phone_fijo": "2 3305 8688",
         "showroom_name": "Showroom Las Condes",
         "showroom_address": "Manquehue Sur 1581, Las Condes",
         "showroom_phone": "2 3305 8688",
@@ -45,26 +36,12 @@
         "badge_years": "45",
         "badge_label": "años de experiencia",
         "whatsapp_cta": "+56 9 73763087",
-        "whatsapp_cta_text": "Escríbenos",
+        "whatsapp_cta_text": "Escríbenos por WhatsApp",
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
-    "topbar_contact_DnercM": {
-      "type": "topbar-contact",
-      "name": "Barra de contacto",
-      "settings": {
-        "email": "contacto@pisosmanriquez.cl",
-        "phone": "2 3305 8688",
-        "whatsapp_1": "+56 9 73763087",
-        "whatsapp_2": "+56 9 7725 8003"
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     }
   },
-  "order": [
-    "announcement-bar",
-    "header",
-    "topbar_contact_DnercM"
-  ]
+  "order": ["announcement-bar", "header"]
 }

@@ -1,0 +1,65 @@
+/* Pisos Manriquez - Cotiza tu proyecto (Bloque 4C) */
+.pm-quote { background: var(--pm-quote-bg, #E85D04); color: #fff; padding: 5rem 0; }
+.pm-quote__inner { max-width: var(--page-width); margin: 0 auto; }
+.pm-quote__head { text-align: center; margin-bottom: 2.8rem; }
+.pm-quote__title { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; margin: 0 0 0.8rem; color: #fff; }
+.pm-quote__sub { font-size: clamp(1.4rem, 2vw, 1.7rem); color: rgba(255,255,255,.92); margin: 0; }
+
+.pm-quote__form {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr auto;
+  gap: 1.2rem;
+  align-items: end;
+  max-width: 96rem;
+  margin: 0 auto;
+  background: rgba(255,255,255,.10);
+  padding: 1.8rem;
+  border-radius: 12px;
+}
+.pm-quote__field { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.pm-quote__field label { font-size: 1.25rem; font-weight: 600; color: #fff; }
+.pm-quote__field select,
+.pm-quote__field input {
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  padding: 1.1rem 1.2rem;
+  font-size: 1.4rem;
+  font-family: var(--font-body-family);
+  background: #fff;
+  color: #1a0a00;
+  outline: 2px solid transparent;
+  transition: outline-color 0.15s ease;
+}
+.pm-quote__field select:focus,
+.pm-quote__field input:focus { outline-color: #1a0a00; }
+.pm-quote__field input::placeholder { color: rgba(0,0,0,.4); }
+
+.pm-quote__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 1.15rem 2rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
+}
+.pm-quote__btn:hover { background: #1ebe5d; transform: translateY(-1px); }
+.pm-quote__btn svg { width: 1.9rem; height: 1.9rem; flex-shrink: 0; }
+
+@media screen and (max-width: 989px) {
+  .pm-quote__form { grid-template-columns: 1fr 1fr; }
+  .pm-quote__btn { grid-column: 1 / -1; }
+}
+@media screen and (max-width: 600px) {
+  .pm-quote { padding: 4rem 0; }
+  .pm-quote__form { grid-template-columns: 1fr; gap: 1rem; padding: 1.4rem; }
+}

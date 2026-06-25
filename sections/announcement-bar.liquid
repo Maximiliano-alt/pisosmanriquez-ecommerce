@@ -1,175 +1,41 @@
 {{ 'section-promo-bar.css' | asset_url | stylesheet_tag }}
 
-<div class="promo-bar" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
-  <div class="page-width promo-bar__inner">
-
-    <svg class="promo-bar__wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-
-    <div class="promo-bar__content">
-      <p class="promo-bar__message">
-        {%- if section.settings.promo_text != blank -%}
-          <span class="promo-bar__text">{{ section.settings.promo_text | escape }}</span>
-        {%- endif -%}
-
-        {%- if section.settings.whatsapp_1 != blank -%}
-          <a href="https://wa.me/{{ section.settings.whatsapp_1 | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" class="promo-bar__number">
-            <strong>{{ section.settings.whatsapp_1 }}</strong>
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.whatsapp_2 != blank -%}
-          <span class="promo-bar__sep" aria-hidden="true">|</span>
-          <a href="https://wa.me/{{ section.settings.whatsapp_2 | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" class="promo-bar__number">
-            <strong>{{ section.settings.whatsapp_2 }}</strong>
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.phone != blank -%}
-          {%- if section.settings.phone_connector != blank -%}
-            <span class="promo-bar__text">{{ section.settings.phone_connector | escape }}</span>
-          {%- endif -%}
-          <a href="tel:{{ section.settings.phone | remove: ' ' }}" class="promo-bar__number">
-            <strong>{{ section.settings.phone }}</strong>
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.schedule != blank -%}
-          <span class="promo-bar__sep" aria-hidden="true">|</span>
-          <span class="promo-bar__schedule">{{ section.settings.schedule | escape }}</span>
-        {%- endif -%}
-      </p>
-    </div>
-
-    {%- if section.settings.cta_text != blank -%}
-      {%- liquid
-        if section.settings.cta_link != blank
-          assign cta_href = section.settings.cta_link
-        elsif section.settings.whatsapp_1 != blank
-          assign wa_clean = section.settings.whatsapp_1 | remove: '+' | remove: ' '
-          assign cta_href = 'https://wa.me/' | append: wa_clean
-        else
-          assign cta_href = '#'
-        endif
-      -%}
-      <a href="{{ cta_href }}" {% if section.settings.cta_link == blank %}target="_blank" rel="noopener"{% endif %} class="promo-bar__cta">
-        {{ section.settings.cta_text | escape }}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+<div class="pm-topbar" role="region" aria-label="Información de contacto y showroom">
+  <div class="page-width pm-topbar__inner">
+    {%- if section.settings.showroom != blank -%}
+      <span class="pm-topbar__item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span><strong>{{ section.settings.showroom | escape }}</strong>{% if section.settings.address != blank %}: {{ section.settings.address | escape }}{% endif %}</span>
+      </span>
+    {%- endif -%}
+    {%- if section.settings.schedule != blank -%}
+      <span class="pm-topbar__sep" aria-hidden="true">|</span>
+      <span class="pm-topbar__item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span>{{ section.settings.schedule | escape }}</span>
+      </span>
+    {%- endif -%}
+    {%- if section.settings.email != blank -%}
+      <span class="pm-topbar__sep" aria-hidden="true">|</span>
+      <a class="pm-topbar__item pm-topbar__email" href="mailto:{{ section.settings.email }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span>{{ section.settings.email }}</span>
       </a>
     {%- endif -%}
   </div>
-
-  {%- if section.blocks.size > 0 -%}
-    <div class="page-width promo-bar__announcements">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.text != blank -%}
-          <p class="promo-bar__slide-text" {{ block.shopify_attributes }}>
-            {%- if block.settings.link != blank -%}
-              <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
-            {%- else -%}
-              {{ block.settings.text | escape }}
-            {%- endif -%}
-          </p>
-          {%- if section.blocks.size > 1 -%}{% break %}{%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
 </div>
 
 {% schema %}
 {
   "name": "t:sections.announcement-bar.name",
-  "max_blocks": 12,
   "class": "announcement-bar-section",
-  "enabled_on": {
-    "groups": ["header"]
-  },
+  "enabled_on": { "groups": ["header"] },
   "settings": [
-    {
-      "type": "header",
-      "content": "Mensaje de contacto"
-    },
-    {
-      "type": "text",
-      "id": "promo_text",
-      "label": "Texto del mensaje",
-      "default": "¿Necesitas ayuda? Contáctanos por WhatsApp"
-    },
-    {
-      "type": "text",
-      "id": "whatsapp_1",
-      "label": "WhatsApp 1",
-      "default": "+569 73763087"
-    },
-    {
-      "type": "text",
-      "id": "whatsapp_2",
-      "label": "WhatsApp 2",
-      "default": "+569 77258003"
-    },
-    {
-      "type": "text",
-      "id": "phone_connector",
-      "label": "Texto conector teléfono",
-      "default": "o llámanos al"
-    },
-    {
-      "type": "text",
-      "id": "phone",
-      "label": "Teléfono fijo",
-      "default": "2 33058688"
-    },
-    {
-      "type": "text",
-      "id": "schedule",
-      "label": "Horario (opcional)",
-      "default": "Lun-Vie 08:00 a 19:00"
-    },
-    {
-      "type": "header",
-      "content": "Botón CTA"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "Texto del botón",
-      "default": "Escríbenos"
-    },
-    {
-      "type": "url",
-      "id": "cta_link",
-      "label": "Enlace del botón",
-      "info": "Si queda vacío, abre WhatsApp 1"
-    }
+    { "type": "text", "id": "showroom", "label": "Showroom (nombre)", "default": "Showroom Las Condes" },
+    { "type": "text", "id": "address", "label": "Dirección", "default": "Manquehue Sur 1581, Las Condes" },
+    { "type": "text", "id": "schedule", "label": "Horario", "default": "Lun-Vie 08:00 a 19:00" },
+    { "type": "text", "id": "email", "label": "Email", "default": "contacto@pisosmanriquez.cl" }
   ],
-  "blocks": [
-    {
-      "type": "announcement",
-      "name": "t:sections.announcement-bar.blocks.announcement.name",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "default": "t:sections.announcement-bar.blocks.announcement.settings.text.default",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.announcement-bar.presets.name",
-      "blocks": [
-        {
-          "type": "announcement"
-        }
-      ]
-    }
-  ]
+  "presets": [ { "name": "t:sections.announcement-bar.name" } ]
 }
 {% endschema %}
