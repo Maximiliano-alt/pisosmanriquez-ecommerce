@@ -1,64 +1,137 @@
-{{ 'section-pm-hero.css' | asset_url | stylesheet_tag }}
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Hero editorial
+{%- endcomment -%}
 
-<section class="pm-hero{% unless section.settings.image %} pm-hero--no-image{% endunless %}">
-  {%- if section.settings.image != blank -%}
-    <div class="pm-hero__media">
-      {{
-        section.settings.image
-        | image_url: width: 2400
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          class: 'pm-hero__img',
-          widths: '750, 1100, 1500, 2000, 2400',
-          sizes: '100vw',
-          alt: section.settings.headline | escape
-      }}
-    </div>
-  {%- endif -%}
+{%- liquid
+  assign s = section.settings
+  assign wa_digits = s.whatsapp | remove: '+' | remove: ' ' | remove: '-'
+-%}
 
-  <div class="pm-hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+<section class="pm-hero">
+  <div class="pm-wrap">
+    <div class="pm-hero__grid">
+      <div class="pm-hero__body pm-reveal">
+        {%- if s.pill != blank -%}
+          <span class="pm-hero__badge-pill">{{ s.pill | escape }}</span>
+        {%- endif -%}
 
-  {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
-    <div class="pm-hero__badge" aria-hidden="true"><span>{{ section.settings.badge_text }}</span></div>
-  {%- endif -%}
+        <h1 class="pm-h1 pm-hero__title">
+          {{ s.title_1 | escape }}
+          {%- if s.title_em != blank -%}
+            <em class="pm-em">{{ s.title_em | escape }}</em>
+          {%- endif -%}
+          {%- if s.title_2 != blank %} {{ s.title_2 | escape }}{% endif -%}
+        </h1>
 
-  <div class="pm-hero__content">
-    {%- if section.settings.headline != blank -%}
-      <h2 class="pm-hero__title">{{ section.settings.headline | escape }}</h2>
-    {%- endif -%}
-    {%- if section.settings.subheadline != blank -%}
-      <p class="pm-hero__sub">{{ section.settings.subheadline | escape }}</p>
-    {%- endif -%}
-    <div class="pm-hero__ctas">
-      {%- if section.settings.cta1_text != blank -%}
-        <a class="pm-hero__btn pm-hero__btn--primary" href="{{ section.settings.cta1_link | default: routes.all_products_collection_url }}">{{ section.settings.cta1_text | escape }}</a>
-      {%- endif -%}
-      {%- if section.settings.cta2_text != blank -%}
-        <a class="pm-hero__btn pm-hero__btn--ghost" href="{{ section.settings.cta2_link | default: '#' }}">{{ section.settings.cta2_text | escape }}</a>
-      {%- endif -%}
+        {%- if s.subtitle != blank -%}
+          <div class="pm-lead pm-hero__sub">{{ s.subtitle }}</div>
+        {%- endif -%}
+
+        <div class="pm-hero__ctas">
+          {%- if s.cta1_text != blank -%}
+            <a class="pm-btn pm-btn--primary" href="{{ s.cta1_link | default: routes.all_products_collection_url }}">
+              {{ s.cta1_text | escape }}
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          {%- endif -%}
+
+          {%- if s.cta2_text != blank -%}
+            <a class="pm-btn pm-btn--ghost" href="{% if s.cta2_link != blank %}{{ s.cta2_link }}{% else %}https://wa.me/{{ wa_digits }}?text={{ 'Hola Pisos Manriquez, quiero cotizar mi proyecto.' | url_encode }}{% endif %}"{% if s.cta2_link == blank %} target="_blank" rel="noopener"{% endif %}>
+              {{ s.cta2_text | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="pm-hero__media pm-reveal" data-pm-delay="120">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1400', sizes: '(min-width: 900px) 48vw, 92vw', alt: s.title_1 }}
+        {%- elsif s.image_asset != blank -%}
+          <img src="{{ s.image_asset | asset_url }}" alt="{{ s.title_1 | escape }}" width="1200" height="1400" loading="eager" fetchpriority="high">
+        {%- else -%}
+          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+
+        {%- if s.show_seal -%}
+          <div class="pm-hero__seal" aria-hidden="true">
+            <b>{{ s.seal_number | escape }}</b>
+            <span>{{ s.seal_label | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
+
+  {%- if s.show_trust and section.blocks.size > 0 -%}
+    <div class="pm-trust">
+      {%- for block in section.blocks -%}
+        <div class="pm-trust__item pm-reveal" data-pm-delay="{{ forloop.index0 | times: 80 }}" {{ block.shopify_attributes }}>
+          <span class="pm-trust__k">
+            {%- if block.settings.animate and block.settings.number != blank -%}
+              <span data-pm-count="{{ block.settings.number | escape }}" data-pm-suffix="{{ block.settings.suffix | escape }}">0{{ block.settings.suffix }}</span>
+            {%- else -%}
+              {{ block.settings.number }}{{ block.settings.suffix }}
+            {%- endif -%}
+          </span>
+          <span class="pm-trust__l">{{ block.settings.label | escape }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
 {
-  "name": "Hero Pisos Manríquez",
+  "name": "PM · Hero",
   "class": "pm-hero-section",
+  "max_blocks": 4,
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Imagen de fondo", "info": "Ambiente de piso de madera en interior moderno. Si queda vacío se usa un degradado." },
-    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Oscurecer imagen (overlay)", "default": 45 },
-    { "type": "text", "id": "headline", "label": "Título", "default": "45 años vistiendo los mejores espacios" },
-    { "type": "text", "id": "subheadline", "label": "Subtítulo", "default": "Pisos flotantes · Vinílicos · Cerámicos · Alfombras · Papel mural · Pasto sintético" },
+    { "type": "header", "content": "Contenido" },
+    { "type": "text", "id": "pill", "label": "Píldora superior", "default": "45 años de trayectoria" },
+    { "type": "text", "id": "title_1", "label": "Título · línea 1", "default": "45 años vistiendo" },
+    { "type": "text", "id": "title_em", "label": "Título · línea destacada", "default": "los mejores" },
+    { "type": "text", "id": "title_2", "label": "Título · línea 3", "default": "espacios" },
+    { "type": "richtext", "id": "subtitle", "label": "Bajada", "default": "<p>Revestimientos premium, instalación profesional y el respaldo de Pisos Manríquez.</p>" },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "image", "label": "Imagen de ambiente" },
+    { "type": "text", "id": "image_asset", "label": "Fallback desde assets/", "default": "pm-cat-pisos-flotantes.webp" },
     { "type": "header", "content": "Botones" },
-    { "type": "text", "id": "cta1_text", "label": "Botón 1 (naranja)", "default": "Ver catálogo" },
-    { "type": "url", "id": "cta1_link", "label": "Enlace botón 1" },
-    { "type": "text", "id": "cta2_text", "label": "Botón 2 (outline)", "default": "Cotiza tu proyecto" },
-    { "type": "url", "id": "cta2_link", "label": "Enlace botón 2" },
-    { "type": "header", "content": "Badge" },
-    { "type": "checkbox", "id": "show_badge", "label": "Mostrar badge 45 años", "default": true },
-    { "type": "text", "id": "badge_text", "label": "Texto del badge", "default": "45 AÑOS" }
+    { "type": "text", "id": "cta1_text", "label": "Botón principal", "default": "Ver catálogo" },
+    { "type": "url", "id": "cta1_link", "label": "Enlace botón principal" },
+    { "type": "text", "id": "cta2_text", "label": "Botón secundario", "default": "Cotiza tu proyecto" },
+    { "type": "url", "id": "cta2_link", "label": "Enlace botón secundario", "info": "Vacío = abre WhatsApp." },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" },
+    { "type": "header", "content": "Sello" },
+    { "type": "checkbox", "id": "show_seal", "label": "Mostrar sello circular", "default": true },
+    { "type": "text", "id": "seal_number", "label": "Número", "default": "45" },
+    { "type": "text", "id": "seal_label", "label": "Texto", "default": "AÑOS" },
+    { "type": "header", "content": "Barra de confianza" },
+    { "type": "checkbox", "id": "show_trust", "label": "Mostrar barra de cifras", "default": true }
   ],
-  "presets": [ { "name": "Hero Pisos Manríquez" } ]
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Cifra",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Número", "default": "45" },
+        { "type": "text", "id": "suffix", "label": "Sufijo", "info": "Ej: % o +" },
+        { "type": "text", "id": "label", "label": "Etiqueta", "default": "Años de trayectoria" },
+        { "type": "checkbox", "id": "animate", "label": "Animar contador", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PM · Hero",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "45", "label": "Años de trayectoria" } },
+        { "type": "stat", "settings": { "number": "5", "label": "Puntos de atención" } },
+        { "type": "stat", "settings": { "number": "10", "label": "Categorías" } },
+        { "type": "stat", "settings": { "number": "100", "suffix": "%", "label": "Instalación con garantía", "animate": false } }
+      ]
+    }
+  ]
 }
 {% endschema %}

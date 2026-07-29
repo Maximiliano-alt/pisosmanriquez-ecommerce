@@ -1,0 +1,93 @@
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}PISOS MANRIQUEZ - Bloque servicio / instalacion{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign wa_digits = s.whatsapp | remove: '+' | remove: ' ' | remove: '-'
+-%}
+
+<section class="pm-serv pm-section">
+  <div class="pm-wrap">
+    <div class="pm-serv__grid">
+      <div class="pm-serv__media pm-reveal">
+        {%- if s.image != blank -%}
+          {{ s.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '600, 900, 1200', sizes: '(min-width: 900px) 48vw, 92vw', alt: s.title }}
+        {%- elsif s.image_asset != blank -%}
+          <img src="{{ s.image_asset | asset_url }}" alt="{{ s.title | escape }}" width="1200" height="960" loading="lazy">
+        {%- else -%}
+          {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+
+        {%- if s.tag_number != blank -%}
+          <div class="pm-serv__tag" aria-hidden="true">
+            <b>{{ s.tag_number | escape }}</b>
+            <span>{{ s.tag_label | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="pm-serv__body pm-reveal" data-pm-delay="120">
+        {%- if s.eyebrow != blank -%}<p class="pm-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="pm-h2 pm-h2--light">{{ s.title | escape }}</h2>
+        {%- if s.body != blank -%}
+          <div class="pm-lead pm-lead--light" style="margin-top:1.25rem">{{ s.body }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="pm-serv__list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <div class="pm-serv__ctas">
+          {%- if s.cta1_text != blank -%}
+            <a class="pm-btn pm-btn--primary" href="{{ s.cta1_link | default: routes.all_products_collection_url }}">{{ s.cta1_text | escape }}</a>
+          {%- endif -%}
+          {%- if s.cta2_text != blank -%}
+            <a class="pm-btn pm-btn--ghost-light" href="https://wa.me/{{ wa_digits }}?text={{ 'Hola Pisos Manriquez, necesito asesoria para mi proyecto.' | url_encode }}" target="_blank" rel="noopener">{{ s.cta2_text | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PM · Servicio",
+  "class": "pm-serv-section",
+  "tag": "section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Servicio profesional" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Venta e instalación con garantía escrita" },
+    { "type": "richtext", "id": "body", "label": "Texto", "default": "<p>No solo vendemos los mejores materiales: aseguramos un acabado impecable.</p>" },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "image", "label": "Imagen" },
+    { "type": "text", "id": "image_asset", "label": "Fallback desde assets/", "default": "pm-cat-ingenieria.jpg" },
+    { "type": "text", "id": "tag_number", "label": "Etiqueta · número", "default": "45" },
+    { "type": "text", "id": "tag_label", "label": "Etiqueta · texto", "default": "AÑOS INSTALANDO" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "cta1_text", "label": "Botón principal", "default": "Ver catálogo" },
+    { "type": "url", "id": "cta1_link", "label": "Enlace botón principal" },
+    { "type": "text", "id": "cta2_text", "label": "Botón WhatsApp", "default": "Hablar con un asesor" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" }
+  ],
+  "blocks": [
+    { "type": "bullet", "name": "Beneficio", "settings": [ { "type": "text", "id": "text", "label": "Texto", "default": "Visita técnica sin costo" } ] }
+  ],
+  "presets": [
+    {
+      "name": "PM · Servicio",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "Visita técnica de factibilidad sin costo" } },
+        { "type": "bullet", "settings": { "text": "Garantía escrita en materiales e instalación" } },
+        { "type": "bullet", "settings": { "text": "Plazos comprometidos en RM y regiones" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
