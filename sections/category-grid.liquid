@@ -1,134 +1,126 @@
-{{ 'section-category-grid.css' | asset_url | stylesheet_tag }}
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Grilla de categorias
+  Prioridad de imagen: image_picker -> asset del tema -> imagen de la coleccion.
+{%- endcomment -%}
 
-<div class="category-grid page-width color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-  {%- if section.settings.title != blank -%}
-    <h2 class="category-grid__title">{{ section.settings.title | escape }}</h2>
-  {%- endif -%}
+{%- liquid
+  assign s = section.settings
+  assign wa_digits = s.whatsapp | remove: '+' | remove: ' ' | remove: '-'
+-%}
 
-  {%- if section.blocks.size > 0 -%}
-    <ul class="category-grid__list" role="list">
+<section class="pm-section{% if s.background == 'cream' %} pm-section--cream{% endif %}">
+  <div class="pm-wrap">
+    {%- if s.eyebrow != blank or s.title != blank -%}
+      <div class="pm-cats__head pm-reveal">
+        {%- if s.eyebrow != blank -%}<p class="pm-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {%- if s.title != blank -%}<h2 class="pm-h2">{{ s.title | escape }}</h2>{%- endif -%}
+        {%- if s.subtitle != blank -%}<p class="pm-lead" style="text-align:center">{{ s.subtitle | escape }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <ul class="pm-cats__grid" role="list">
       {%- for block in section.blocks -%}
         {%- liquid
-          if block.settings.collection != blank
-            assign link_url   = block.settings.collection.url
-            assign link_title = block.settings.label | default: block.settings.collection.title
-            assign coll_img   = block.settings.collection.image
-          else
-            assign link_url   = '#'
-            assign link_title = block.settings.label | default: 'Categoría'
-            assign coll_img   = nil
+          assign coll = block.settings.collection
+          assign label = block.settings.label
+          if label == blank and coll != blank
+            assign label = coll.title
           endif
-          assign picker_img = block.settings.image
-          assign asset_file = block.settings.asset_name
-          assign display_img = coll_img | default: picker_img
+          if label == blank
+            assign label = 'Categoría'
+          endif
+
+          assign url = '#'
+          if block.settings.link != blank
+            assign url = block.settings.link
+          elsif coll != blank
+            assign url = coll.url
+          endif
+
+          assign img = block.settings.image
+          if img == blank and block.settings.asset_name == blank and coll != blank
+            assign img = coll.image
+          endif
+
+          assign focal_style = 'object-position: ' | append: block.settings.focal
         -%}
-        <li
-          class="category-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-          {% if settings.animations_reveal_on_scroll %}style="animation-delay: {{ forloop.index | times: 100 }}ms"{% endif %}
-        >
-          <a href="{{ link_url }}" class="category-grid__link" aria-label="{{ link_title | escape }}">
-            <div class="category-grid__image-wrapper">
-              {%- if display_img != blank -%}
-                {{
-                  display_img
-                  | image_url: width: 600
-                  | image_tag:
-                    loading: 'lazy',
-                    sizes: '(min-width: 990px) 20vw, (min-width: 600px) 33vw, 50vw',
-                    widths: '280, 380, 480, 600',
-                    alt: 'Pisos Manríquez — ' | append: link_title
-                }}
-                <div class="category-grid__overlay">
-                  <p class="category-grid__name">{{ link_title | escape }}</p>
-                </div>
-              {%- elsif asset_file != blank -%}
-                <img
-                  src="{{ asset_file | asset_url }}"
-                  alt="{{ 'Pisos Manríquez — ' | append: link_title | escape }}"
-                  loading="lazy"
-                  width="600"
-                  height="800"
-                  class="category-grid__asset-img"
-                >
-                <div class="category-grid__overlay">
-                  <p class="category-grid__name">{{ link_title | escape }}</p>
-                </div>
-              {%- else -%}
-                <div class="category-grid__placeholder">
-                  <p class="category-grid__placeholder-name">{{ link_title | escape }}</p>
-                </div>
+
+        <li class="pm-reveal" data-pm-delay="{{ forloop.index0 | times: 60 }}" {{ block.shopify_attributes }}>
+          <a class="pm-cat" href="{{ url }}" aria-label="{{ label | escape }}">
+            {%- if img != blank -%}
+              {{ img | image_url: width: 700 | image_tag: loading: 'lazy', widths: '280, 400, 560, 700', sizes: '(min-width: 1100px) 19vw, (min-width: 750px) 31vw, 46vw', alt: label, style: focal_style }}
+            {%- elsif block.settings.asset_name != blank -%}
+              <img src="{{ block.settings.asset_name | asset_url }}" alt="{{ label | escape }}" width="700" height="933" loading="lazy" style="{{ focal_style }}">
+            {%- else -%}
+              {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+
+            <span class="pm-cat__veil"></span>
+
+            <span class="pm-cat__txt">
+              <span class="pm-cat__n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+              <span class="pm-cat__name">{{ label | escape }}</span>
+              {%- if block.settings.meta != blank -%}
+                <span class="pm-cat__meta">{{ block.settings.meta | escape }}</span>
+              {%- elsif coll != blank and coll.all_products_count > 0 -%}
+                <span class="pm-cat__meta">{{ coll.all_products_count }} productos</span>
               {%- endif -%}
-            </div>
+            </span>
           </a>
         </li>
       {%- endfor -%}
+
+      {%- if s.show_cta_card -%}
+        <li class="pm-reveal" data-pm-delay="{{ section.blocks.size | times: 60 }}">
+          <a class="pm-cat pm-cat--cta" href="https://wa.me/{{ wa_digits }}?text={{ 'Hola Pisos Manriquez, busco un producto que no encuentro en la web.' | url_encode }}" target="_blank" rel="noopener">
+            <span class="pm-cat__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+            <span class="pm-cat__txt" style="position:static;padding:0">
+              <span class="pm-cat__name">{{ s.cta_card_title | escape }}</span>
+              <span class="pm-cat__meta">{{ s.cta_card_text | escape }}</span>
+            </span>
+          </a>
+        </li>
+      {%- endif -%}
     </ul>
-  {%- endif -%}
-</div>
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "Grilla de categorías",
-  "class": "section-category-grid",
+  "name": "PM · Categorías",
+  "class": "pm-cats-section",
   "tag": "section",
   "max_blocks": 12,
   "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título",
-      "default": "Somos distribuidores de todas las marcas top en el mercado"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Esquema de colores",
-      "default": "scheme-1"
-    }
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Nuestro catálogo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Todo para transformar tu espacio" },
+    { "type": "text", "id": "subtitle", "label": "Bajada", "default": "Distribuidores de las marcas líderes del mercado." },
+    { "type": "select", "id": "background", "label": "Fondo", "default": "white", "options": [ { "value": "white", "label": "Blanco" }, { "value": "cream", "label": "Crema" } ] },
+    { "type": "header", "content": "Tarjeta CTA final" },
+    { "type": "checkbox", "id": "show_cta_card", "label": "Mostrar tarjeta naranja de WhatsApp", "default": true },
+    { "type": "text", "id": "cta_card_title", "label": "Título CTA", "default": "¿No encuentras lo que buscas?" },
+    { "type": "text", "id": "cta_card_text", "label": "Texto CTA", "default": "Cotiza por WhatsApp" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" }
   ],
   "blocks": [
     {
       "type": "category_card",
       "name": "Categoría",
       "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Colección"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Texto personalizado",
-          "info": "Si está vacío, se usa el nombre de la colección"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Imagen override (Shopify CDN)",
-          "info": "Se usa si la colección no tiene imagen asignada"
-        },
-        {
-          "type": "text",
-          "id": "asset_name",
-          "label": "Imagen desde assets/ (último fallback)",
-          "info": "Ej: pm-cat-pisos-flotantes.webp",
-          "placeholder": "pm-cat-pisos-flotantes.webp"
-        }
+        { "type": "collection", "id": "collection", "label": "Colección" },
+        { "type": "text", "id": "label", "label": "Nombre visible" },
+        { "type": "text", "id": "meta", "label": "Texto secundario" },
+        { "type": "url", "id": "link", "label": "Enlace manual (opcional)" },
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "asset_name", "label": "Fallback desde assets/", "placeholder": "pm-cat-pisos-flotantes.webp" },
+        { "type": "select", "id": "focal", "label": "Encuadre de la foto", "default": "center", "options": [ { "value": "center", "label": "Centro" }, { "value": "left", "label": "Izquierda" }, { "value": "right", "label": "Derecha" }, { "value": "top", "label": "Arriba" }, { "value": "bottom", "label": "Abajo" } ] }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Grilla de categorías",
-      "blocks": [
-        { "type": "category_card" },
-        { "type": "category_card" },
-        { "type": "category_card" },
-        { "type": "category_card" }
-      ]
-    }
-  ]
+  "presets": [ { "name": "PM · Categorías", "blocks": [ { "type": "category_card" }, { "type": "category_card" }, { "type": "category_card" }, { "type": "category_card" } ] } ]
 }
 {% endschema %}
