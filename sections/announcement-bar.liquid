@@ -1,4 +1,11 @@
+{%- comment -%}
+  Primer elemento del body en TODAS las paginas.
+  Marca html.pm-js para que las animaciones de entrada solo se activen si hay JS.
+  Sin esta linea, si el JS falla la web queda invisible.
+{%- endcomment -%}
+<script>document.documentElement.classList.add('pm-js');</script>
 {{ 'section-promo-bar.css' | asset_url | stylesheet_tag }}
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
 
 <div class="pm-topbar" role="region" aria-label="Información de contacto y showroom">
   <div class="page-width pm-topbar__inner">
