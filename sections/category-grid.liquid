@@ -1,4 +1,5 @@
 {{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script>document.documentElement.classList.add('pm-js');</script>
 <script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
 {%- comment -%}
   PISOS MANRIQUEZ - Grilla de categorias
@@ -73,14 +74,14 @@
       {%- endfor -%}
 
       {%- if s.show_cta_card -%}
-        <li class="pm-reveal" data-pm-delay="{{ section.blocks.size | times: 60 }}">
+        <li class="pm-cats__cta-cell pm-reveal" data-pm-delay="{{ section.blocks.size | times: 60 }}">
           <a class="pm-cat pm-cat--cta" href="https://wa.me/{{ wa_digits }}?text={{ 'Hola Pisos Manriquez, busco un producto que no encuentro en la web.' | url_encode }}" target="_blank" rel="noopener">
-            <span class="pm-cat__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-            <span class="pm-cat__txt" style="position:static;padding:0">
+            <span class="pm-cat__txt">
               <span class="pm-cat__name">{{ s.cta_card_title | escape }}</span>
               <span class="pm-cat__meta">{{ s.cta_card_text | escape }}</span>
+            </span>
+            <span class="pm-cat__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </a>
         </li>
@@ -101,9 +102,9 @@
     { "type": "text", "id": "subtitle", "label": "Bajada", "default": "Distribuidores de las marcas líderes del mercado." },
     { "type": "select", "id": "background", "label": "Fondo", "default": "white", "options": [ { "value": "white", "label": "Blanco" }, { "value": "cream", "label": "Crema" } ] },
     { "type": "header", "content": "Tarjeta CTA final" },
-    { "type": "checkbox", "id": "show_cta_card", "label": "Mostrar tarjeta naranja de WhatsApp", "default": true },
+    { "type": "checkbox", "id": "show_cta_card", "label": "Mostrar barra naranja de WhatsApp", "default": true },
     { "type": "text", "id": "cta_card_title", "label": "Título CTA", "default": "¿No encuentras lo que buscas?" },
-    { "type": "text", "id": "cta_card_text", "label": "Texto CTA", "default": "Cotiza por WhatsApp" },
+    { "type": "text", "id": "cta_card_text", "label": "Texto CTA", "default": "Escríbenos y te cotizamos por WhatsApp" },
     { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" }
   ],
   "blocks": [
