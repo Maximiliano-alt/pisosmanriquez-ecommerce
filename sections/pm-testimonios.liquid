@@ -1,0 +1,79 @@
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Testimonios.
+  Sin bloques cargados NO se muestra en la tienda publicada. Las resenas las carga el cliente.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign has_reviews = false
+  if section.blocks.size > 0
+    assign has_reviews = true
+  endif
+-%}
+
+{%- if has_reviews or request.design_mode -%}
+  <section class="pm-section{% if s.background == 'cream' %} pm-section--cream{% endif %}">
+    <div class="pm-wrap">
+      <div class="pm-cats__head pm-reveal">
+        {%- if s.eyebrow != blank -%}<p class="pm-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {%- if s.title != blank -%}<h2 class="pm-h2">{{ s.title | escape }}</h2>{%- endif -%}
+      </div>
+
+      <div class="pm-tes__grid">
+        {%- if has_reviews -%}
+          {%- for block in section.blocks -%}
+            {%- assign stars = block.settings.stars | default: 5 -%}
+            <article class="pm-tes__card pm-reveal" data-pm-delay="{{ forloop.index0 | times: 90 }}" {{ block.shopify_attributes }}>
+              <div class="pm-tes__stars" aria-label="{{ stars }} de 5 estrellas">
+                {%- for i in (1..stars) -%}
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                {%- endfor -%}
+              </div>
+              <p class="pm-tes__quote">{{ block.settings.quote | escape }}</p>
+              <div>
+                <p class="pm-tes__who">{{ block.settings.name | escape }}</p>
+                {%- if block.settings.place != blank -%}
+                  <p class="pm-tes__where">{{ block.settings.place | escape }}</p>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="pm-tes__empty">
+            <strong>Sección vacía a propósito.</strong><br>
+            Agrega aquí reseñas reales de clientes (nombre + comuna). Mientras no cargues ninguna, esta sección no se muestra en la tienda publicada.
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "PM · Testimonios",
+  "class": "pm-tes-section",
+  "tag": "section",
+  "max_blocks": 9,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Lo que dicen nuestros clientes" },
+    { "type": "text", "id": "title", "label": "Título", "default": "45 años de proyectos entregados" },
+    { "type": "select", "id": "background", "label": "Fondo", "default": "cream", "options": [ { "value": "white", "label": "Blanco" }, { "value": "cream", "label": "Crema" } ] }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña real",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Reseña", "info": "Solo reseñas reales de clientes." },
+        { "type": "text", "id": "name", "label": "Nombre" },
+        { "type": "text", "id": "place", "label": "Comuna" },
+        { "type": "range", "id": "stars", "min": 1, "max": 5, "step": 1, "label": "Estrellas", "default": 5 }
+      ]
+    }
+  ],
+  "presets": [ { "name": "PM · Testimonios" } ]
+}
+{% endschema %}

@@ -1,91 +1,69 @@
-{{ 'section-brands-bar.css' | asset_url | stylesheet_tag }}
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Marquee de marcas. El track se duplica por JS.
+{%- endcomment -%}
 
-<div class="brands-bar page-width color-{{ section.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-  {%- if section.settings.title != blank -%}
-    <h2 class="brands-bar__title">{{ section.settings.title | escape }}</h2>
-  {%- endif -%}
+{%- assign s = section.settings -%}
 
-  {%- if section.blocks.size > 0 -%}
-    <ul class="brands-bar__list" role="list">
-      {%- for block in section.blocks -%}
-        <li class="brands-bar__item" {{ block.shopify_attributes }}>
+{%- if section.blocks.size > 0 -%}
+  <section class="pm-marquee">
+    {%- if s.title != blank -%}
+      <p class="pm-marquee__title">{{ s.title | escape }}</p>
+    {%- endif -%}
+
+    <div class="pm-marquee__mask">
+      <div class="pm-marquee__track" data-pm-marquee>
+        {%- for block in section.blocks -%}
           {%- if block.settings.link != blank -%}
-            <a href="{{ block.settings.link }}" class="brands-bar__link" target="_blank" rel="noopener">
+            <a class="pm-marquee__item" href="{{ block.settings.link }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+          {%- else -%}
+            <div class="pm-marquee__item" {{ block.shopify_attributes }}>
           {%- endif -%}
             {%- if block.settings.image != blank -%}
-              {{
-                block.settings.image
-                | image_url: width: 400
-                | image_tag:
-                  class: 'brands-bar__image',
-                  loading: 'lazy',
-                  alt: block.settings.name | default: 'Marca'
-              }}
-            {%- elsif block.settings.name != blank -%}
-              <span class="brands-bar__name-text">{{ block.settings.name | escape }}</span>
+              {{ block.settings.image | image_url: width: 320 | image_tag: loading: 'lazy', alt: block.settings.name }}
+            {%- elsif block.settings.asset_name != blank -%}
+              <img src="{{ block.settings.asset_name | asset_url }}" alt="{{ block.settings.name | escape }}" loading="lazy" height="42">
             {%- else -%}
-              <span class="brands-bar__name-text">Marca</span>
+              <span>{{ block.settings.name | default: 'Marca' | escape }}</span>
             {%- endif -%}
-          {%- if block.settings.link != blank -%}
-            </a>
-          {%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
-  {%- endif -%}
-</div>
+          {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
 
 {% schema %}
 {
-  "name": "Barra de marcas",
-  "class": "section-brands-bar",
+  "name": "PM · Marcas",
+  "class": "pm-marquee-section",
   "tag": "section",
-  "max_blocks": 20,
+  "max_blocks": 24,
   "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título",
-      "default": "Nuestras marcas"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Esquema de colores",
-      "default": "scheme-1"
-    }
+    { "type": "text", "id": "title", "label": "Título", "default": "Distribuidores oficiales de" }
   ],
   "blocks": [
     {
       "type": "brand",
       "name": "Marca",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Logo de la marca"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Nombre de la marca"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Enlace (opcional)"
-        }
+        { "type": "text", "id": "name", "label": "Nombre" },
+        { "type": "image_picker", "id": "image", "label": "Logo" },
+        { "type": "text", "id": "asset_name", "label": "Logo desde assets/" },
+        { "type": "url", "id": "link", "label": "Enlace (opcional)" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Barra de marcas",
+      "name": "PM · Marcas",
       "blocks": [
-        { "type": "brand" },
-        { "type": "brand" },
-        { "type": "brand" },
-        { "type": "brand" }
+        { "type": "brand", "settings": { "name": "Carpenter" } },
+        { "type": "brand", "settings": { "name": "BS Chile" } },
+        { "type": "brand", "settings": { "name": "Winter" } },
+        { "type": "brand", "settings": { "name": "Quick-Step" } },
+        { "type": "brand", "settings": { "name": "Getnet" } }
       ]
     }
   ]
