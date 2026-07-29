@@ -1,170 +1,349 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "pm_hero": {
       "type": "pm-hero",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "number": "45",
+            "label": "Años de trayectoria",
+            "animate": true
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "number": "5",
+            "label": "Puntos de atención",
+            "animate": true
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "number": "10",
+            "label": "Categorías",
+            "animate": true
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "number": "100",
+            "suffix": "%",
+            "label": "Instalación con garantía",
+            "animate": false
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
       "settings": {
-        "overlay_opacity": 45,
-        "headline": "45 años vistiendo los mejores espacios",
-        "subheadline": "Pisos flotantes · Vinílicos · Cerámicos · Alfombras · Papel mural · Pasto sintético",
+        "pill": "45 años de trayectoria",
+        "title_1": "45 años vistiendo",
+        "title_em": "los mejores",
+        "title_2": "espacios",
+        "subtitle": "<p>Revestimientos premium, instalación profesional y el respaldo de Pisos Manríquez para transformar tu hogar u oficina. Pisos flotantes, vinílicos, cerámicos, alfombras, papel mural y pasto sintético.</p>",
+        "image_asset": "pm-cat-pisos-flotantes.webp",
         "cta1_text": "Ver catálogo",
-        "cta1_link": "shopify://collections/all",
+        "cta1_link": "shopify://collections/alfombras",
         "cta2_text": "Cotiza tu proyecto",
-        "cta2_link": "",
-        "show_badge": true,
-        "badge_text": "45 AÑOS"
+        "whatsapp": "+56 9 7376 3087",
+        "show_seal": true,
+        "seal_number": "45",
+        "seal_label": "AÑOS",
+        "show_trust": true
       }
     },
-    "category_grid": {
+    "pm_categorias": {
       "type": "category-grid",
       "blocks": {
-        "cat_1": { "type": "category_card", "settings": { "label": "Pisos Flotantes", "collection": "pisos-flotantes" } },
-        "cat_2": { "type": "category_card", "settings": { "label": "Pisos Vinílicos", "collection": "pisos-vinilicos" } },
-        "cat_3": { "type": "category_card", "settings": { "label": "Cerámico y Porcelanato", "collection": "ceramico-y-porcelanato", "asset_name": "pm-cat-ceramico.webp" } },
-        "cat_4": { "type": "category_card", "settings": { "label": "Papel Mural", "collection": "papel-mural" } },
-        "cat_5": { "type": "category_card", "settings": { "label": "Pasto Sintético", "collection": "pasto-sintetico" } },
-        "cat_6": { "type": "category_card", "settings": { "label": "Pisos de Ingeniería", "collection": "pisos-de-ingenieria", "asset_name": "pm-cat-ingenieria.jpg" } },
-        "cat_7": { "type": "category_card", "settings": { "label": "Alfombras", "collection": "alfombras" } },
-        "cat_8": { "type": "category_card", "settings": { "label": "Cortinas Roller", "collection": "cortinas-roller" } },
-        "cat_9": { "type": "category_card", "settings": { "label": "Molduras", "collection": "molduras", "asset_name": "pm-cat-molduras.jpg" } },
-        "cat_10": { "type": "category_card", "settings": { "label": "Servicios", "collection": "servicios", "asset_name": "pm-cat-servicios.jpg" } }
+        "c1": {
+          "type": "category_card",
+          "settings": {
+            "collection": "pisos-flotantes",
+            "label": "Pisos Flotantes",
+            "meta": "Resistencia y estilo natural",
+            "asset_name": "pm-cat-pisos-flotantes.webp",
+            "focal": "center"
+          }
+        },
+        "c2": {
+          "type": "category_card",
+          "settings": {
+            "collection": "pisos-vinilicos",
+            "label": "Pisos Vinílicos",
+            "meta": "Resistentes al agua",
+            "asset_name": "pm-cat-pisos-vinilicos.webp",
+            "focal": "center"
+          }
+        },
+        "c3": {
+          "type": "category_card",
+          "settings": {
+            "collection": "ceramico-y-porcelanato",
+            "label": "Cerámico y Porcelanato",
+            "meta": "Formatos XL",
+            "asset_name": "pm-cat-ceramico.webp",
+            "focal": "left"
+          }
+        },
+        "c4": {
+          "type": "category_card",
+          "settings": {
+            "collection": "papel-mural",
+            "label": "Papel Mural",
+            "meta": "Diseños de autor",
+            "asset_name": "pm-cat-papel-mural.webp",
+            "focal": "center"
+          }
+        },
+        "c5": {
+          "type": "category_card",
+          "settings": {
+            "collection": "pasto-sintetico",
+            "label": "Pasto Sintético",
+            "meta": "Terrazas y jardines",
+            "asset_name": "pm-cat-pasto-sintetico.webp",
+            "focal": "center"
+          }
+        },
+        "c6": {
+          "type": "category_card",
+          "settings": {
+            "collection": "pisos-de-ingenieria",
+            "label": "Pisos de Ingeniería",
+            "meta": "Madera natural",
+            "asset_name": "pm-cat-ingenieria.jpg",
+            "focal": "center"
+          }
+        },
+        "c7": {
+          "type": "category_card",
+          "settings": {
+            "collection": "alfombras",
+            "label": "Alfombras",
+            "meta": "Muro a muro",
+            "asset_name": "pm-cat-alfombras.webp",
+            "focal": "center"
+          }
+        },
+        "c8": {
+          "type": "category_card",
+          "settings": {
+            "collection": "cortinas-roller",
+            "label": "Cortinas Roller",
+            "meta": "A medida",
+            "asset_name": "pm-cat-cortinas-roller.webp",
+            "focal": "center"
+          }
+        },
+        "c9": {
+          "type": "category_card",
+          "settings": {
+            "collection": "molduras",
+            "label": "Molduras",
+            "meta": "Terminaciones premium",
+            "asset_name": "pm-cat-molduras.jpg",
+            "focal": "center"
+          }
+        },
+        "c10": {
+          "type": "category_card",
+          "settings": {
+            "collection": "servicios",
+            "label": "Servicios",
+            "meta": "Venta e instalación",
+            "asset_name": "pm-cat-servicios.jpg",
+            "focal": "center"
+          }
+        }
       },
-      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4", "cat_5", "cat_6", "cat_7", "cat_8", "cat_9", "cat_10"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10"
+      ],
       "settings": {
-        "title": "Somos distribuidores de todas las marcas top en el mercado",
-        "color_scheme": "scheme-1"
+        "eyebrow": "Nuestro catálogo",
+        "title": "Todo para transformar tu espacio",
+        "subtitle": "Distribuidores de las marcas líderes del mercado, con instalación profesional y garantía escrita.",
+        "background": "white",
+        "show_cta_card": true,
+        "cta_card_title": "¿No encuentras lo que buscas?",
+        "cta_card_text": "Cotiza por WhatsApp",
+        "whatsapp": "+56 9 7376 3087"
       }
     },
-    "image_with_text_cta": {
-      "type": "image-with-text",
+    "pm_servicio": {
+      "type": "pm-servicio",
       "blocks": {
-        "heading_block": { "type": "heading", "settings": { "heading": "Venta e instalación de piso flotante", "heading_size": "h1" } },
-        "button_block": { "type": "button", "settings": { "button_label": "Ver pisos", "button_link": "shopify://collections/all", "button_style_secondary": false } }
+        "b1": {
+          "type": "bullet",
+          "settings": {
+            "text": "Visita técnica de factibilidad sin costo en la Región Metropolitana"
+          }
+        },
+        "b2": {
+          "type": "bullet",
+          "settings": {
+            "text": "Garantía escrita sobre materiales e instalación"
+          }
+        },
+        "b3": {
+          "type": "bullet",
+          "settings": {
+            "text": "Instaladores propios, no subcontratados"
+          }
+        },
+        "b4": {
+          "type": "bullet",
+          "settings": {
+            "text": "Plazos comprometidos en RM y despacho a regiones"
+          }
+        }
       },
-      "block_order": ["heading_block", "button_block"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-1",
-        "color_scheme": "scheme-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "Servicio profesional",
+        "title": "Venta e instalación con garantía escrita",
+        "body": "<p>No solo vendemos los mejores materiales: aseguramos un acabado impecable. Nuestro equipo mide, prepara la superficie e instala, y respondemos por el resultado.</p>",
+        "image_asset": "pm-cat-ingenieria.jpg",
+        "tag_number": "45",
+        "tag_label": "AÑOS INSTALANDO",
+        "cta1_text": "Ver catálogo",
+        "cta1_link": "shopify://collections/alfombras",
+        "cta2_text": "Hablar con un asesor",
+        "whatsapp": "+56 9 7376 3087"
       }
     },
-    "featured_pisos": {
-      "type": "featured-collection",
+    "pm_destacados": {
+      "type": "pm-carousel",
       "settings": {
-        "title": "Pisos destacados",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
+        "eyebrow": "Stock en showroom",
+        "title": "Alfombras destacadas",
+        "collection": "alfombras",
+        "count": 10,
+        "price_unit": "/m²",
+        "show_vendor": true,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": true,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "background": "cream",
+        "whatsapp": "+56 9 7376 3087"
       }
     },
-    "promo_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "promo_heading": { "type": "heading", "settings": { "heading": "Pisos, pisos y más pisos", "heading_size": "h0" } },
-        "promo_button": { "type": "buttons", "settings": { "button_label_1": "Ver catálogo", "button_link_1": "shopify://collections/all", "button_style_secondary_1": true, "button_label_2": "", "button_link_2": "", "button_style_secondary_2": false } }
-      },
-      "block_order": ["promo_heading", "promo_button"],
+    "pm_banner": {
+      "type": "pm-promo",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "image_asset": "pm-cat-papel-mural.webp",
+        "eyebrow": "Showroom Las Condes",
+        "title": "Ven a ver y tocar los materiales",
+        "body": "Manquehue Sur 1581, Las Condes · Lunes a viernes de 08:00 a 19:00. Te asesoramos sin compromiso.",
+        "cta1_text": "Ver catálogo",
+        "cta1_link": "shopify://collections/alfombras",
+        "cta2_text": "Agendar visita",
+        "whatsapp": "+56 9 7376 3087"
       }
     },
-    "featured_revestimientos": {
-      "type": "featured-collection",
+    "pm_testimonios": {
+      "type": "pm-testimonios",
       "settings": {
-        "title": "Revestimientos y cerámicos",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": true,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "Lo que dicen nuestros clientes",
+        "title": "45 años de proyectos entregados",
+        "background": "cream"
       }
     },
-    "pm_quote_form": {
+    "pm_cotizador": {
       "type": "pm-quote-form",
       "settings": {
-        "bg_color": "#E85D04",
+        "eyebrow": "Sin compromiso",
         "title": "Cotiza tu proyecto",
-        "subtitle": "Cuéntanos qué necesitas y te enviamos una cotización por WhatsApp.",
+        "subtitle": "Cuéntanos qué necesitas y te enviamos una cotización personalizada por WhatsApp.",
+        "categories": "Pisos Flotantes, Pisos Vinílicos, Cerámico y Porcelanato, Papel Mural, Pasto Sintético, Pisos de Ingeniería, Alfombras, Cortinas Roller, Molduras, Servicios, Otro / No estoy seguro",
+        "button_text": "Recibir cotización",
         "whatsapp": "+56 9 7376 3087",
-        "button_text": "Recibir cotización por WhatsApp"
+        "note": "Te respondemos en horario hábil: lunes a viernes de 08:00 a 19:00."
       }
     },
-    "brands_bar": {
+    "pm_marcas": {
       "type": "brands-bar",
       "blocks": {
-        "brand_1": { "type": "brand", "settings": { "name": "Carpenter" } },
-        "brand_2": { "type": "brand", "settings": { "name": "BS Chile" } },
-        "brand_3": { "type": "brand", "settings": { "name": "Winter" } },
-        "brand_4": { "type": "brand", "settings": { "name": "Getnet" } }
+        "m1": {
+          "type": "brand",
+          "settings": {
+            "name": "Carpenter"
+          }
+        },
+        "m2": {
+          "type": "brand",
+          "settings": {
+            "name": "BS Chile"
+          }
+        },
+        "m3": {
+          "type": "brand",
+          "settings": {
+            "name": "Winter"
+          }
+        },
+        "m4": {
+          "type": "brand",
+          "settings": {
+            "name": "Quick-Step"
+          }
+        },
+        "m5": {
+          "type": "brand",
+          "settings": {
+            "name": "Getnet"
+          }
+        }
       },
-      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4"],
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5"
+      ],
       "settings": {
-        "title": "Nuestras marcas",
-        "color_scheme": "scheme-1"
+        "title": "Distribuidores oficiales de"
       }
     }
   },
   "order": [
     "pm_hero",
-    "category_grid",
-    "image_with_text_cta",
-    "featured_pisos",
-    "promo_banner",
-    "featured_revestimientos",
-    "pm_quote_form",
-    "brands_bar"
+    "pm_categorias",
+    "pm_servicio",
+    "pm_destacados",
+    "pm_banner",
+    "pm_testimonios",
+    "pm_cotizador",
+    "pm_marcas"
   ]
 }
