@@ -1,84 +1,74 @@
-{{ 'section-pm-quote-form.css' | asset_url | stylesheet_tag }}
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Cotizador que envia por WhatsApp.
+  Logica en assets/pm-redesign.js (data-pm-quote).
+{%- endcomment -%}
 
-<section class="pm-quote" style="--pm-quote-bg: {{ section.settings.bg_color | default: '#E85D04' }}">
-  <div class="page-width pm-quote__inner">
-    <div class="pm-quote__head">
-      <h2 class="pm-quote__title">{{ section.settings.title | escape }}</h2>
-      {%- if section.settings.subtitle != blank -%}
-        <p class="pm-quote__sub">{{ section.settings.subtitle | escape }}</p>
+{%- assign s = section.settings -%}
+
+<section class="pm-quote pm-section">
+  <div class="pm-wrap pm-quote__inner">
+    <div class="pm-quote__head pm-reveal">
+      {%- if s.eyebrow != blank -%}
+        <p class="pm-eyebrow" style="color:rgba(255,255,255,.8)">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h2 class="pm-h2 pm-h2--light">{{ s.title | escape }}</h2>
+      {%- if s.subtitle != blank -%}
+        <p class="pm-lead pm-lead--light">{{ s.subtitle | escape }}</p>
       {%- endif -%}
     </div>
 
-    <form class="pm-quote__form" id="pmQuoteForm" novalidate>
+    <form class="pm-quote__form pm-reveal" data-pm-quote data-wa="{{ s.whatsapp | escape }}"{% if s.webhook != blank %} data-webhook="{{ s.webhook }}"{% endif %} data-pm-delay="100" novalidate>
       <div class="pm-quote__field">
-        <label for="pmq-cat">Categoría</label>
-        <select id="pmq-cat" name="categoria" required>
+        <label for="pmq-cat-{{ section.id }}">Categoría</label>
+        <select id="pmq-cat-{{ section.id }}" name="categoria" required>
           <option value="" disabled selected>Elige una categoría</option>
-          <option>Pisos Flotantes</option>
-          <option>Pisos Vinílicos</option>
-          <option>Cerámico y Porcelanato</option>
-          <option>Papel Mural</option>
-          <option>Pasto Sintético</option>
-          <option>Pisos de Ingeniería</option>
-          <option>Alfombras</option>
-          <option>Cortinas Roller</option>
-          <option>Molduras</option>
-          <option>Servicios</option>
-          <option>Otro / No estoy seguro</option>
+          {%- assign cats = s.categories | split: ',' -%}
+          {%- for c in cats -%}
+            <option>{{ c | strip | escape }}</option>
+          {%- endfor -%}
         </select>
       </div>
+
       <div class="pm-quote__field">
-        <label for="pmq-m2">m² aproximados</label>
-        <input id="pmq-m2" name="m2" type="number" min="1" inputmode="numeric" placeholder="Ej: 40" required>
+        <label for="pmq-m2-{{ section.id }}">m2 aproximados</label>
+        <input id="pmq-m2-{{ section.id }}" name="m2" type="number" min="1" step="1" inputmode="numeric" placeholder="Ej: 40" required>
       </div>
+
       <div class="pm-quote__field">
-        <label for="pmq-tel">Teléfono</label>
-        <input id="pmq-tel" name="telefono" type="tel" placeholder="+56 9 ..." required>
+        <label for="pmq-tel-{{ section.id }}">Teléfono</label>
+        <input id="pmq-tel-{{ section.id }}" name="telefono" type="tel" inputmode="tel" placeholder="+56 9 1234 5678" required>
       </div>
+
       <button type="submit" class="pm-quote__btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        <span>{{ section.settings.button_text | default: 'Recibir cotización por WhatsApp' }}</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        <span>{{ s.button_text | escape }}</span>
       </button>
     </form>
+
+    {%- if s.note != blank -%}
+      <p class="pm-quote__note pm-reveal">{{ s.note | escape }}</p>
+    {%- endif -%}
   </div>
 </section>
 
-<script>
-  (function () {
-    var form = document.getElementById('pmQuoteForm');
-    if (!form) return;
-    var waNumber = {{ section.settings.whatsapp | default: '+56 9 7376 3087' | remove: '+' | remove: ' ' | json }};
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var cat = document.getElementById('pmq-cat').value;
-      var m2 = document.getElementById('pmq-m2').value;
-      var tel = document.getElementById('pmq-tel').value;
-      if (!cat || !m2 || !tel) { form.reportValidity(); return; }
-      var text = 'Hola Pisos Manriquez, quiero cotizar:\n- Categoria: ' + cat + '\n- m2 aprox: ' + m2 + '\n- Mi telefono: ' + tel;
-      var url = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(text);
-      /* TODO(n8n): ademas de abrir WhatsApp, enviar los datos al webhook de n8n para registrar el lead:
-         fetch('https://TU-ENDPOINT-N8N/webhook/cotizacion', {
-           method: 'POST',
-           headers: { 'Content-Type': 'application/json' },
-           body: JSON.stringify({ categoria: cat, m2: m2, telefono: tel, origen: 'home-cotiza' })
-         }).catch(function(){});
-      */
-      window.open(url, '_blank');
-    });
-  })();
-</script>
-
 {% schema %}
 {
-  "name": "Cotiza tu proyecto",
+  "name": "PM · Cotizador WhatsApp",
   "class": "pm-quote-section",
+  "tag": "section",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#E85D04" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Sin compromiso" },
     { "type": "text", "id": "title", "label": "Título", "default": "Cotiza tu proyecto" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Cuéntanos qué necesitas y te enviamos una cotización por WhatsApp." },
+    { "type": "text", "id": "subtitle", "label": "Bajada", "default": "Cuéntanos qué necesitas y te enviamos una cotización por WhatsApp." },
+    { "type": "textarea", "id": "categories", "label": "Categorías (separadas por coma)", "default": "Pisos Flotantes, Pisos Vinílicos, Cerámico y Porcelanato, Papel Mural, Pasto Sintético, Pisos de Ingeniería, Alfombras, Cortinas Roller, Molduras, Servicios, Otro / No estoy seguro" },
+    { "type": "text", "id": "button_text", "label": "Texto del botón", "default": "Recibir cotización" },
     { "type": "text", "id": "whatsapp", "label": "WhatsApp de destino", "default": "+56 9 7376 3087" },
-    { "type": "text", "id": "button_text", "label": "Texto del botón", "default": "Recibir cotización por WhatsApp" }
+    { "type": "text", "id": "note", "label": "Nota bajo el formulario", "default": "Te respondemos de lunes a viernes de 08:00 a 19:00." },
+    { "type": "header", "content": "Integración" },
+    { "type": "url", "id": "webhook", "label": "Webhook n8n (opcional)", "info": "Si lo cargas, cada cotización se registra además de abrir WhatsApp." }
   ],
-  "presets": [ { "name": "Cotiza tu proyecto" } ]
+  "presets": [ { "name": "PM · Cotizador WhatsApp" } ]
 }
 {% endschema %}
