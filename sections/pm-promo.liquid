@@ -1,0 +1,50 @@
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}PISOS MANRIQUEZ - Banner promocional full-width{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign wa_digits = s.whatsapp | remove: '+' | remove: ' ' | remove: '-'
+-%}
+
+<section class="pm-promo">
+  {%- if s.image != blank -%}
+    {{ s.image | image_url: width: 2000 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 2000', sizes: '100vw', alt: s.title }}
+  {%- elsif s.image_asset != blank -%}
+    <img src="{{ s.image_asset | asset_url }}" alt="{{ s.title | escape }}" width="1900" height="700" loading="lazy">
+  {%- endif -%}
+
+  <div class="pm-promo__inner pm-reveal">
+    {%- if s.eyebrow != blank -%}<p class="pm-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+    <h2 class="pm-h2 pm-h2--light">{{ s.title | escape }}</h2>
+    {%- if s.body != blank -%}<p class="pm-lead pm-lead--light">{{ s.body | escape }}</p>{%- endif -%}
+    <div style="display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap">
+      {%- if s.cta1_text != blank -%}
+        <a class="pm-btn pm-btn--primary" href="{{ s.cta1_link | default: routes.all_products_collection_url }}">{{ s.cta1_text | escape }}</a>
+      {%- endif -%}
+      {%- if s.cta2_text != blank -%}
+        <a class="pm-btn pm-btn--ghost-light" href="https://wa.me/{{ wa_digits }}?text={{ 'Hola Pisos Manriquez, quiero agendar una visita al showroom.' | url_encode }}" target="_blank" rel="noopener">{{ s.cta2_text | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PM · Banner",
+  "class": "pm-promo-section",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen de fondo" },
+    { "type": "text", "id": "image_asset", "label": "Fallback desde assets/", "default": "pm-cat-papel-mural.webp" },
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Showroom Las Condes" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Ven a ver y tocar los materiales" },
+    { "type": "text", "id": "body", "label": "Texto", "default": "Manquehue Sur 1581, Las Condes · Lunes a viernes de 08:00 a 19:00." },
+    { "type": "text", "id": "cta1_text", "label": "Botón principal", "default": "Ver catálogo" },
+    { "type": "url", "id": "cta1_link", "label": "Enlace botón principal" },
+    { "type": "text", "id": "cta2_text", "label": "Botón WhatsApp", "default": "Agendar visita" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" }
+  ],
+  "presets": [ { "name": "PM · Banner" } ]
+}
+{% endschema %}

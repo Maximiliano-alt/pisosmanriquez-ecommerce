@@ -1,0 +1,116 @@
+{{ 'pm-redesign.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pm-redesign.js' | asset_url }}" defer="defer"></script>
+{%- comment -%}
+  PISOS MANRIQUEZ - Carrusel con logica dual.
+  Producto disponible -> compra directa. Sin stock o tag cotizar/m2 -> WhatsApp.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign wa_digits = s.whatsapp | remove: '+' | remove: ' ' | remove: '-'
+  assign coll = collections[s.collection]
+  assign limit = s.count | default: 8
+-%}
+
+<section class="pm-section{% if s.background == 'cream' %} pm-section--cream{% endif %}">
+  <div class="pm-wrap">
+    <div class="pm-car__head pm-reveal">
+      <div>
+        {%- if s.eyebrow != blank -%}<p class="pm-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {%- if s.title != blank -%}<h2 class="pm-h2">{{ s.title | escape }}</h2>{%- endif -%}
+      </div>
+      <div style="display:flex;align-items:center;gap:1.25rem">
+        {%- if s.show_view_all and coll != blank -%}
+          <a class="pm-link-arrow" href="{{ coll.url }}">Ver todo
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        {%- endif -%}
+        <div class="pm-car__nav">
+          <button class="pm-car__btn" type="button" data-pm-prev aria-label="Anterior">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="pm-car__btn" type="button" data-pm-next aria-label="Siguiente">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div data-pm-carousel class="pm-reveal" data-pm-delay="100">
+      <div class="pm-car__viewport" data-pm-viewport>
+        {%- if coll != blank and coll.products.size > 0 -%}
+          {%- for product in coll.products limit: limit -%}
+            {%- liquid
+              assign quote_only = false
+              unless product.available
+                assign quote_only = true
+              endunless
+              if product.tags contains 'cotizar' or product.tags contains 'm2'
+                assign quote_only = true
+              endif
+              assign sku = product.selected_or_first_available_variant.sku
+              assign wa_msg = 'Hola Pisos Manriquez, quiero cotizar: ' | append: product.title
+              if sku != blank
+                assign wa_msg = wa_msg | append: ' (SKU ' | append: sku | append: ')'
+              endif
+            -%}
+            <a class="pm-card" href="{% if quote_only %}https://wa.me/{{ wa_digits }}?text={{ wa_msg | url_encode }}{% else %}{{ product.url }}{% endif %}"{% if quote_only %} target="_blank" rel="noopener"{% endif %}>
+              <span class="pm-card__img">
+                {%- if product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '240, 360, 480, 600', sizes: '(min-width: 750px) 288px, 46vw', alt: product.title }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+                {%- if quote_only -%}
+                  <span class="pm-card__flag pm-card__flag--out">Cotizar</span>
+                {%- elsif product.compare_at_price > product.price -%}
+                  <span class="pm-card__flag">Oferta</span>
+                {%- endif -%}
+              </span>
+              {%- if s.show_vendor and product.vendor != blank -%}
+                <span class="pm-card__vendor">{{ product.vendor | escape }}</span>
+              {%- endif -%}
+              <span class="pm-card__title">{{ product.title | escape }}</span>
+              <span class="pm-card__price">
+                {%- if quote_only -%}
+                  Consultar precio
+                {%- else -%}
+                  {{ product.price | money }}
+                  {%- if s.price_unit != blank %} <span class="pm-card__unit">{{ s.price_unit | escape }}</span>{% endif -%}
+                {%- endif -%}
+              </span>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="pm-tes__empty" style="flex:1 1 100%">
+            Esta sección se llena sola cuando la colección seleccionada tenga productos publicados con foto y precio.
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pm-card__vendor, .pm-card__title, .pm-card__price { display: block; }
+</style>
+
+{% schema %}
+{
+  "name": "PM · Carrusel",
+  "class": "pm-car-section",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Antetítulo", "default": "Stock en showroom" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Productos destacados" },
+    { "type": "collection", "id": "collection", "label": "Colección" },
+    { "type": "range", "id": "count", "min": 4, "max": 16, "step": 2, "label": "Cantidad de productos", "default": 8 },
+    { "type": "text", "id": "price_unit", "label": "Unidad junto al precio", "info": "Ej: /m2. Vacío si el precio es por unidad." },
+    { "type": "checkbox", "id": "show_vendor", "label": "Mostrar marca", "default": true },
+    { "type": "checkbox", "id": "show_view_all", "label": "Mostrar enlace Ver todo", "default": true },
+    { "type": "select", "id": "background", "label": "Fondo", "default": "white", "options": [ { "value": "white", "label": "Blanco" }, { "value": "cream", "label": "Crema" } ] },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp", "default": "+56 9 7376 3087" }
+  ],
+  "presets": [ { "name": "PM · Carrusel" } ]
+}
+{% endschema %}
